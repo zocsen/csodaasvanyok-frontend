@@ -1,0 +1,123 @@
+.mobile-accordion-container {
+  position: fixed;
+  justify-content: space-between;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 100%;
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+  max-width: 1400px;
+  z-index: 1000;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+
+  hr {
+    margin: 20px 0;
+  }
+
+  .mobile-accordion-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  li {
+    padding: 2px 6px;
+  }
+
+  .close-button {
+    background-color: white;
+    &:active {
+      background-color: var(--primary-color);
+    }
+  }
+
+  button {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+  }
+
+  .menu-bottom .menu-category-list {
+    border-bottom: none;
+
+    p {
+      font-size: 2rem;
+      font-weight: 400;
+      padding-bottom: 30px;
+      text-align: center;
+    }
+
+    .down-arrow {
+      display: flex;
+      margin: 0 auto;
+      padding-bottom: 30px;
+    }
+  }
+
+  .menu-social-container {
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .menu-social-container .social-link {
+    background: var(--cultured);
+    color: var(--eerie-black);
+    font-size: 2rem;
+    padding: 10px;
+    -webkit-border-radius: var(--border-radius-md);
+    border-radius: var(--border-radius-md);
+
+    img {
+      width: 20px;
+    }
+  }
+}
+
+.mobile-accordion-container.open {
+  transform: translateX(0);
+}
+.overlay.open {
+  display: block;
+}
+
+.accordion-style {
+  display: flex;
+  justify-content: space-between;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+
+  &.open {
+    max-height: 200px; // adjust based on your content
+  }
+}
+
+.rotate-icon {
+  transition: transform 0.3s ease-in-out;
+  transform: rotate(deg); // initial state, for '+'
+
+  &.open {
+    transform: rotate(180deg); // for '-'
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  display: none;
+}
