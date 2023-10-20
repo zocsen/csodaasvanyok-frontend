@@ -15,13 +15,13 @@ export default function MobileAccordion() {
           {isOpen ? (
             <img
               className={`rotate-icon ${isOpen ? "open" : ""}`}
-              src="/images/icons/remove-icon.svg"
+              src="/images/icons/remove.svg"
               alt="-"
             />
           ) : (
             <img
               className={`rotate-icon ${isOpen ? "open" : ""}`}
-              src="/images/icons/add-icon.svg"
+              src="/images/icons/add.svg"
               alt="+"
             />
           )}
@@ -47,18 +47,23 @@ export default function MobileAccordion() {
   }, [isOpen]);
 
   return (
-    <div ref={dropdownRef}>
+    <div className="mobile-menu" ref={dropdownRef}>
       <button
         className="mobile-header-menu-btn"
         onClick={() => setIsOpen(!isOpen)}
       >
-        Mobile
+        <img
+          src="/images/icons/menu.svg"
+          alt="Menu icon"
+          width={30}
+          height={30}
+        />
       </button>
       <div className={`mobile-accordion-container ${isOpen ? "open" : ""}`}>
         <div className="mobile-accordion-header">
           <h2>Termékek</h2>
           <button className="close-button" onClick={() => setIsOpen(!isOpen)}>
-            <img width={34} src="/images/icons/close-button.svg" alt="" />
+            <img width={34} src="/images/icons/close.svg" alt="" />
           </button>
         </div>
 
@@ -86,29 +91,29 @@ export default function MobileAccordion() {
         <hr />
         <div>Blogunk</div>
         <hr />
-        <div class="menu-bottom">
-          <ul class="menu-category-list">
+        <div className="menu-bottom">
+          <ul className="menu-category-list">
             <p>Ne maradj le semmiről</p>
 
             <img
               src="/images/icons/down-arrow.svg"
-              class="down-arrow"
+              className="down-arrow"
               alt="Down arrow"
             />
 
-            <ul class="menu-social-container">
+            <ul className="menu-social-container">
               <li>
-                <a href="#" class="social-link">
+                <a href="#" className="social-link">
                   <img src="/images/icons/logo-facebook.svg" alt="Facebook" />
                 </a>
               </li>
               <li>
-                <a href="#" class="social-link">
+                <a href="#" className="social-link">
                   <img src="/images/icons/logo-instagram.svg" alt="Instagram" />
                 </a>
               </li>
               <li>
-                <a href="#" class="social-link">
+                <a href="#" className="social-link">
                   <img src="/images/icons/logo-tiktok.svg" alt="TikTok" />
                 </a>
               </li>

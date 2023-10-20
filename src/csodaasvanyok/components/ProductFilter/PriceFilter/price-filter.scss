@@ -1,0 +1,19 @@
+.filter-block {
+  .panel {
+    padding: 0 14px 14px 14px;
+    .min-max {
+      display: flex;
+      justify-content: space-between;
+      .price-box {
+        background-color: var(--hover-gray);
+        padding: 7px 14px;
+        border-radius: var(--border-radius-md);
+      }
+    }
+
+    .price-slider {
+      display: block;
+      margin: 16px 16px 0 16px;
+    }
+  }
+}

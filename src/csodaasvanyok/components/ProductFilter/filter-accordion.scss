@@ -1,0 +1,49 @@
+.filter-block {
+  border-style: solid;
+  border-width: 2px;
+  border-radius: var(--border-radius-md);
+  border-color: var(--hover-gray);
+  .filter-accordion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px;
+    background-color: var(--primary-background-color);
+
+    &:hover {
+      .arrow-img {
+        background-color: var(--hover-gray);
+        border-radius: var(--border-radius-round);
+      }
+    }
+
+    span {
+      font-size: 2.2rem;
+    }
+  }
+
+  .panel {
+    padding: 0 14px 0 14px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease-in-out;
+    .box-wrapper {
+      max-height: 280px;
+      overflow-y: scroll;
+      overscroll-behavior: contain;
+
+      .item {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .panel.open {
+    max-height: 280px;
+  }
+  .faster-panel.open {
+    max-height: 100px;
+    transition: max-height 0.5s ease-in-out;
+  }
+}

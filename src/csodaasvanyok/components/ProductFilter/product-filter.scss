@@ -1,0 +1,16 @@
+.product-filter {
+  display: none;
+  min-width: 320px;
+  max-width: 350px;
+}
+@media (min-width: 350px) {
+  .product-filter {
+    min-width: 350px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-filter {
+    display: block;
+  }
+}
