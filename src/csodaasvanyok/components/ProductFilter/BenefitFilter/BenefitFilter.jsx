@@ -2,16 +2,31 @@ import { useEffect, useState } from "react";
 import useApi from "../../../../hooks/useApi";
 import "./benefit-filter.scss";
 
-export default function BenefitFilter() {
+export default function BenefitFilter({ onValueChange }) {
   const { data, error, get } = useApi(
     "https://csodaasvanyok.up.railway.app/api/v1"
   );
 
   const [isPanelVisible, setIsPanelVisible] = useState(true);
+  const [selectedMinerals, setSelectedMinerals] = useState([]);
 
   useEffect(() => {
     get("/benefits");
   }, []);
+
+  const handleChange = (mineral, checked) => {
+    if (checked) {
+      setSelectedMinerals((prevState) => [...prevState, mineral]);
+    } else {
+      setSelectedMinerals((prevState) =>
+        prevState.filter((item) => item !== mineral)
+      );
+    }
+  };
+
+  useEffect(() => {
+    onValueChange(selectedMinerals);
+  }, [selectedMinerals, onValueChange]);
 
   return (
     <div className="filter-block">
@@ -37,8 +52,7 @@ export default function BenefitFilter() {
                   className="css-checkbox"
                   type="checkbox"
                   value={benefit.name}
-                  //   checked={benefitCheckboxStates[benefit.id]}
-                  //   onChange={() => onbenefitSelect(benefit)}
+                  onChange={(e) => handleChange(benefit.id, e.target.checked)}
                 />
                 <label htmlFor={`benefit${i + 1}`}>{benefit.name}</label>
               </div>

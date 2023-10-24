@@ -3,7 +3,7 @@ import "./price-filter.scss";
 import { Slider, styled } from "@mui/material";
 import { useTheme } from "@emotion/react";
 
-function PriceFilter() {
+function PriceFilter({ onValueChange }) {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(19990);
   const [rangeValues, setRangeValues] = useState([minPrice, maxPrice]);
@@ -11,14 +11,8 @@ function PriceFilter() {
   const theme = useTheme();
 
   useEffect(() => {
-    onPriceChange();
+    onValueChange(rangeValues);
   }, [rangeValues]);
-
-  const onPriceChange = () => {
-    // TODO Handle price change logic here
-    setMinPrice(rangeValues[0]);
-    setMaxPrice(rangeValues[1]);
-  };
 
   return (
     <div className="filter-block">

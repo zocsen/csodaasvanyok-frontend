@@ -62,20 +62,36 @@ export default function DesktopAccordion() {
             <li>
               <Link to="/termekek/osszes-karkoto">Összes karkötő</Link>
             </li>
-
-            <li>Női karkötők</li>
-            <li>Férfi karkötők</li>
-            <li>Páros karkötők</li>
             <li>
-              Karkötő tervező <br /> (HAMAROSAN)
+              <Link to="/termekek/noi-karkotok">Női karkötők</Link>
+            </li>
+            <li>
+              <Link to="/termekek/ferfi-karkotok">Férfi karkötők</Link>
+            </li>
+            <li>
+              <Link to="/termekek/paros-karkotok">Páros karkötők</Link>
+            </li>
+            <li>
+              <Link to="/tervezo">
+                Karkötő Tervező <br /> (HAMAROSAN)
+              </Link>
             </li>
           </ul>
           <ul className="desktop-menu-items">
-            <h2>Marokkövek</h2>
-            <h2>Akciós termékek</h2>
-            <h2>Blogunk</h2>
             <h2>
-              Ékszer tervező <br /> (HAMAROSAN)
+              <Link to="/termekek/marokkovek">Marokkövek</Link>
+            </h2>
+            <h2>
+              <Link to="/termekek/akcio">Akciós termékek</Link>
+            </h2>
+            <h2>
+              <Link to="blog">Blogunk</Link>
+            </h2>
+            <h2>
+              <Link to="/tervezo">
+                Ékszer tervező <br />
+                (HAMAROSAN)
+              </Link>
             </h2>
           </ul>
         </nav>

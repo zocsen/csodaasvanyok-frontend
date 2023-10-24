@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./color-filter.scss";
-function ColorFilter() {
+function ColorFilter({ onValueChange }) {
   const colors = [
     { code: "#FF000D", name: "Piros" },
     { code: "#FFA756", name: "Narancssárga" },
@@ -34,6 +34,10 @@ function ColorFilter() {
   const isSelected = (color) => {
     return selectedColors.includes(color.code);
   };
+
+  useEffect(() => {
+    onValueChange(selectedColors);
+  }, [selectedColors]);
 
   return (
     <div className="filter-block">

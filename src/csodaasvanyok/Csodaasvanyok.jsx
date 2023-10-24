@@ -11,19 +11,23 @@ export default function Csodaasvanyok() {
       <Routes>
         <Route
           path="termekek/osszes-karkoto"
-          element={<ProductsPage type="Összes karkötő" />}
+          element={<ProductsPage header="Összes karkötő" type="Karkötő" />}
         />
         <Route
-          path="termekek/noi-karkoto"
-          element={<ProductsPage type="Női karkötők" />}
+          path="termekek/noi-karkotok"
+          element={<ProductsPage header="Női karkötők" type="Női" />}
         />
         <Route
-          path="termekek/ferfi-karkoto"
-          element={<ProductsPage type="Férfi karkötők" />}
+          path="termekek/ferfi-karkotok"
+          element={<ProductsPage header="Férfi karkötők" type="Férfi" />}
         />
         <Route
-          path="termekek/paros-karkoto"
-          element={<ProductsPage type="Páros karkötők" />}
+          path="termekek/paros-karkotok"
+          element={<ProductsPage header="Páros karkötők" type="Páros" />}
+        />
+        <Route
+          path="termekek/marokkovek"
+          element={<ProductsPage header="Marokkövek" type="Ásványok" />}
         />
         <Route path="/" element={<Homepage />} />
         <Route path="*" element={<Homepage />} />

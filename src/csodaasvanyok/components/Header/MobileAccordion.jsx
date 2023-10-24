@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./mobile-accordion.scss";
+import { Link } from "react-router-dom";
 
 export default function MobileAccordion() {
   const [isOpen, setIsOpen] = useState(false);
@@ -76,20 +77,30 @@ export default function MobileAccordion() {
         </AccordionItem>
         <hr />
         <AccordionItem title="Karkötők">
-          <li>Összes karkötő</li>
-          <li>Női karkötők</li>
-          <li>Férfi karkötők</li>
-          <li>Páros karkötők</li>
-          <li>Karkötő tervező (HAMAROSAN)</li>
+          <li>
+            <Link to="/termekek/osszes-karkoto">Összes karkötő</Link>
+          </li>
+          <li>
+            <Link to="/termekek/noi-karkotok">Női karkötők</Link>
+          </li>
+          <li>
+            <Link to="/termekek/ferfi-karkotok">Férfi karkötők</Link>
+          </li>
+          <li>
+            <Link to="/termekek/paros-karkotok">Páros karkötők</Link>
+          </li>
+          <li>
+            <Link to="/tervezo">Karkötő Tervező (HAMAROSAN)</Link>
+          </li>
         </AccordionItem>
         <hr />
-        <div>Marokkövek</div>
+        <Link to="/termekek/marokkovek">Marokkövek</Link>
         <hr />
-        <div>Akciós termékek</div>
+        <Link to="/termekek/akcio">Akciós termékek</Link>
         <hr />
-        <div>Ékszer tervező (HAMAROSAN)</div>
+        <Link to="/tervezo">Ékszer tervező (HAMAROSAN)</Link>
         <hr />
-        <div>Blogunk</div>
+        <Link to="blog">Blogunk</Link>
         <hr />
         <div className="menu-bottom">
           <ul className="menu-category-list">

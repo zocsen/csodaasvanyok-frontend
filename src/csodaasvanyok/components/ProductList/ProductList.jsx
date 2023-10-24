@@ -4,19 +4,11 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import "./product-list.scss";
 
-export default function ProductList() {
-  const { data, error, get } = useApi(
-    "https://csodaasvanyok.up.railway.app/api/v1"
-  );
-
-  useEffect(() => {
-    get("/products");
-  }, []);
-
+export default function ProductList({ products }) {
   return (
     <div className="container">
-      {data &&
-        data.map((product) => {
+      {products &&
+        products.map((product) => {
           // Convert the price to a string and then format it with a space every 3rd number
           const formattedPrice = String(product.price).replace(
             /\B(?=(\d{3})+(?!\d))/g,

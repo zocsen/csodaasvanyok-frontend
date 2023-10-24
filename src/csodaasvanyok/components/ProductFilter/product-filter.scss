@@ -2,6 +2,7 @@
   display: none;
   min-width: 320px;
   max-width: 350px;
+  gap: 10px;
 }
 @media (min-width: 350px) {
   .product-filter {
@@ -11,6 +12,7 @@
 
 @media (min-width: 1024px) {
   .product-filter {
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
 }

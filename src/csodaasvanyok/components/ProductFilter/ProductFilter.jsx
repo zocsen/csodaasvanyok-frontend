@@ -5,13 +5,17 @@ import PriceFilter from "./PriceFilter/PriceFilter";
 import "./product-filter.scss";
 import "./filter-accordion.scss";
 
-export default function ProductFilter() {
+export default function ProductFilter({ onFilterChange }) {
   return (
     <div className="product-filter">
-      <PriceFilter />
-      <ColorFilter />
-      <MineralFilter />
-      <BenefitFilter />
+      <PriceFilter onValueChange={(value) => onFilterChange("price", value)} />
+      <ColorFilter onValueChange={(value) => onFilterChange("color", value)} />
+      <MineralFilter
+        onValueChange={(value) => onFilterChange("mineral", value)}
+      />
+      <BenefitFilter
+        onValueChange={(value) => onFilterChange("benefit", value)}
+      />
     </div>
   );
 }
