@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from "react";
 import "./price-filter.scss";
-import { Slider, styled } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Slider } from "@mui/material";
 
-function PriceFilter({ onValueChange }) {
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(19990);
-  const [rangeValues, setRangeValues] = useState([minPrice, maxPrice]);
+function PriceFilter({ onValueChange, priceRange, minMaxValues }) {
+  const [rangeValues, setRangeValues] = useState(priceRange);
+  const [currentRange, setCurrentRange] = useState(priceRange);
   const [isPanelVisible, setIsPanelVisible] = useState(true);
-  const theme = useTheme();
 
   useEffect(() => {
-    onValueChange(rangeValues);
-  }, [rangeValues]);
+    onValueChange(currentRange);
+    setRangeValues(currentRange);
+  }, [currentRange, onValueChange]);
+
+  useEffect(() => {
+    if (minMaxValues?.length === 2) {
+      setCurrentRange(minMaxValues);
+    }
+  }, [minMaxValues]);
+
+  const togglePanelVisibility = () => {
+    setIsPanelVisible(!isPanelVisible);
+  };
 
   return (
     <div className="filter-block">
-      <button
-        className="filter-accordion"
-        onClick={() => {
-          setIsPanelVisible(!isPanelVisible);
-        }}
-      >
+      <button className="filter-accordion" onClick={togglePanelVisibility}>
         <span>Ár</span>
         <img
           className="arrow-img"
@@ -32,19 +35,19 @@ function PriceFilter({ onValueChange }) {
       <div className={`faster-panel ${isPanelVisible ? "open" : ""} panel`}>
         <div className="min-max">
           <div className="price-box">
-            <label>Min: {minPrice} Ft</label>
+            <label>Min: {rangeValues[0]} Ft</label>
           </div>
           <div className="price-box">
-            <label>Max: {maxPrice} Ft</label>
+            <label>Max: {rangeValues[1]} Ft</label>
           </div>
         </div>
         <div className="price-slider">
           <Slider
-            min={0}
-            max={19999}
-            value={rangeValues}
-            onChange={(event, newValue) => setRangeValues(newValue)}
-            step={100}
+            min={minMaxValues[0]}
+            max={minMaxValues[1]}
+            value={currentRange}
+            onChange={(event, newValue) => setCurrentRange(newValue)}
+            step={50}
             sx={{
               color: "var(--primary-font-color)",
               height: 4,

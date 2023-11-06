@@ -1,55 +1,84 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ProductFilter from "../../components/ProductFilter/ProductFilter";
-import IsMobileContext from "../../../hooks/isMobileContext";
 import ProductList from "../../components/ProductList/ProductList";
 import "./products-page.scss";
-import useApi from "../../../hooks/useApi";
 
-export default function ProductsPage({ header, type }) {
-  const {
-    data: allProducts,
-    error,
-    get,
-  } = useApi("https://csodaasvanyok.up.railway.app/api/v1");
+function filterProductsByType(product, type) {
+  switch (type) {
+    case "Női":
+    case "Férfi":
+    case "Páros":
+      return product.subcategory[0].name === type;
+    case "Karkötő":
+    case "Ásványok":
+      return product.category.name === type;
+    default:
+      return false;
+  }
+}
 
+export default function ProductsPage({ header, type, allProducts }) {
+  const [initialPriceRange, setInitialPriceRange] = useState([0, 0]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [priceRange, setPriceRange] = useState([0, 19990]);
+  const [priceRange, setPriceRange] = useState([0, 0]);
   const [colorFilter, setColorFilter] = useState([]);
   const [mineralFilter, setMineralFilter] = useState([]);
   const [benefitFilter, setBenefitFilter] = useState([]);
+  const [maxProductCount, setMaxProductCount] = useState(0);
+  const [initialRender, setInitialRender] = useState(true);
 
   useEffect(() => {
-    get("/products");
-  }, []);
+    setInitialRender(true);
+  }, [type]);
 
-  console.log(allProducts);
+  if (allProducts && initialRender) {
+    setInitialRender(false);
+    let maxPriceValue = 0;
+    let minPriceValue = Infinity;
+    let count = 0;
+    allProducts.forEach((product) => {
+      let matchesType = false;
+
+      switch (type) {
+        case "Női":
+        case "Férfi":
+        case "Páros":
+          if (product.subcategory[0].name === type) {
+            matchesType = true;
+            count++;
+          }
+          break;
+        case "Karkötő":
+        case "Ásványok": //marokkövek
+          if (product.category.name === type) {
+            matchesType = true;
+            count++;
+          }
+          break;
+        default:
+          break;
+      }
+      if (matchesType) {
+        maxPriceValue = Math.max(maxPriceValue, product.price);
+        minPriceValue = Math.min(minPriceValue, product.price);
+      }
+    });
+
+    setMaxProductCount(count);
+    if (minPriceValue === Infinity) {
+      minPriceValue = 0;
+    }
+    setInitialPriceRange([minPriceValue, maxPriceValue]);
+    setPriceRange([minPriceValue, maxPriceValue]);
+  }
+
   useEffect(() => {
     if (allProducts) {
-      console.log(allProducts);
       let filtered = allProducts.filter((product) => {
-        let matchesCategory;
-        switch (type) {
-          case "Női":
-            matchesCategory = product.subcategory[0].name === type;
-            console.log(matchesCategory);
-            break;
-          case "Férfi":
-            matchesCategory = product.subcategory[0].name === type;
-            break;
-          case "Páros":
-            matchesCategory = product.subcategory[0].name === type;
-            break;
-          case "Karkötő":
-            matchesCategory = product.category.name === type;
-            break;
-          case "Ásványok": //marokkövek
-            matchesCategory = product.category.name === type;
-            break;
-          default:
-            break;
-        }
+        const matchesCategory = filterProductsByType(product, type);
         let matchesPrice =
           product.price >= priceRange[0] && product.price <= priceRange[1];
+
         let matchesColor =
           colorFilter.length === 0 ||
           product.color.some((pColor) => colorFilter.includes(pColor.code));
@@ -87,30 +116,31 @@ export default function ProductsPage({ header, type }) {
   ]);
 
   const handleFilterChange = (filterType, value) => {
-    switch (filterType) {
-      case "price":
-        setPriceRange(value);
-        break;
-      case "color":
-        setColorFilter(value);
-        break;
-      case "mineral":
-        setMineralFilter(value);
-        break;
-      case "benefit":
-        setBenefitFilter(value);
-        break;
-      default:
-        break;
-    }
+    const filterSetters = {
+      price: setPriceRange,
+      color: setColorFilter,
+      mineral: setMineralFilter,
+      benefit: setBenefitFilter,
+    };
+    filterSetters[filterType]?.(value);
   };
 
   return (
     <div className="products-page">
       <div className="products-page-container">
-        <ProductFilter onFilterChange={handleFilterChange} />
+        <ProductFilter
+          onFilterChange={handleFilterChange}
+          priceRange={priceRange}
+          minMaxValues={initialPriceRange}
+        />
         <div className="products-page-main">
-          <h1 className="products-page-title">{header}</h1>
+          <h1 className="products-page-title">
+            {header}{" "}
+            <span>
+              ({filteredProducts ? filteredProducts.length : 0}/
+              {allProducts ? maxProductCount : 0})
+            </span>
+          </h1>
           <ProductList products={filteredProducts} />
         </div>
       </div>
