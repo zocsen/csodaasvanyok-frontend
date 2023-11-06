@@ -11,9 +11,13 @@
     padding: 14px;
     background-color: var(--primary-background-color);
 
+    .arrow-img {
+      width: 100px;
+      height: 100px;
+    }
     &:hover {
       .arrow-img {
-        background-color: var(--hover-gray);
+        background-color: var(--primary-font-color);
         border-radius: var(--border-radius-round);
       }
     }
