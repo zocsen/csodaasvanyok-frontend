@@ -6,29 +6,13 @@ import ProductsPage from "./pages/ProductsPage/ProductsPage";
 import useApi from "../hooks/useApi";
 
 export default function Csodaasvanyok() {
-  const {
-    data: allProducts,
-    loading,
-    error,
-    get,
-  } = useApi("https://csodaasvanyok.up.railway.app/api/v1");
-
-  useEffect(() => {
-    get("/products");
-  }, []);
   return (
     <BrowserRouter>
       <Header />
       <Routes>
         <Route
           path="termekek/osszes-karkoto"
-          element={
-            <ProductsPage
-              header="Összes karkötő"
-              type="Karkötő"
-              allProducts={allProducts}
-            />
-          }
+          element={<ProductsPage header="Összes karkötő" type="Karkötő" />}
         />
         <Route
           path="termekek/noi-karkotok"

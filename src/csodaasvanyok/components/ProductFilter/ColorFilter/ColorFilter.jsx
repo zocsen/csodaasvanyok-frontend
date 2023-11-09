@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./color-filter.scss";
+import { ReactComponent as ExpandMoreIcon } from "../../../../images/icons/expand-more.svg";
 function ColorFilter({ onValueChange }) {
   const colors = [
     { code: "#FF000D", name: "Piros" },
@@ -46,29 +47,54 @@ function ColorFilter({ onValueChange }) {
         onClick={() => setIsPanelVisible(!isPanelVisible)}
       >
         <span>Szín</span>
-        <img
-          className="arrow-img"
-          src="/images/icons/expand-more.svg"
-          alt="V"
-        />
+        <ExpandMoreIcon className="arrow-img base-svg" />
       </button>
-      <div className={`faster-panel ${isPanelVisible ? "open" : ""} panel`}>
-        <div className="color-box-wrapper">
-          {colors.map((color) => (
-            <div
-              key={color.code}
-              className={`color-box ${isSelected(color) ? "selected" : ""}`}
-              onClick={() => onColorSelect(color)}
-              style={{ background: color.code }}
-              title={color.name}
-            >
-              {isSelected(color) && (
-                <div className="selected-checkmark">
-                  <img src="/images/icons/checkmark.svg" alt="Selected" />
-                </div>
-              )}
-            </div>
-          ))}
+      <div className={`${isPanelVisible ? "open" : ""} panel`}>
+        <div class="color-palette">
+          <div class="color-swatch" style={{ backgroundColor: "#E5B80B" }}>
+            <span>Arany</span>
+          </div>
+          <div class="color-swatch" style={{ backgroundColor: "#B98332" }}>
+            <span>Barna</span>
+          </div>
+          <div class="color-swatch" style={{ backgroundColor: "#FFEF5F" }}>
+            <span>Citrom</span>
+          </div>
+          <div class="color-swatch" style={{ backgroundColor: "#D3D3D3" }}>
+            <span>Ezüst</span>
+          </div>
+          <div class="color-swatch" style={{ backgroundColor: "#FFFFFF" }}>
+            <span>Fehér</span>
+          </div>
+          <div class="color-swatch" style={{ backgroundColor: "#303030" }}>
+            <span>Fekete</span>
+          </div>
+          <div class="color-swatch" style={{ backgroundColor: "#1371D5" }}>
+            <span>Kék</span>
+          </div>
+          <div class="color-swatch" style={{ backgroundColor: "#AB40FF" }}>
+            <span>Lila</span>
+          </div>
+          <div class="color-swatch" style={{ backgroundColor: "#FFA756" }}>
+            <span>Narancs</span>
+          </div>
+          <div class="color-swatch" style={{ backgroundColor: "#FF2F2F" }}>
+            <span>Piros</span>
+          </div>
+          <div class="color-swatch" style={{ backgroundColor: "#F1D0CC" }}>
+            <span>
+              <nobr>Rose gold</nobr>
+            </span>
+          </div>
+          <div class="color-swatch" style={{ backgroundColor: "#F9B7FF" }}>
+            <span>Rózsaszín</span>
+          </div>
+          <div class="color-swatch" style={{ backgroundColor: "#E4E4E4" }}>
+            <span>Szürke</span>
+          </div>
+          <div class="color-swatch" style={{ backgroundColor: "#008F00" }}>
+            <span>Zöld</span>
+          </div>
         </div>
       </div>
     </div>

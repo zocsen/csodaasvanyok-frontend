@@ -17,3 +17,10 @@
     margin-right: 40px;
   }
 }
+@media (min-width: 1200px) {
+  .product-filter {
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+  }
+}

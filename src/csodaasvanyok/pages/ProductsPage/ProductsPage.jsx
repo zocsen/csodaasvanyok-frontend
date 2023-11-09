@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ProductFilter from "../../components/ProductFilter/ProductFilter";
 import ProductList from "../../components/ProductList/ProductList";
 import "./products-page.scss";
+import useApi from "../../../hooks/useApi";
 
 function filterProductsByType(product, type) {
   switch (type) {
@@ -17,7 +18,7 @@ function filterProductsByType(product, type) {
   }
 }
 
-export default function ProductsPage({ header, type, allProducts }) {
+export default function ProductsPage({ header, type }) {
   const [initialPriceRange, setInitialPriceRange] = useState([0, 0]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 0]);
@@ -26,6 +27,17 @@ export default function ProductsPage({ header, type, allProducts }) {
   const [benefitFilter, setBenefitFilter] = useState([]);
   const [maxProductCount, setMaxProductCount] = useState(0);
   const [initialRender, setInitialRender] = useState(true);
+
+  const {
+    data: allProducts,
+    loading,
+    error,
+    get,
+  } = useApi("http://192.168.1.8:3000/api/v1");
+
+  useEffect(() => {
+    get("/products");
+  }, []);
 
   useEffect(() => {
     setInitialRender(true);
@@ -136,10 +148,7 @@ export default function ProductsPage({ header, type, allProducts }) {
         <div className="products-page-main">
           <h1 className="products-page-title">
             {header}{" "}
-            <span>
-              ({filteredProducts ? filteredProducts.length : 0}/
-              {allProducts ? maxProductCount : 0})
-            </span>
+            <span>({filteredProducts ? filteredProducts.length : 0} db)</span>
           </h1>
           <ProductList products={filteredProducts} />
         </div>

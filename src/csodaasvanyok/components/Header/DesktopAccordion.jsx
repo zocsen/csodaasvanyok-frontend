@@ -2,6 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import "./desktop-accordion.scss";
 import { Link } from "react-router-dom";
 
+import { ReactComponent as ExpandMoreIcon } from "../../../images/icons/expand-more.svg";
+
+import { ReactComponent as FacebookIcon } from "../../../images/icons/logo-facebook.svg";
+import { ReactComponent as InstagramIcon } from "../../../images/icons/logo-instagram.svg";
+import { ReactComponent as TikTokIcon } from "../../../images/icons/logo-tiktok.svg";
+
 export default function DesktopAccordion() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -39,83 +45,80 @@ export default function DesktopAccordion() {
       >
         <p className="desktop-header-menu-title">
           Termékek{" "}
-          <img
-            className="title-arrow"
-            src="/images/icons/expand-more.svg"
-            alt=""
+          <ExpandMoreIcon
+            className="arrow-img base-svg"
             width={34}
             height={34}
           />
         </p>
       </button>
-      <div className={`desktop-accordion-container ${isOpen ? "open" : ""}`}>
-        <nav className="desktop-menu-navigation">
-          <ul className="desktop-menu-items">
-            <h2>Népszerűek</h2>
-            <li>Téli kollekció</li>
-            <li>Szerelmesek kollekciója</li>
-            <li>Horoszkóp kollekció</li>
-            <li>Akciós termékek</li>
-          </ul>
-          <ul className="desktop-menu-items">
-            <h2>Karkötők</h2>
-            <li>
-              <Link to="/termekek/osszes-karkoto">Összes karkötő</Link>
-            </li>
-            <li>
-              <Link to="/termekek/noi-karkotok">Női karkötők</Link>
-            </li>
-            <li>
-              <Link to="/termekek/ferfi-karkotok">Férfi karkötők</Link>
-            </li>
-            <li>
-              <Link to="/termekek/paros-karkotok">Páros karkötők</Link>
-            </li>
-            <li>
-              <Link to="/tervezo">
-                Karkötő Tervező <br /> (HAMAROSAN)
-              </Link>
-            </li>
-          </ul>
-          <ul className="desktop-menu-items">
-            <h2>
-              <Link to="/termekek/marokkovek">Marokkövek</Link>
-            </h2>
-            <h2>
-              <Link to="/termekek/akcio">Akciós termékek</Link>
-            </h2>
-            <h2>
-              <Link to="blog">Blogunk</Link>
-            </h2>
-            <h2>
-              <Link to="/tervezo">
-                Ékszer tervező <br />
-                (HAMAROSAN)
-              </Link>
-            </h2>
-          </ul>
-        </nav>
+      <div className={`desktop-accordion ${isOpen ? "open" : ""}`}>
+        <div className="desktop-accordion-container">
+          <nav className="desktop-menu-navigation">
+            <ul className="desktop-menu-items">
+              <h2>Népszerűek</h2>
+              <li>Téli kollekció</li>
+              <li>Szerelmesek kollekciója</li>
+              <li>Horoszkóp kollekció</li>
+              <li>Akciós termékek</li>
+            </ul>
+            <ul className="desktop-menu-items">
+              <h2>Karkötők</h2>
+              <li>
+                <Link to="/termekek/osszes-karkoto">Összes karkötő</Link>
+              </li>
+              <li>
+                <Link to="/termekek/noi-karkotok">Női karkötők</Link>
+              </li>
+              <li>
+                <Link to="/termekek/ferfi-karkotok">Férfi karkötők</Link>
+              </li>
+              <li>
+                <Link to="/termekek/paros-karkotok">Páros karkötők</Link>
+              </li>
+              <li>
+                <Link to="/tervezo">
+                  Karkötő Tervező <br /> (HAMAROSAN)
+                </Link>
+              </li>
+            </ul>
+            <ul className="desktop-menu-items">
+              <h2>
+                <Link to="/termekek/marokkovek">Marokkövek</Link>
+              </h2>
+              <h2>
+                <Link to="/termekek/akcio">Akciós termékek</Link>
+              </h2>
+              <h2>
+                <Link to="blog">Blogunk</Link>
+              </h2>
+              <h2>
+                <Link to="/tervezo">
+                  Ékszer tervező <br />
+                  (HAMAROSAN)
+                </Link>
+              </h2>
+            </ul>
+          </nav>
 
-        <ul className="desktop-menu-social-container">
-          <li>
-            <a href="#" className="social-link">
-              <img src="/images/icons/logo-facebook.svg" alt="Facebook" />
-              <span>Facebook</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" className="social-link">
-              <img src="/images/icons/logo-instagram.svg" alt="Instagram" />
-              <span>Instagram</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" className="social-link">
-              <img src="/images/icons/logo-tiktok.svg" alt="TikTok" />
-              <span>TikTok</span>
-            </a>
-          </li>
-        </ul>
+          <ul className="desktop-menu-social-container">
+            <li>
+              <a href="/" className="social-link">
+                <FacebookIcon className="social-img" alt="Facebook" />
+              </a>
+            </li>
+            <li>
+              <a href="/" className="social-link">
+                <InstagramIcon className="social-img " alt="Instagram" />
+              </a>
+            </li>
+            <li>
+              <a href="/" className="social-link">
+                <TikTokIcon className="social-img " alt="TikTok" />
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

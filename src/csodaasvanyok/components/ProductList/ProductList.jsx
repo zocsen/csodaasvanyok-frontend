@@ -12,7 +12,7 @@ export default function ProductList({ products }) {
           // Convert the price to a string and then format it with a space every 3rd number
           const formattedPrice = String(product.price).replace(
             /\B(?=(\d{3})+(?!\d))/g,
-            " "
+            ","
           );
 
           return (

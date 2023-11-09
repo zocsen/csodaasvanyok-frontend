@@ -1,14 +1,16 @@
 .mobile-menu {
-  width: 30px;
   height: 30px;
   .mobile-header-menu-btn {
     background-color: var(--primary-background-color);
-    width: 30px;
-    height: 30px;
 
     &:hover {
-      background-color: var(--hover-gray);
+      background-color: var(--secondary-background-color);
       border-radius: var(--border-radius-sm);
+    }
+
+    .menu-icon {
+      max-width: 40px;
+      height: 40px;
     }
   }
 
@@ -20,7 +22,7 @@
     width: 320px;
     height: 100%;
     padding: 20px;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--primary-background-color);
     max-width: 1400px;
     z-index: 1000;
     overflow-y: scroll;
@@ -47,7 +49,7 @@
     }
 
     .close-button {
-      background-color: white;
+      background-color: var(--primary-background-color);
       &:active {
         background-color: var(--primary-color);
       }
@@ -59,43 +61,28 @@
       border-radius: 50%;
     }
 
-    .menu-bottom .menu-category-list {
-      border-bottom: none;
+    .menu-social-container {
+      display: flex;
+      -webkit-justify-content: center;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 40px;
 
-      p {
+      .social-link {
+        display: flex;
+        background: var(--secondary-background-color);
+        color: var(--eerie-black);
         font-size: 2rem;
-        padding-bottom: 30px;
-        text-align: center;
-      }
+        padding: 10px;
+        width: 50px;
+        height: 50px;
+        -webkit-border-radius: var(--border-radius-md);
+        border-radius: var(--border-radius-md);
 
-      .down-arrow {
-        display: flex;
-        margin: 0 auto;
-        padding-bottom: 30px;
-        width: 40px;
-      }
-
-      .menu-social-container {
-        display: flex;
-        -webkit-justify-content: center;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-
-        .social-link {
-          display: flex;
-          background: var(--hover-gray);
-          color: var(--eerie-black);
-          font-size: 2rem;
-          padding: 10px;
-          width: 50px;
-          height: 50px;
-          -webkit-border-radius: var(--border-radius-md);
-          border-radius: var(--border-radius-md);
-
-          img {
-            width: 30px;
-          }
+        .social-img {
+          display: block;
+          width: 30px;
         }
       }
     }
@@ -106,11 +93,13 @@
 
       .rotate-icon {
         width: 28px;
+        height: 28px;
         transition: transform 0.3s ease-in-out;
-        transform: rotate(deg); // initial state, for '+'
+        transform: rotate(0deg) !important;
+        margin-right: 4px;
 
         &.open {
-          transform: rotate(180deg); // for '-'
+          transform: rotate(180deg) !important;
         }
       }
     }

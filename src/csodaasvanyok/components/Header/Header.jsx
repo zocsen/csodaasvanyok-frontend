@@ -5,6 +5,10 @@ import DesktopAccordion from "./DesktopAccordion";
 import MobileAccordion from "./MobileAccordion";
 import IsMobileContext from "../../../hooks/isMobileContext";
 
+import Logo from "../../../images/logo/logo.png";
+
+import { ReactComponent as ShoppingBagIcon } from "../../../images/icons/shopping-bag.svg";
+
 function Header() {
   const isMobile = useContext(IsMobileContext);
 
@@ -13,22 +17,19 @@ function Header() {
       <div className="header-container">
         <div className="menu">
           {isMobile ? <MobileAccordion /> : <DesktopAccordion />}
-          <p className="menu-title">Menü</p>
         </div>
         <div className="logo">
-          <img src="/images/logo/logo.png" height={100} alt="" />
+          <img src={Logo} height={100} alt="Company Logo" />
         </div>
         <div className="cart">
-          <img
-            src="/images/icons/shopping-bag.svg"
+          <ShoppingBagIcon
             alt="Shopping bag"
+            aria-label="Shopping Bag"
             width={30}
             height={30}
           />
-          <p className="cart-title">Kosár</p>
         </div>
       </div>
-      <hr className="header-hr" />
     </header>
   );
 }

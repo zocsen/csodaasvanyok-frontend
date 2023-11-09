@@ -11,7 +11,7 @@ $border-radius-large: 15px;
 $border-radius-round: 50%;
 
 // Imports
-@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Montserrat:wght@300&display=swap");
 :root {
   // Colors
 
@@ -22,8 +22,7 @@ $border-radius-round: 50%;
   --primary-font-color-light: #4d4d4d;
   --secondary-font-color: #a54a2f;
   --primary-background-color: #fffbe8;
-  --secondary-background-color: #fff5db;
-  --hover-gray: rgb(238, 238, 238);
+  --secondary-background-color: #f3e6c3;
 
   --bittersweet: hsl(0, 100%, 70%);
 
@@ -67,7 +66,7 @@ body {
   color: var(--primary-font-color);
   background-color: var(--primary-background-color);
   font-size: 1.8rem;
-  max-width: 1440px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -87,6 +86,10 @@ hr {
 
 li {
   list-style-type: none;
+}
+
+.base-svg {
+  fill: var(--primary-font-color);
 }
 
 .hover-underline-animation {
@@ -115,22 +118,21 @@ li {
 
 /* Apply the custom scrollbar globally */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: white;
-  border-left: 0px solid hsl(0, 0%, 93%);
+  background: var(--primary-background-color);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(0, 0%, 80%);
+  background: var(--primary-font-color);
   -webkit-border-radius: 10px;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(0, 0%, 50%);
+  background: var(--secondary-font-color);
 }
 
 .overlay {
@@ -174,27 +176,27 @@ li {
   display: inline-block;
   vertical-align: middle;
   margin-right: 10px;
-  width: 20px;
-  height: 20px;
-  background-color: white;
-  border-width: 0px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--primary-background-color);
+  border-width: 3px;
   border-style: solid;
-  border-color: rgb(204, 204, 204);
+  border-color: var(--primary-font-color);
   border-radius: 6px;
-  box-shadow: rgba(42, 42, 42, 0.6) 0px 0px 4px 0px;
+  // box-shadow: rgba(42, 42, 42, 0.6) 0px 0px 4px 0px;
 }
 .css-checkbox:checked + label::after {
   content: " ";
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIiIGQ9Ik0xNzMuODk4IDQzOS40MDRsLTE2Ni40LTE2Ni40Yy05Ljk5Ny05Ljk5Ny05Ljk5Ny0yNi4yMDYgMC0zNi4yMDRsMzYuMjAzLTM2LjIwNGM5Ljk5Ny05Ljk5OCAyNi4yMDctOS45OTggMzYuMjA0IDBMMTkyIDMxMi42OSA0MzIuMDk1IDcyLjU5NmM5Ljk5Ny05Ljk5NyAyNi4yMDctOS45OTcgMzYuMjA0IDBsMzYuMjAzIDM2LjIwNGM5Ljk5NyA5Ljk5NyA5Ljk5NyAyNi4yMDYgMCAzNi4yMDRsLTI5NC40IDI5NC40MDFjLTkuOTk4IDkuOTk3LTI2LjIwNyA5Ljk5Ny0zNi4yMDQtLjAwMXoiLz48L3N2Zz4=");
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xNzMuODk4IDQzOS40MDRMNy40OTc5OSAyNzMuMDA0Qy0yLjQ5OTAxIDI2My4wMDcgLTIuNDk5MDEgMjQ2Ljc5OCA3LjQ5Nzk5IDIzNi44TDQzLjcwMSAyMDAuNTk2QzUzLjY5OCAxOTAuNTk4IDY5LjkwOCAxOTAuNTk4IDc5LjkwNSAyMDAuNTk2TDE5MiAzMTIuNjlMNDMyLjA5NSA3Mi41OTZDNDQyLjA5MiA2Mi41OTkgNDU4LjMwMiA2Mi41OTkgNDY4LjI5OSA3Mi41OTZMNTA0LjUwMiAxMDguOEM1MTQuNDk5IDExOC43OTcgNTE0LjQ5OSAxMzUuMDA2IDUwNC41MDIgMTQ1LjAwNEwyMTAuMTAyIDQzOS40MDVDMjAwLjEwNCA0NDkuNDAyIDE4My44OTUgNDQ5LjQwMiAxNzMuODk4IDQzOS40MDRaIiBmaWxsPSIjMzgyMTFEIi8+Cjwvc3ZnPgo=");
   background-repeat: no-repeat;
-  background-size: 12px 12px;
+  background-size: 14px 14px;
   background-position: center center;
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: 0px;
-  left: 0px;
+  left: 2px;
   top: 4px;
   text-align: center;
   background-color: transparent;
@@ -205,13 +207,13 @@ li {
 
 @media (min-width: 0px) {
   .App {
-    margin: 0 10px;
+    margin: 0 15px;
   }
 }
 
 @media (min-width: 425px) {
   .App {
-    margin: 0 20px;
+    margin: 0 15px;
   }
 }
 @media (min-width: 768px) {

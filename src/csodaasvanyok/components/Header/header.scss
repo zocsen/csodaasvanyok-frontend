@@ -13,27 +13,20 @@
 
   .logo {
     margin: 20px 0;
+    width: 100px;
+    height: 100px;
   }
 
   .cart {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 30px;
-    height: 30px;
   }
 
   .menu-title,
   .cart-title {
     display: none;
   }
-}
-
-.header-hr {
-  position: absolute;
-  top: 100;
-  left: 0;
-  width: 100%;
 }
 
 @media (min-width: 425px) {

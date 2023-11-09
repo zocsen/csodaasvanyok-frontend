@@ -1,50 +1,24 @@
 .filter-block {
   .panel {
-    .color-box-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 0 5px;
+    .color-palette {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      justify-items: center;
 
-      .color-box {
-        position: relative;
-        width: 27px;
-        height: 27px;
-        margin-right: 14px;
-        margin-bottom: 10px;
-        cursor: pointer;
-        border-radius: var(--border-radius-round);
-        border-color: var(--sonic-silver);
-        border-style: solid;
-        border-width: 1px;
-        transition: (all 0.3s ease-in-out);
-
-        &:nth-child(7n) {
-          margin-right: 0;
-        }
-
-        &:nth-child(8n) {
-          &.selected {
-            .selected-checkmark {
-              filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(178deg)
-                brightness(110%) contrast(101%);
-              opacity: 1;
-            }
-          }
-        }
-
-        &.selected {
-          border-width: 2px;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-
-          .selected-checkmark {
-            opacity: 0.6;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
-          }
+      .color-swatch {
+        border-radius: var(--border-radius-md);
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        text-align: center;
+        span {
+          margin-top: 60px;
+          font-size: 1.2rem;
         }
       }
     }

@@ -2,6 +2,15 @@ import { useEffect, useRef, useState } from "react";
 import "./mobile-accordion.scss";
 import { Link } from "react-router-dom";
 
+import { ReactComponent as MenuIcon } from "../../../images/icons/menu.svg";
+import { ReactComponent as CloseIcon } from "../../../images/icons/close.svg";
+import { ReactComponent as RemoveIcon } from "../../../images/icons/remove.svg";
+import { ReactComponent as AddIcon } from "../../../images/icons/add.svg";
+import { ReactComponent as FacebookIcon } from "../../../images/icons/logo-facebook.svg";
+import { ReactComponent as InstagramIcon } from "../../../images/icons/logo-instagram.svg";
+import { ReactComponent as TikTokIcon } from "../../../images/icons/logo-tiktok.svg";
+import { ReactComponent as DownArrowIcon } from "../../../images/icons/down-arrow.svg";
+
 export default function MobileAccordion() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -14,16 +23,14 @@ export default function MobileAccordion() {
         <div className="accordion-style" onClick={() => setIsOpen(!isOpen)}>
           <div>{title}</div>{" "}
           {isOpen ? (
-            <img
-              className={`rotate-icon ${isOpen ? "open" : ""}`}
-              src="/images/icons/remove.svg"
-              alt="-"
+            <RemoveIcon
+              className={`rotate-icon ${isOpen ? "open" : ""} base-svg`}
+              aria-label="-"
             />
           ) : (
-            <img
-              className={`rotate-icon ${isOpen ? "open" : ""}`}
-              src="/images/icons/add.svg"
-              alt="+"
+            <AddIcon
+              className={`rotate-icon ${isOpen ? "open" : ""} base-svg`}
+              aria-label="+"
             />
           )}
         </div>
@@ -53,18 +60,18 @@ export default function MobileAccordion() {
         className="mobile-header-menu-btn"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <img
-          src="/images/icons/menu.svg"
-          alt="Menu icon"
-          width={30}
-          height={30}
-        />
+        <MenuIcon className="menu-icon" aria-label="Menu icon" />
       </button>
       <div className={`mobile-accordion-container ${isOpen ? "open" : ""}`}>
         <div className="mobile-accordion-header">
           <h2>Termékek</h2>
           <button className="close-button" onClick={() => setIsOpen(!isOpen)}>
-            <img width={34} src="/images/icons/close.svg" alt="" />
+            <CloseIcon
+              className="base-svg"
+              alt="Close icon"
+              width={34}
+              height={34}
+            />
           </button>
         </div>
 
@@ -102,35 +109,23 @@ export default function MobileAccordion() {
         <hr />
         <Link to="blog">Blogunk</Link>
         <hr />
-        <div className="menu-bottom">
-          <ul className="menu-category-list">
-            <p>Ne maradj le semmiről</p>
-
-            <img
-              src="/images/icons/down-arrow.svg"
-              className="down-arrow"
-              alt="Down arrow"
-            />
-
-            <ul className="menu-social-container">
-              <li>
-                <a href="#" className="social-link">
-                  <img src="/images/icons/logo-facebook.svg" alt="Facebook" />
-                </a>
-              </li>
-              <li>
-                <a href="#" className="social-link">
-                  <img src="/images/icons/logo-instagram.svg" alt="Instagram" />
-                </a>
-              </li>
-              <li>
-                <a href="#" className="social-link">
-                  <img src="/images/icons/logo-tiktok.svg" alt="TikTok" />
-                </a>
-              </li>
-            </ul>
-          </ul>
-        </div>
+        <ul className="menu-social-container">
+          <li>
+            <a href="/" className="social-link">
+              <FacebookIcon className="social-img" alt="Facebook" />
+            </a>
+          </li>
+          <li>
+            <a href="/" className="social-link">
+              <InstagramIcon className="social-img " alt="Instagram" />
+            </a>
+          </li>
+          <li>
+            <a href="/" className="social-link">
+              <TikTokIcon className="social-img " alt="TikTok" />
+            </a>
+          </li>
+        </ul>
       </div>
       <div
         className={`overlay ${isOpen ? "open" : ""}`}

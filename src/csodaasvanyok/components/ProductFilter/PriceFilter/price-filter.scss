@@ -1,6 +1,5 @@
 .filter-block {
   .panel {
-    padding: 0 14px 14px 14px;
     .min-max {
       display: flex;
       justify-content: space-between;
@@ -8,6 +7,11 @@
         background-color: var(--secondary-background-color);
         padding: 7px 14px;
         border-radius: var(--border-radius-md);
+
+        label {
+          font-size: 1.4rem;
+          font-weight: 500;
+        }
       }
     }
 
