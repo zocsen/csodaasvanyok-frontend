@@ -15,28 +15,16 @@ $border-radius-round: 50%;
 :root {
   // Colors
 
-  --primary-color: #fde8e1;
-  --primary-color-dark: #ffd9cd;
-  --primary-color-extra-dark: #ffcab9;
   --primary-font-color: #38211d;
-  --primary-font-color-light: #4d4d4d;
   --secondary-font-color: #a54a2f;
   --primary-background-color: #fffbe8;
   --secondary-background-color: #f3e6c3;
 
-  --bittersweet: hsl(0, 100%, 70%);
-
-  --eerie-black: hsl(0, 0%, 13%);
-  --salmon-pink: rgb(255, 143, 156);
-  --sandy-brown: hsl(29, 90%, 65%);
-  --bittersweet: hsl(0, 100%, 70%);
-  --ocean-green: hsl(152, 51%, 52%);
-  --davys-gray: hsl(0, 0%, 33%);
-  --white: hsl(0, 100%, 100%);
-  --onyx: hsl(0, 0%, 27%);
+  --black: #303030;
 
   // Border Radius
   --border-radius-round: 50%;
+  --border-radius-button: 20px;
   --border-radius-md: 10px;
   --border-radius-sm: 5px;
 }

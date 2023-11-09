@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Header from "./components/Header/Header";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Homepage from "./pages/Homepage/Homepage";
 import ProductsPage from "./pages/ProductsPage/ProductsPage";
-import useApi from "../hooks/useApi";
 
 export default function Csodaasvanyok() {
   return (

@@ -2,25 +2,35 @@ import { useEffect, useState } from "react";
 import "./color-filter.scss";
 import { ReactComponent as ExpandMoreIcon } from "../../../../images/icons/expand-more.svg";
 function ColorFilter({ onValueChange }) {
-  const colors = [
-    { code: "#FF000D", name: "Piros" },
-    { code: "#FFA756", name: "Narancssárga" },
-    { code: "#FFFF00", name: "Citromsárga" },
-    { code: "#008F00", name: "Zöld" },
-    { code: "#1371D5", name: "Kék" },
-    { code: "#6E2FCC", name: "Lila" },
-    { code: "#F9B7FF", name: "Rózsaszín" },
-    { code: "#212121", name: "Fekete" },
-    { code: "#FFFFFF", name: "Fehér" },
-    { code: "#8F6C4E", name: "Barna" },
-    { code: "#A3A3A1", name: "Szürke" },
-    { code: "#F6C61B", name: "Arany" },
-    { code: "#F1D0CC", name: "Rose Gold" },
-    { code: "#BCC6CC", name: "Ezüst" },
-  ];
-
   const [selectedColors, setSelectedColors] = useState([]);
   const [isPanelVisible, setIsPanelVisible] = useState(true);
+
+  const colors = [
+    { name: "Arany", code: "#E5B80B" },
+    { name: "Barna", code: "#B98332" },
+    { name: "Citrom", code: "#FFEF5F" },
+    { name: "Ezüst", code: "#D3D3D3" },
+    { name: "Fehér", code: "#FFFFFF" },
+    { name: "Fekete", code: "#303030" },
+    { name: "Kék", code: "#1371D5" },
+    { name: "Lila", code: "#AB40FF" },
+    { name: "Narancs", code: "#FFA756" },
+    { name: "Piros", code: "#FF2F2F" },
+    { name: "Rose gold", code: "#F1D0CC" },
+    { name: "Rózsaszín", code: "#F9B7FF" },
+    { name: "Szürke", code: "#E4E4E4" },
+    { name: "Zöld", code: "#008F00" },
+  ];
+
+  const CheckmarkIcon = () => (
+    <svg
+      className="checkmark-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path d="M9 16.17L5.53 12.7a.75.75 0 00-1.06 0 .75.75 0 000 1.06l4 4c.29.29.77.29 1.06 0l10-10a.75.75 0 10-1.06-1.06L9 16.17z" />
+    </svg>
+  );
 
   const onColorSelect = (color) => {
     if (isSelected(color)) {
@@ -50,51 +60,20 @@ function ColorFilter({ onValueChange }) {
         <ExpandMoreIcon className="arrow-img base-svg" />
       </button>
       <div className={`${isPanelVisible ? "open" : ""} panel`}>
-        <div class="color-palette">
-          <div class="color-swatch" style={{ backgroundColor: "#E5B80B" }}>
-            <span>Arany</span>
-          </div>
-          <div class="color-swatch" style={{ backgroundColor: "#B98332" }}>
-            <span>Barna</span>
-          </div>
-          <div class="color-swatch" style={{ backgroundColor: "#FFEF5F" }}>
-            <span>Citrom</span>
-          </div>
-          <div class="color-swatch" style={{ backgroundColor: "#D3D3D3" }}>
-            <span>Ezüst</span>
-          </div>
-          <div class="color-swatch" style={{ backgroundColor: "#FFFFFF" }}>
-            <span>Fehér</span>
-          </div>
-          <div class="color-swatch" style={{ backgroundColor: "#303030" }}>
-            <span>Fekete</span>
-          </div>
-          <div class="color-swatch" style={{ backgroundColor: "#1371D5" }}>
-            <span>Kék</span>
-          </div>
-          <div class="color-swatch" style={{ backgroundColor: "#AB40FF" }}>
-            <span>Lila</span>
-          </div>
-          <div class="color-swatch" style={{ backgroundColor: "#FFA756" }}>
-            <span>Narancs</span>
-          </div>
-          <div class="color-swatch" style={{ backgroundColor: "#FF2F2F" }}>
-            <span>Piros</span>
-          </div>
-          <div class="color-swatch" style={{ backgroundColor: "#F1D0CC" }}>
-            <span>
-              <nobr>Rose gold</nobr>
-            </span>
-          </div>
-          <div class="color-swatch" style={{ backgroundColor: "#F9B7FF" }}>
-            <span>Rózsaszín</span>
-          </div>
-          <div class="color-swatch" style={{ backgroundColor: "#E4E4E4" }}>
-            <span>Szürke</span>
-          </div>
-          <div class="color-swatch" style={{ backgroundColor: "#008F00" }}>
-            <span>Zöld</span>
-          </div>
+        <div className="color-palette">
+          {colors.map((color) => (
+            <div
+              key={color.code}
+              className={`color-swatch${isSelected(color) ? " selected" : ""}`}
+              style={{ backgroundColor: color.code }}
+              onClick={() => onColorSelect(color)}
+            >
+              {isSelected(color) && (
+                <CheckmarkIcon className="checkmark-icon selected" />
+              )}
+              <span style={{ whiteSpace: "nowrap" }}>{color.name}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

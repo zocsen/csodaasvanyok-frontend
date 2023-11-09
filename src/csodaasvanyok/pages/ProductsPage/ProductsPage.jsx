@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProductFilter from "../../components/ProductFilter/ProductFilter";
 import ProductList from "../../components/ProductList/ProductList";
 import "./products-page.scss";
 import useApi from "../../../hooks/useApi";
+import IsMobileContext from "../../../hooks/isMobileContext";
+import { ReactComponent as FilterIcon } from "../../../images/icons/filter.svg";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 function filterProductsByType(product, type) {
   switch (type) {
@@ -25,8 +28,9 @@ export default function ProductsPage({ header, type }) {
   const [colorFilter, setColorFilter] = useState([]);
   const [mineralFilter, setMineralFilter] = useState([]);
   const [benefitFilter, setBenefitFilter] = useState([]);
-  const [maxProductCount, setMaxProductCount] = useState(0);
   const [initialRender, setInitialRender] = useState(true);
+  const [sortTitle, setSortTitle] = useState("Rendezés");
+  const isMobile = useContext(IsMobileContext);
 
   const {
     data: allProducts,
@@ -47,7 +51,6 @@ export default function ProductsPage({ header, type }) {
     setInitialRender(false);
     let maxPriceValue = 0;
     let minPriceValue = Infinity;
-    let count = 0;
     allProducts.forEach((product) => {
       let matchesType = false;
 
@@ -57,14 +60,12 @@ export default function ProductsPage({ header, type }) {
         case "Páros":
           if (product.subcategory[0].name === type) {
             matchesType = true;
-            count++;
           }
           break;
         case "Karkötő":
         case "Ásványok": //marokkövek
           if (product.category.name === type) {
             matchesType = true;
-            count++;
           }
           break;
         default:
@@ -76,7 +77,6 @@ export default function ProductsPage({ header, type }) {
       }
     });
 
-    setMaxProductCount(count);
     if (minPriceValue === Infinity) {
       minPriceValue = 0;
     }
@@ -137,6 +137,10 @@ export default function ProductsPage({ header, type }) {
     filterSetters[filterType]?.(value);
   };
 
+  const handleSortChange = (event) => {
+    setSortTitle(event.target.value);
+  };
+
   return (
     <div className="products-page">
       <div className="products-page-container">
@@ -147,9 +151,46 @@ export default function ProductsPage({ header, type }) {
         />
         <div className="products-page-main">
           <h1 className="products-page-title">
-            {header}{" "}
-            <span>({filteredProducts ? filteredProducts.length : 0} db)</span>
+            <div className="actual-title">
+              {header}{" "}
+              <span>
+                {!isMobile && filteredProducts
+                  ? "(" + filteredProducts.length + " termék)"
+                  : ""}
+              </span>
+            </div>
+
+            {!isMobile ? (
+              <FormControl>
+                <Select
+                  value={sortTitle}
+                  onChange={handleSortChange}
+                  label="Rendezés"
+                >
+                  <MenuItem value={1}>Alapértelmezett</MenuItem>
+                  <MenuItem value={2}>Ár (növekvő)</MenuItem>
+                  <MenuItem value={3}>Ár (csökkenő)</MenuItem>
+                  <MenuItem value={4}>Legnépszerűbb</MenuItem>
+                  <MenuItem value={5}>Legújabb</MenuItem>
+                </Select>
+              </FormControl>
+            ) : (
+              ""
+            )}
           </h1>
+          {isMobile ? (
+            <div className="products-page-divider">
+              <div className="filtered-products-counter">
+                {filteredProducts ? filteredProducts.length + " termék" : ""}
+              </div>
+              <button className="filter-button">
+                <FilterIcon /> <span>Szűrő</span>
+              </button>
+            </div>
+          ) : (
+            ""
+          )}
+
           <ProductList products={filteredProducts} />
         </div>
       </div>

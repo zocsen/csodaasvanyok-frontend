@@ -5,8 +5,11 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
       justify-items: center;
+      margin-bottom: 10px;
 
       .color-swatch {
+        position: relative;
+        cursor: pointer;
         border-radius: var(--border-radius-md);
         width: 40px;
         height: 40px;
@@ -19,6 +22,24 @@
         span {
           margin-top: 60px;
           font-size: 1.2rem;
+        }
+
+        .checkmark-icon {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          fill: var(--black);
+          width: 30px;
+          height: 30px;
+        }
+        &:nth-child(6),
+        &:nth-child(7),
+        &:nth-child(8),
+        &:last-child {
+          .checkmark-icon {
+            fill: white;
+          }
         }
       }
     }

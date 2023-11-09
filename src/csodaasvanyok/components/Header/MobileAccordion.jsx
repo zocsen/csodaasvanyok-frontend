@@ -9,7 +9,6 @@ import { ReactComponent as AddIcon } from "../../../images/icons/add.svg";
 import { ReactComponent as FacebookIcon } from "../../../images/icons/logo-facebook.svg";
 import { ReactComponent as InstagramIcon } from "../../../images/icons/logo-instagram.svg";
 import { ReactComponent as TikTokIcon } from "../../../images/icons/logo-tiktok.svg";
-import { ReactComponent as DownArrowIcon } from "../../../images/icons/down-arrow.svg";
 
 export default function MobileAccordion() {
   const [isOpen, setIsOpen] = useState(false);
