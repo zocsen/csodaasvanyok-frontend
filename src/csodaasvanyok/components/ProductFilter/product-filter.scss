@@ -1,26 +1,110 @@
-.product-filter {
-  display: none;
-  min-width: 300px;
-  max-width: 300px;
-  gap: 10px;
+.product-filter-background {
+  flex-direction: column;
+  display: flex;
+  min-width: 250px;
+  width: 100%;
+  background-color: var(--primary-background-color);
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  padding: 20px 20px 0 20px;
+  height: 100%;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+  max-width: 450px;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+  justify-content: space-between;
+  &.open {
+    transform: translateX(0);
+  }
 }
-// @media (min-width: 350px) {
-//   .product-filter {
-//     min-width: 350px;
-//   }
-// }
+
+.product-filter {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+  height: auto;
+  gap: 10px;
+  margin: 0 auto;
+  background-color: var(--primary-background-color);
+
+  .close-header {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 20px 0 30px;
+    p {
+      font-size: 3rem;
+      font-weight: 500;
+    }
+  }
+  .mobile-product-sorter {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+.filter-footer {
+  display: flex;
+  justify-content: space-evenly;
+  position: sticky;
+  bottom: 0;
+  padding: 20px 0;
+  background-color: var(--primary-background-color);
+  border-top: 1px solid var(--secondary-background-color);
+  .footer-buttons {
+    padding: 10px 20px;
+    border-width: 2px;
+    border-radius: var(--border-radius-md);
+    font-size: 1.6rem;
+    width: 100%;
+    margin: 5px;
+  }
+  .delete {
+    border-color: red;
+    color: red;
+    font-weight: 700;
+  }
+  .save {
+    font-weight: 700;
+  }
+}
 
 @media (min-width: 1024px) {
+  .product-filter-background {
+    max-width: 320px;
+    background-color: var(--primary-background-color);
+    position: unset;
+    height: 1400px;
+    z-index: 0;
+    overflow-y: unset;
+
+    margin-right: 40px;
+    padding: 0;
+  }
   .product-filter {
     display: flex;
     flex-direction: column;
-    margin-right: 40px;
+    position: unset;
   }
 }
 @media (min-width: 1200px) {
-  .product-filter {
-    display: flex;
-    flex-direction: column;
+  .product-filter-background {
     margin-right: 50px;
+
+    .desktop-filter-reset {
+      border-width: 2px;
+      padding: 17px 10px;
+      border-radius: var(--border-radius-md);
+      width: 100%;
+      border-color: red;
+      color: red;
+      font-weight: 700;
+      font-size: 1.8rem;
+      text-align: center;
+    }
   }
 }

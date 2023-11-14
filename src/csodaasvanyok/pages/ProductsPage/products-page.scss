@@ -1,8 +1,10 @@
 .products-page {
   .products-page-container {
     margin-top: 30px;
-    display: flex;
-    gap: 30px;
+
+    .products-page-main {
+      width: 100%;
+    }
     .products-page-title {
       font-size: 2.4rem;
       font-weight: bolder;
@@ -18,9 +20,11 @@
         font-weight: 500;
       }
       .filter-button {
-        background-color: var(--secondary-background-color);
+        background-color: var(--primary-background-color);
         padding: 7px 14px;
-        border-radius: var(--border-radius-button);
+        border-radius: var(--border-radius-md);
+        border-width: 2px;
+        border-color: var(--primary-font-color);
         display: flex;
         align-items: center;
 
@@ -47,7 +51,9 @@
 @media (min-width: 1024px) {
   .products-page {
     .products-page-container {
+      display: flex;
       margin-top: 60px;
+      gap: 80px;
       .products-page-title {
         text-align: left;
         font-size: 3rem;

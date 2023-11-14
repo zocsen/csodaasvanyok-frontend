@@ -6,6 +6,7 @@ import useApi from "../../../hooks/useApi";
 import IsMobileContext from "../../../hooks/isMobileContext";
 import { ReactComponent as FilterIcon } from "../../../images/icons/filter.svg";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import ProductSorter from "../../components/ProductSorter/ProductSorter";
 
 function filterProductsByType(product, type) {
   switch (type) {
@@ -29,8 +30,10 @@ export default function ProductsPage({ header, type }) {
   const [mineralFilter, setMineralFilter] = useState([]);
   const [benefitFilter, setBenefitFilter] = useState([]);
   const [initialRender, setInitialRender] = useState(true);
-  const [sortTitle, setSortTitle] = useState("Rendezés");
+  const [sortTitle, setSortTitle] = useState(null);
   const isMobile = useContext(IsMobileContext);
+  const [showFilter, setShowFilter] = useState(false);
+  const [filterKey, setFilterKey] = useState(0);
 
   const {
     data: allProducts,
@@ -84,39 +87,62 @@ export default function ProductsPage({ header, type }) {
     setPriceRange([minPriceValue, maxPriceValue]);
   }
 
+  function applyFilters(products) {
+    return products.filter((product) => {
+      const matchesCategory = filterProductsByType(product, type);
+      const matchesPrice =
+        product.price >= priceRange[0] && product.price <= priceRange[1];
+      const matchesColor =
+        colorFilter.length === 0 ||
+        product.color.some((pColor) => colorFilter.includes(pColor.code));
+      const matchesMineral =
+        mineralFilter.length === 0 ||
+        product.mineral.some((pMineral) =>
+          mineralFilter.includes(pMineral.name)
+        );
+      const matchesBenefit =
+        benefitFilter.length === 0 ||
+        product.mineral.some((mineralItem) =>
+          mineralItem.benefit.some((pBenefit) =>
+            benefitFilter.includes(pBenefit)
+          )
+        );
+
+      return (
+        matchesCategory &&
+        matchesPrice &&
+        matchesColor &&
+        matchesMineral &&
+        matchesBenefit
+      );
+    });
+  }
+
+  function applySorting(products) {
+    let sortedProducts = [...products];
+    switch (sortTitle) {
+      case 1: // Price Ascending
+        sortedProducts.sort((a, b) => a.price - b.price);
+        break;
+      case 2: // Price Descending
+        sortedProducts.sort((a, b) => b.price - a.price);
+        break;
+      case 3: // Newest
+        sortedProducts.sort(
+          (a, b) => new Date(b.dateCreated) - new Date(a.dateCreated)
+        );
+        break;
+      default:
+        break;
+    }
+    return sortedProducts;
+  }
+
   useEffect(() => {
     if (allProducts) {
-      let filtered = allProducts.filter((product) => {
-        const matchesCategory = filterProductsByType(product, type);
-        let matchesPrice =
-          product.price >= priceRange[0] && product.price <= priceRange[1];
-
-        let matchesColor =
-          colorFilter.length === 0 ||
-          product.color.some((pColor) => colorFilter.includes(pColor.code));
-        let matchesMineral =
-          mineralFilter.length === 0 ||
-          product.mineral.some((pMineral) =>
-            mineralFilter.includes(pMineral.name)
-          );
-
-        let matchesBenefit =
-          benefitFilter.length === 0 ||
-          product.mineral.some((mineralItem) =>
-            mineralItem.benefit.some((pBenefit) =>
-              benefitFilter.includes(pBenefit)
-            )
-          );
-
-        return (
-          matchesCategory &&
-          matchesPrice &&
-          matchesColor &&
-          matchesMineral &&
-          matchesBenefit
-        );
-      });
-      setFilteredProducts(filtered);
+      let filtered = applyFilters(allProducts);
+      let sortedFiltered = applySorting(filtered);
+      setFilteredProducts(sortedFiltered);
     }
   }, [
     allProducts,
@@ -125,6 +151,7 @@ export default function ProductsPage({ header, type }) {
     colorFilter,
     mineralFilter,
     benefitFilter,
+    sortTitle,
   ]);
 
   const handleFilterChange = (filterType, value) => {
@@ -141,14 +168,52 @@ export default function ProductsPage({ header, type }) {
     setSortTitle(event.target.value);
   };
 
+  const toggleFilterVisibility = () => {
+    setShowFilter(!showFilter);
+    if (!showFilter) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  };
+
+  const resetFilters = () => {
+    setSortTitle(null);
+
+    setFilterKey((prevKey) => prevKey + 1);
+  };
+
   return (
     <div className="products-page">
+      {showFilter && isMobile && (
+        <div
+          className="overlay"
+          style={{ display: "block" }}
+          onClick={toggleFilterVisibility}
+        ></div>
+      )}
       <div className="products-page-container">
-        <ProductFilter
-          onFilterChange={handleFilterChange}
-          priceRange={priceRange}
-          minMaxValues={initialPriceRange}
-        />
+        <div
+          className={`product-filter-container ${
+            showFilter || !isMobile ? "visible" : "hidden"
+          }`}
+        >
+          <ProductFilter
+            key={filterKey}
+            onFilterChange={handleFilterChange}
+            priceRange={priceRange}
+            minMaxValues={initialPriceRange}
+            toggleFilterVisibility={toggleFilterVisibility}
+            resetFilters={resetFilters}
+            showFilter={showFilter}
+            productSorter={
+              <ProductSorter
+                sortTitle={sortTitle}
+                handleSortChange={handleSortChange}
+              />
+            }
+          />
+        </div>
         <div className="products-page-main">
           <h1 className="products-page-title">
             <div className="actual-title">
@@ -161,19 +226,10 @@ export default function ProductsPage({ header, type }) {
             </div>
 
             {!isMobile ? (
-              <FormControl>
-                <Select
-                  value={sortTitle}
-                  onChange={handleSortChange}
-                  label="Rendezés"
-                >
-                  <MenuItem value={1}>Alapértelmezett</MenuItem>
-                  <MenuItem value={2}>Ár (növekvő)</MenuItem>
-                  <MenuItem value={3}>Ár (csökkenő)</MenuItem>
-                  <MenuItem value={4}>Legnépszerűbb</MenuItem>
-                  <MenuItem value={5}>Legújabb</MenuItem>
-                </Select>
-              </FormControl>
+              <ProductSorter
+                sortTitle={sortTitle}
+                handleSortChange={handleSortChange}
+              />
             ) : (
               ""
             )}
@@ -183,7 +239,10 @@ export default function ProductsPage({ header, type }) {
               <div className="filtered-products-counter">
                 {filteredProducts ? filteredProducts.length + " termék" : ""}
               </div>
-              <button className="filter-button">
+              <button
+                className="filter-button"
+                onClick={toggleFilterVisibility}
+              >
                 <FilterIcon /> <span>Szűrő</span>
               </button>
             </div>

@@ -2,6 +2,7 @@
   height: 30px;
   .mobile-header-menu-btn {
     background-color: var(--primary-background-color);
+    cursor: pointer;
 
     &:hover {
       background-color: var(--secondary-background-color);
@@ -50,6 +51,7 @@
 
     .close-button {
       background-color: var(--primary-background-color);
+      cursor: pointer;
       &:active {
         background-color: var(--primary-color);
       }
@@ -90,6 +92,7 @@
     .accordion-style {
       display: flex;
       justify-content: space-between;
+      cursor: pointer;
 
       .rotate-icon {
         width: 28px;

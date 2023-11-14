@@ -8,9 +8,12 @@ import IsMobileContext from "../../../hooks/isMobileContext";
 import Logo from "../../../images/logo/logo.png";
 
 import { ReactComponent as ShoppingBagIcon } from "../../../images/icons/shopping-bag.svg";
+import { Link } from "react-router-dom";
+import { useCart } from "../../../hooks/cartContext";
 
 function Header() {
   const isMobile = useContext(IsMobileContext);
+  const { openCart } = useCart();
 
   return (
     <header>
@@ -18,17 +21,17 @@ function Header() {
         <div className="menu">
           {isMobile ? <MobileAccordion /> : <DesktopAccordion />}
         </div>
-        <div className="logo">
+        <Link to="/" className="logo">
           <img src={Logo} height={100} alt="Company Logo" />
-        </div>
-        <div className="cart">
+        </Link>
+        <button className="cart-icon" onClick={openCart}>
           <ShoppingBagIcon
             alt="Shopping bag"
             aria-label="Shopping Bag"
             width={30}
             height={30}
           />
-        </div>
+        </button>
       </div>
     </header>
   );
