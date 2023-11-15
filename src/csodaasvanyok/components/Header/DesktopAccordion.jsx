@@ -37,6 +37,10 @@ export default function DesktopAccordion() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const handleLinkClick = () => {
+    setIsOpen(false);
+  };
   return (
     <div className="desktop-menu" ref={dropdownRef}>
       <button
@@ -65,35 +69,49 @@ export default function DesktopAccordion() {
             <ul className="desktop-menu-items">
               <h2>Karkötők</h2>
               <li>
-                <Link to="/termekek/osszes-karkoto">Összes karkötő</Link>
+                <Link onClick={handleLinkClick} to="/termekek/osszes-karkoto">
+                  Összes karkötő
+                </Link>
               </li>
               <li>
-                <Link to="/termekek/noi-karkotok">Női karkötők</Link>
+                <Link onClick={handleLinkClick} to="/termekek/noi-karkotok">
+                  Női karkötők
+                </Link>
               </li>
               <li>
-                <Link to="/termekek/ferfi-karkotok">Férfi karkötők</Link>
+                <Link onClick={handleLinkClick} to="/termekek/ferfi-karkotok">
+                  Férfi karkötők
+                </Link>
               </li>
               <li>
-                <Link to="/termekek/paros-karkotok">Páros karkötők</Link>
+                <Link onClick={handleLinkClick} to="/termekek/paros-karkotok">
+                  Páros karkötők
+                </Link>
               </li>
               <li>
-                <Link to="/tervezo">
+                <Link onClick={handleLinkClick} to="/tervezo">
                   Karkötő Tervező <br /> (HAMAROSAN)
                 </Link>
               </li>
             </ul>
             <ul className="desktop-menu-items">
               <h2>
-                <Link to="/termekek/marokkovek">Marokkövek</Link>
+                <Link onClick={handleLinkClick} to="/termekek/marokkovek">
+                  Marokkövek
+                </Link>
               </h2>
               <h2>
-                <Link to="/termekek/akcio">Akciós termékek</Link>
+                <Link onClick={handleLinkClick} to="/termekek/akcio">
+                  Akciós termékek
+                </Link>
               </h2>
               <h2>
-                <Link to="blog">Blogunk</Link>
+                <Link onClick={handleLinkClick} to="blog">
+                  Blogunk
+                </Link>
               </h2>
               <h2>
-                <Link to="/tervezo">
+                <Link onClick={handleLinkClick} to="/tervezo">
                   Ékszer tervező <br />
                   (HAMAROSAN)
                 </Link>

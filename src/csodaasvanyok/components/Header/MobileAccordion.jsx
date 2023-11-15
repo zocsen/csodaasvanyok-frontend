@@ -53,6 +53,10 @@ export default function MobileAccordion() {
     };
   }, [isOpen]);
 
+  const handleLinkClick = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="mobile-menu" ref={dropdownRef}>
       <button
@@ -84,29 +88,47 @@ export default function MobileAccordion() {
         <hr />
         <AccordionItem title="Karkötők">
           <li>
-            <Link to="/termekek/osszes-karkoto">Összes karkötő</Link>
+            <Link onClick={handleLinkClick} to="/termekek/osszes-karkoto">
+              Összes karkötő
+            </Link>
           </li>
           <li>
-            <Link to="/termekek/noi-karkotok">Női karkötők</Link>
+            <Link onClick={handleLinkClick} to="/termekek/noi-karkotok">
+              Női karkötők
+            </Link>
           </li>
           <li>
-            <Link to="/termekek/ferfi-karkotok">Férfi karkötők</Link>
+            <Link onClick={handleLinkClick} to="/termekek/ferfi-karkotok">
+              Férfi karkötők
+            </Link>
           </li>
           <li>
-            <Link to="/termekek/paros-karkotok">Páros karkötők</Link>
+            <Link onClick={handleLinkClick} to="/termekek/paros-karkotok">
+              Páros karkötők
+            </Link>
           </li>
           <li>
-            <Link to="/tervezo">Karkötő Tervező (HAMAROSAN)</Link>
+            <Link onClick={handleLinkClick} to="/tervezo">
+              Karkötő Tervező (HAMAROSAN)
+            </Link>
           </li>
         </AccordionItem>
         <hr />
-        <Link to="/termekek/marokkovek">Marokkövek</Link>
+        <Link onClick={handleLinkClick} to="/termekek/marokkovek">
+          Marokkövek
+        </Link>
         <hr />
-        <Link to="/termekek/akcio">Akciós termékek</Link>
+        <Link onClick={handleLinkClick} to="/termekek/akcio">
+          Akciós termékek
+        </Link>
         <hr />
-        <Link to="/tervezo">Ékszer tervező (HAMAROSAN)</Link>
+        <Link onClick={handleLinkClick} to="/tervezo">
+          Ékszer tervező (HAMAROSAN)
+        </Link>
         <hr />
-        <Link to="blog">Blogunk</Link>
+        <Link onClick={handleLinkClick} to="blog">
+          Blogunk
+        </Link>
         <hr />
         <ul className="menu-social-container">
           <li>
