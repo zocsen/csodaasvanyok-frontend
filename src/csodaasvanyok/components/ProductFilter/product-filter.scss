@@ -84,16 +84,6 @@
 
     margin-right: 40px;
     padding: 0;
-  }
-  .product-filter {
-    display: flex;
-    flex-direction: column;
-    position: unset;
-  }
-}
-@media (min-width: 1200px) {
-  .product-filter-background {
-    margin-right: 50px;
 
     .desktop-filter-reset {
       border-width: 2px;
@@ -106,5 +96,15 @@
       font-size: 1.8rem;
       text-align: center;
     }
+  }
+  .product-filter {
+    display: flex;
+    flex-direction: column;
+    position: unset;
+  }
+}
+@media (min-width: 1200px) {
+  .product-filter-background {
+    margin-right: 50px;
   }
 }

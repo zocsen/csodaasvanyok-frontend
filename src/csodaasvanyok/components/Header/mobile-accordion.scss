@@ -3,6 +3,7 @@
   .mobile-header-menu-btn {
     background-color: var(--primary-background-color);
     cursor: pointer;
+    max-height: 40px;
 
     &:hover {
       background-color: var(--secondary-background-color);

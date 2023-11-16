@@ -30,7 +30,7 @@ export default function ProductSorter({ sortTitle, handleSortChange }) {
         },
         "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
           borderColor: "var(--primary-font-color)",
-          boxShadow: "0 2px 2px 1px var(--primary-font-color-shadow)",
+          boxShadow: "0 2px 2px 1px var(--shadow-color)",
         },
         "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
           color: "var(--primary-font-color)",

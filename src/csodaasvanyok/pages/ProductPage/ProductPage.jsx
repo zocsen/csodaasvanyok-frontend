@@ -1,12 +1,14 @@
 import { useParams } from "react-router-dom";
 import "./product-page.scss";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useApi from "../../../hooks/useApi";
 import { useCart } from "../../../hooks/cartContext";
+import formatPrice from "../../../hooks/formatPrice";
 
 const ProductPage = () => {
   const { slug, id } = useParams();
   const { addToCart } = useCart();
+  const [selectedSize, setSelectedSize] = useState(null);
 
   console.log("ProductPage rendered", slug, id);
 
@@ -22,21 +24,42 @@ const ProductPage = () => {
   }, [id]);
 
   if (!product) return;
-  const formattedPrice = String(product.price).replace(
-    /\B(?=(\d{3})+(?!\d))/g,
-    ","
-  );
+  console.log(product);
+
+  const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
   return (
     <div className="product-page">
       <img src={product?.image} alt="Termék" />
       <div className="product-details">
         <h1 className="product-name">{product?.name}</h1>
-        <p className="product-price">{formattedPrice} Ft</p>
+        <p className="product-price">{formatPrice(product.price)}</p>
         <p className="product-description">{product?.description}</p>
+        {product.category.name === "Karkötő" && (
+          <div className="product-size-wrapper">
+            <h3 className="size-title">Méret</h3>
+            <div className="size-boxes">
+              {sizes.map((size) => (
+                <button
+                  key={size}
+                  className={`size-box ${
+                    selectedSize === size ? "selected" : ""
+                  }`}
+                  onClick={() => setSelectedSize(size)}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         <button
           className="add-to-cart-button"
-          onClick={() => addToCart(product)}
+          disabled={
+            product.category.name === "Karkötő" && selectedSize === null
+          }
+          onClick={() => addToCart({ ...product, size: selectedSize })}
         >
           Kosárba
         </button>

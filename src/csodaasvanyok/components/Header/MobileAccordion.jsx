@@ -80,10 +80,10 @@ export default function MobileAccordion() {
 
         <hr />
         <AccordionItem title="Népszerűek">
-          <li>Téli kollekció</li>
-          <li>Szerelmesek kollekciója</li>
-          <li>Horoszkóp kollekció</li>
-          <li>Akciós termékek</li>
+          <li>Téli varázs ❄️</li>
+          <li>Szerelmeseknek 💖</li>
+          <li>Horoszkóp ♌</li>
+          <li>Akciós termékek 🏷️</li>
         </AccordionItem>
         <hr />
         <AccordionItem title="Karkötők">
@@ -130,7 +130,7 @@ export default function MobileAccordion() {
           Blogunk
         </Link>
         <hr />
-        <ul className="menu-social-container">
+        {/* <ul className="menu-social-container">
           <li>
             <a href="/" className="social-link">
               <FacebookIcon className="social-img" alt="Facebook" />
@@ -146,7 +146,7 @@ export default function MobileAccordion() {
               <TikTokIcon className="social-img " alt="TikTok" />
             </a>
           </li>
-        </ul>
+        </ul> */}
       </div>
       <div
         className={`overlay ${isOpen ? "open" : ""}`}

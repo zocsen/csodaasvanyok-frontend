@@ -13,7 +13,7 @@ import { useCart } from "../../../hooks/cartContext";
 
 function Header() {
   const isMobile = useContext(IsMobileContext);
-  const { openCart } = useCart();
+  const { openCart, getCartItemsCount } = useCart();
 
   return (
     <header>
@@ -28,9 +28,10 @@ function Header() {
           <ShoppingBagIcon
             alt="Shopping bag"
             aria-label="Shopping Bag"
-            width={30}
-            height={30}
+            width={34}
+            height={34}
           />
+          <p className="items-in-cart">{getCartItemsCount}</p>
         </button>
       </div>
     </header>

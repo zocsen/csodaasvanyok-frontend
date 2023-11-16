@@ -1,3 +1,4 @@
+import formatPrice from "../../../hooks/formatPrice";
 import "./product-list.scss";
 import { Link } from "react-router-dom";
 
@@ -6,12 +7,6 @@ export default function ProductList({ products }) {
     <div className="container">
       {products &&
         products.map((product) => {
-          // Convert the price to a string and then format it with a space every 3rd number
-          const formattedPrice = String(product.price).replace(
-            /\B(?=(\d{3})+(?!\d))/g,
-            ","
-          );
-
           // Use a slug or a URL-friendly version of the product name
           function convertToSlug(text) {
             const map = {
@@ -55,7 +50,7 @@ export default function ProductList({ products }) {
                 />
               </Link>
               <h1 className="product-name">{product.name}</h1>
-              <p className="product-price">{`${formattedPrice} Ft`}</p>
+              <p className="product-price">{formatPrice(product.price)}</p>
             </div>
           );
         })}

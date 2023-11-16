@@ -61,10 +61,10 @@ export default function DesktopAccordion() {
           <nav className="desktop-menu-navigation">
             <ul className="desktop-menu-items">
               <h2>Népszerűek</h2>
-              <li>Téli kollekció</li>
-              <li>Szerelmesek kollekciója</li>
-              <li>Horoszkóp kollekció</li>
-              <li>Akciós termékek</li>
+              <li>Téli varázs ❄️</li>
+              <li>Szerelmeseknek 💖</li>
+              <li>Horoszkóp ♌</li>
+              <li>Akciós termékek 🏷️</li>
             </ul>
             <ul className="desktop-menu-items">
               <h2>Karkötők</h2>
@@ -102,7 +102,7 @@ export default function DesktopAccordion() {
               </h2>
               <h2>
                 <Link onClick={handleLinkClick} to="/termekek/akcio">
-                  Akciós termékek
+                  Akciós termékek 🏷️
                 </Link>
               </h2>
               <h2>
@@ -119,7 +119,7 @@ export default function DesktopAccordion() {
             </ul>
           </nav>
 
-          <ul className="desktop-menu-social-container">
+          {/* <ul className="desktop-menu-social-container">
             <li>
               <a href="/" className="social-link">
                 <FacebookIcon className="social-img" alt="Facebook" />
@@ -135,7 +135,7 @@ export default function DesktopAccordion() {
                 <TikTokIcon className="social-img " alt="TikTok" />
               </a>
             </li>
-          </ul>
+          </ul> */}
         </div>
       </div>
     </div>

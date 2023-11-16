@@ -57,10 +57,10 @@
 
       .desktop-menu-navigation {
         display: flex;
-        justify-content: space-between;
+        // justify-content: space-between;
         height: 100%;
         width: 100%;
-        gap: 20px;
+        gap: 200px;
       }
 
       .desktop-menu-social-container {
@@ -76,7 +76,7 @@
         flex-direction: column;
         position: relative;
         top: 50px;
-        background: var(--secondary-background-color);
+        background: var(--shadow-color);
         padding: 10px;
         width: 50px;
         height: 50px;
