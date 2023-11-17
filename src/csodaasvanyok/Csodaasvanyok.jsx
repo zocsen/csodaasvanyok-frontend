@@ -5,12 +5,14 @@ import Homepage from "./pages/Homepage/Homepage";
 import ProductsPage from "./pages/ProductsPage/ProductsPage";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import Cart from "./components/Cart/Cart";
+import DeliveryInfo from "./components/DeliveryInfo/DeliveryInfo";
 
 export default function Csodaasvanyok() {
   return (
     <BrowserRouter>
       <Header />
       <Cart />
+      <DeliveryInfo />
       <Routes>
         <Route
           path="termekek/osszes-karkoto"

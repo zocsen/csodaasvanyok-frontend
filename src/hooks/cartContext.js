@@ -90,6 +90,13 @@ export function CartProvider({ children }) {
     return total + item.quantity;
   }, 0);
 
+  const baseDeliveryFee = 990;
+  const freeDeliveryThreshold = 12000;
+
+  const deliveryFee = totalPrice >= freeDeliveryThreshold ? 0 : baseDeliveryFee;
+  const progress = Math.min((totalPrice / freeDeliveryThreshold) * 100, 100);
+  const totalPriceWithDeliveryFee = totalPrice + deliveryFee;
+
   const value = {
     cartItems,
     addToCart,
@@ -101,6 +108,10 @@ export function CartProvider({ children }) {
     decreaseQuantity,
     totalPrice,
     getCartItemsCount,
+    progress,
+    deliveryFee,
+    totalPriceWithDeliveryFee,
+    freeDeliveryThreshold,
   };
 
   useEffect(() => {

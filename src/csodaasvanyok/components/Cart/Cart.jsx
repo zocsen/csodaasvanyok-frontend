@@ -6,6 +6,7 @@ import { ReactComponent as RemoveIcon } from "../../../images/icons/remove.svg";
 import { ReactComponent as AddIcon } from "../../../images/icons/add.svg";
 import { LinearProgress, withStyles } from "@material-ui/core";
 import formatPrice from "../../../hooks/formatPrice";
+import { useDelivery } from "../../../hooks/deliveryContext";
 
 const StyledLinearProgress = withStyles({
   colorPrimary: {
@@ -24,24 +25,16 @@ export default function Cart() {
     increaseQuantity,
     decreaseQuantity,
     totalPrice,
+    progress,
+    deliveryFee,
+    totalPriceWithDeliveryFee,
+    freeDeliveryThreshold,
   } = useCart();
 
-  // if (!isCartOpen) return null;
-  const baseDeliveryFee = 990;
-  const freeDeliveryThreshold = 12000;
-  const progress = Math.min((totalPrice / freeDeliveryThreshold) * 100, 100);
-  const [deliveryFee, setDeliveryFee] = useState(baseDeliveryFee);
-  const remainingPrice = freeDeliveryThreshold - totalPrice;
-  const totalPriceWithDeliveryFee = totalPrice + deliveryFee;
+  const { openDelvieryPanel } = useDelivery();
 
-  useEffect(() => {
-    if (totalPrice >= freeDeliveryThreshold) {
-      setDeliveryFee(0);
-    }
-    if (totalPrice < freeDeliveryThreshold) {
-      setDeliveryFee(baseDeliveryFee);
-    }
-  }, [totalPrice]);
+  // if (!isCartOpen) return null;
+  const remainingPrice = freeDeliveryThreshold - totalPrice;
 
   const [showProgress, setShowProgress] = useState(true);
 
@@ -49,7 +42,7 @@ export default function Cart() {
     if (totalPrice >= freeDeliveryThreshold) {
       setTimeout(() => {
         setShowProgress(false);
-      }, 500);
+      }, 200);
     } else {
       setShowProgress(true);
     }
@@ -121,10 +114,12 @@ export default function Cart() {
           <div className="to-free-delivery">
             {showProgress && (
               <>
-                <p className="free-delivery-reminder">
-                  Már csak {formatPrice(remainingPrice)} és ingyen házhoz
-                  visszük!
-                </p>
+                {remainingPrice > 0 && (
+                  <p className="free-delivery-reminder">
+                    Már csak {formatPrice(remainingPrice)} és ingyen házhoz
+                    visszük!
+                  </p>
+                )}
 
                 <StyledLinearProgress variant="determinate" value={progress} />
 
@@ -146,7 +141,10 @@ export default function Cart() {
             <p>Összesített ár:</p>
             <p>{formatPrice(totalPriceWithDeliveryFee)}</p>
           </div>
-          <button className="to-payment-info-button">
+          <button
+            className="to-payment-info-button"
+            onClick={openDelvieryPanel}
+          >
             Tovább a fizetéshez
           </button>
         </div>

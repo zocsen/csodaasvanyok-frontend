@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import useApi from "../../../../hooks/useApi";
 import "./mineral-filter.scss";
 import { ReactComponent as ExpandMoreIcon } from "../../../../images/icons/expand-more.svg";
-
+const API_URL = process.env.REACT_APP_API_URL;
 export default function MineralFilter({ onValueChange }) {
-  const { data, error, get } = useApi("http://192.168.1.8:3000/api/v1");
+  const { data, error, get } = useApi(API_URL);
   const [isPanelVisible, setIsPanelVisible] = useState(true);
   const [selectedMinerals, setSelectedMinerals] = useState([]);
 

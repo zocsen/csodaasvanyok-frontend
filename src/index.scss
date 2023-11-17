@@ -223,6 +223,12 @@ li {
   color: white;
 }
 
+.MuiInputBase-input[type="number"]::-webkit-inner-spin-button,
+.MuiInputBase-input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 @media (min-width: 0px) {
   .App {
     margin: 0 15px;

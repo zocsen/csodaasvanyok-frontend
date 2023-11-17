@@ -1,0 +1,123 @@
+.delivery-info-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  position: fixed;
+  top: 0;
+  right: -600px;
+  z-index: 1003;
+  padding: 50px 15px 20px;
+  background-color: var(--primary-background-color);
+  transition: right 0.5s ease;
+  border-radius: var(--border-radius-md);
+
+  &.open {
+    right: 0;
+  }
+
+  .delivery-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+  }
+
+  .delivery-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-right: -14px;
+    padding-right: 7px;
+    justify-content: space-between;
+    .half-fields {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .full-text-field {
+      width: 100%;
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .half-text-field {
+      width: 48%;
+      margin-bottom: 20px;
+    }
+
+    .shipping-disclaimer {
+      font-size: 1.4rem;
+      font-weight: 500;
+      .shipment-red {
+        color: red;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .delivery-footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 10px;
+    background-color: var(--primary-background-color);
+
+    .to-free-delivery {
+      .deliver-fee-title {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        font-size: 1.8rem;
+        font-weight: 700;
+
+        span {
+          &.free {
+            color: var(--green);
+          }
+        }
+      }
+      .min-max-price-needed {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2px;
+        p {
+          font-size: 1.2rem;
+          margin-bottom: 10px;
+        }
+      }
+
+      .free-delivery-reminder {
+        text-align: center;
+        font-size: 1.4rem;
+        margin-bottom: 4px;
+      }
+    }
+    .cart-footer-total {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .to-payment-info-button {
+      padding: 10px 0;
+      width: 100%;
+      border-width: 2px;
+      font-size: 2rem;
+      border-radius: var(--border-radius-md);
+      background-color: var(--primary-button-color);
+      font-weight: 700;
+    }
+  }
+}
+
+@media (min-width: 360px) {
+  .delivery-info-panel {
+    padding: 50px 20px 20px;
+  }
+}
+@media (min-width: 600px) {
+  .delivery-info-panel {
+    padding: 50px 30px 20px;
+  }
+}

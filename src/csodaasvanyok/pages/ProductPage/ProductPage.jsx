@@ -5,6 +5,8 @@ import useApi from "../../../hooks/useApi";
 import { useCart } from "../../../hooks/cartContext";
 import formatPrice from "../../../hooks/formatPrice";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const ProductPage = () => {
   const { slug, id } = useParams();
   const { addToCart } = useCart();
@@ -12,12 +14,7 @@ const ProductPage = () => {
 
   console.log("ProductPage rendered", slug, id);
 
-  const {
-    data: product,
-    loading,
-    error,
-    get: getProduct,
-  } = useApi("http://192.168.1.8:3000/api/v1");
+  const { data: product, loading, error, get: getProduct } = useApi(API_URL);
 
   useEffect(() => {
     getProduct("/products/" + id);

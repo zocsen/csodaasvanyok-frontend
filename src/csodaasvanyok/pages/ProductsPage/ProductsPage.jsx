@@ -21,6 +21,8 @@ function filterProductsByType(product, type) {
   }
 }
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 export default function ProductsPage({ header, type }) {
   const [initialPriceRange, setInitialPriceRange] = useState([0, 0]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -34,12 +36,7 @@ export default function ProductsPage({ header, type }) {
   const [showFilter, setShowFilter] = useState(false);
   const [filterKey, setFilterKey] = useState(0);
 
-  const {
-    data: allProducts,
-    loading,
-    error,
-    get,
-  } = useApi("http://192.168.1.8:3000/api/v1");
+  const { data: allProducts, loading, error, get } = useApi(API_URL);
 
   useEffect(() => {
     get("/products");

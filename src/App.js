@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Csodaasvanyok from "./csodaasvanyok/Csodaasvanyok";
 import IsMobileContext from "./hooks/isMobileContext";
 import { CartProvider } from "./hooks/cartContext";
+import { DeliveryProvider } from "./hooks/deliveryContext";
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
@@ -24,9 +25,11 @@ function App() {
   return (
     <IsMobileContext.Provider value={isMobile}>
       <CartProvider>
-        <div className="App">
-          <Csodaasvanyok></Csodaasvanyok>
-        </div>
+        <DeliveryProvider>
+          <div className="App">
+            <Csodaasvanyok></Csodaasvanyok>
+          </div>
+        </DeliveryProvider>
       </CartProvider>
     </IsMobileContext.Provider>
   );
