@@ -64,32 +64,6 @@
       border-radius: 50%;
     }
 
-    .menu-social-container {
-      display: flex;
-      -webkit-justify-content: center;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-top: 40px;
-
-      .social-link {
-        display: flex;
-        background: var(--secondary-background-color);
-        color: var(--eerie-black);
-        font-size: 2rem;
-        padding: 10px;
-        width: 50px;
-        height: 50px;
-        -webkit-border-radius: var(--border-radius-md);
-        border-radius: var(--border-radius-md);
-
-        .social-img {
-          display: block;
-          width: 30px;
-        }
-      }
-    }
-
     .accordion-style {
       display: flex;
       justify-content: space-between;

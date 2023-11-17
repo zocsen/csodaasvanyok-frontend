@@ -57,36 +57,9 @@
 
       .desktop-menu-navigation {
         display: flex;
-        // justify-content: space-between;
+        justify-content: space-between;
         height: 100%;
         width: 100%;
-        gap: 200px;
-      }
-
-      .desktop-menu-social-container {
-        display: flex;
-        -webkit-justify-content: center;
-        justify-content: center;
-        align-items: center;
-        gap: 100px;
-      }
-
-      .desktop-menu-social-container .social-link {
-        display: inline-flex;
-        flex-direction: column;
-        position: relative;
-        top: 50px;
-        background: var(--shadow-color);
-        padding: 10px;
-        width: 50px;
-        height: 50px;
-        align-items: center;
-        -webkit-border-radius: var(--border-radius-md);
-        border-radius: var(--border-radius-md);
-        .social-img {
-          display: block;
-          min-width: 30px;
-        }
       }
     }
   }

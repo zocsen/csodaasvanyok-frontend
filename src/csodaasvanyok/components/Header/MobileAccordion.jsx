@@ -6,9 +6,6 @@ import { ReactComponent as MenuIcon } from "../../../images/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "../../../images/icons/close.svg";
 import { ReactComponent as RemoveIcon } from "../../../images/icons/remove.svg";
 import { ReactComponent as AddIcon } from "../../../images/icons/add.svg";
-import { ReactComponent as FacebookIcon } from "../../../images/icons/logo-facebook.svg";
-import { ReactComponent as InstagramIcon } from "../../../images/icons/logo-instagram.svg";
-import { ReactComponent as TikTokIcon } from "../../../images/icons/logo-tiktok.svg";
 
 export default function MobileAccordion() {
   const [isOpen, setIsOpen] = useState(false);
@@ -130,23 +127,6 @@ export default function MobileAccordion() {
           Blogunk
         </Link>
         <hr />
-        {/* <ul className="menu-social-container">
-          <li>
-            <a href="/" className="social-link">
-              <FacebookIcon className="social-img" alt="Facebook" />
-            </a>
-          </li>
-          <li>
-            <a href="/" className="social-link">
-              <InstagramIcon className="social-img " alt="Instagram" />
-            </a>
-          </li>
-          <li>
-            <a href="/" className="social-link">
-              <TikTokIcon className="social-img " alt="TikTok" />
-            </a>
-          </li>
-        </ul> */}
       </div>
       <div
         className={`overlay ${isOpen ? "open" : ""}`}

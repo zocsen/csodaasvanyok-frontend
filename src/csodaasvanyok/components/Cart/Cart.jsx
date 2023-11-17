@@ -9,17 +9,16 @@ import formatPrice from "../../../hooks/formatPrice";
 
 const StyledLinearProgress = withStyles({
   colorPrimary: {
-    backgroundColor: "var(--shadow-color)", // Define this variable in your CSS
+    backgroundColor: "var(--shadow-color)",
   },
   barColorPrimary: {
-    backgroundColor: "var(--primary-font-color)", // Define this variable in your CSS
+    backgroundColor: "var(--primary-font-color)",
   },
 })(LinearProgress);
 
 export default function Cart() {
   const {
     cartItems,
-    removeFromCart,
     isCartOpen,
     closeCart,
     increaseQuantity,
@@ -43,6 +42,18 @@ export default function Cart() {
       setDeliveryFee(baseDeliveryFee);
     }
   }, [totalPrice]);
+
+  const [showProgress, setShowProgress] = useState(true);
+
+  useEffect(() => {
+    if (totalPrice >= freeDeliveryThreshold) {
+      setTimeout(() => {
+        setShowProgress(false);
+      }, 500);
+    } else {
+      setShowProgress(true);
+    }
+  }, [totalPrice, freeDeliveryThreshold]);
 
   return (
     <>
@@ -79,17 +90,6 @@ export default function Cart() {
                         <p className="item-size">Méret: {item.size}</p>
                       )}
                     </div>
-                    {/* <button
-                      className="item-delete-button"
-                      onClick={() => removeFromCart(item)}
-                    >
-                      <CloseIcon
-                        className="base-svg"
-                        alt="Close icon"
-                        width={24}
-                        height={24}
-                      />
-                    </button> */}
                   </div>
                   <div className="lower-details">
                     <div className="item-quantity-wrapper">
@@ -119,7 +119,7 @@ export default function Cart() {
 
         <div className="cart-footer">
           <div className="to-free-delivery">
-            {remainingPrice > 0 && (
+            {showProgress && (
               <>
                 <p className="free-delivery-reminder">
                   Már csak {formatPrice(remainingPrice)} és ingyen házhoz

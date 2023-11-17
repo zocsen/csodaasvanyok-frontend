@@ -5,7 +5,6 @@ import "./products-page.scss";
 import useApi from "../../../hooks/useApi";
 import IsMobileContext from "../../../hooks/isMobileContext";
 import { ReactComponent as FilterIcon } from "../../../images/icons/filter.svg";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import ProductSorter from "../../components/ProductSorter/ProductSorter";
 
 function filterProductsByType(product, type) {

@@ -7,6 +7,7 @@ import "./filter-accordion.scss";
 import IsMobileContext from "../../../hooks/isMobileContext";
 import { useContext } from "react";
 import { ReactComponent as CloseIcon } from "../../../images/icons/close.svg";
+import { ReactComponent as DeleteIcon } from "../../../images/icons/delete.svg";
 
 export default function ProductFilter({
   onFilterChange,
@@ -42,6 +43,12 @@ export default function ProductFilter({
         {isMobile && productSorter && (
           <div className="mobile-product-sorter">{productSorter}</div>
         )}
+        {!isMobile && (
+          <button className="desktop-filter-reset" onClick={resetFilters}>
+            Szűrők törlése{" "}
+            <DeleteIcon className="red-svg" width={24} height={24} />
+          </button>
+        )}
         <PriceFilter
           onValueChange={(value) => onFilterChange("price", value)}
           priceRange={priceRange}
@@ -59,16 +66,11 @@ export default function ProductFilter({
         <BenefitFilter
           onValueChange={(value) => onFilterChange("benefit", value)}
         />
-        {!isMobile && (
-          <button className="desktop-filter-reset" onClick={resetFilters}>
-            Szűrők törlése
-          </button>
-        )}
       </div>
       {isMobile && (
         <div className="filter-footer">
           <button className="footer-buttons delete" onClick={resetFilters}>
-            Törlés
+            Törlés <DeleteIcon className="red-svg" width={24} height={24} />
           </button>
           <button
             className="footer-buttons save"

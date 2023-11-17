@@ -4,10 +4,6 @@ import { Link } from "react-router-dom";
 
 import { ReactComponent as ExpandMoreIcon } from "../../../images/icons/expand-more.svg";
 
-import { ReactComponent as FacebookIcon } from "../../../images/icons/logo-facebook.svg";
-import { ReactComponent as InstagramIcon } from "../../../images/icons/logo-instagram.svg";
-import { ReactComponent as TikTokIcon } from "../../../images/icons/logo-tiktok.svg";
-
 export default function DesktopAccordion() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -118,24 +114,6 @@ export default function DesktopAccordion() {
               </h2>
             </ul>
           </nav>
-
-          {/* <ul className="desktop-menu-social-container">
-            <li>
-              <a href="/" className="social-link">
-                <FacebookIcon className="social-img" alt="Facebook" />
-              </a>
-            </li>
-            <li>
-              <a href="/" className="social-link">
-                <InstagramIcon className="social-img " alt="Instagram" />
-              </a>
-            </li>
-            <li>
-              <a href="/" className="social-link">
-                <TikTokIcon className="social-img " alt="TikTok" />
-              </a>
-            </li>
-          </ul> */}
         </div>
       </div>
     </div>

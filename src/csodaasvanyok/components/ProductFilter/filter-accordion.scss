@@ -13,16 +13,14 @@
     background-color: var(--primary-background-color);
     cursor: pointer;
 
-    &:hover {
-      .arrow-img {
-        background-color: var(--secondary-background-color);
-        border-radius: var(--border-radius-round);
-      }
-    }
-
     span {
       font-size: 2.2rem;
       font-weight: bold;
+    }
+
+    .arrow-img {
+      position: relative;
+      right: -8px;
     }
   }
 
