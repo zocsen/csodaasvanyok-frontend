@@ -20,7 +20,7 @@ const ProductPage = () => {
     getProduct("/products/" + id);
   }, [id]);
 
-  if (!product) return;
+  if (!product) return null;
   console.log(product);
 
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];

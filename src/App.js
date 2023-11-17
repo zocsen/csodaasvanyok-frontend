@@ -6,7 +6,6 @@ import { DeliveryProvider } from "./hooks/deliveryContext";
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
-
   useEffect(() => {
     const handleResize = () => {
       const currentIsMobile = window.innerWidth < 1024;
