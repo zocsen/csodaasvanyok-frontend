@@ -3,6 +3,9 @@ import Csodaasvanyok from "./csodaasvanyok/Csodaasvanyok";
 import IsMobileContext from "./hooks/isMobileContext";
 import { CartProvider } from "./hooks/cartContext";
 import { DeliveryProvider } from "./hooks/deliveryContext";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
@@ -25,9 +28,11 @@ function App() {
     <IsMobileContext.Provider value={isMobile}>
       <CartProvider>
         <DeliveryProvider>
-          <div className="App">
-            <Csodaasvanyok></Csodaasvanyok>
-          </div>
+          <Elements stripe={stripePromise}>
+            <div className="App">
+              <Csodaasvanyok></Csodaasvanyok>
+            </div>
+          </Elements>
         </DeliveryProvider>
       </CartProvider>
     </IsMobileContext.Provider>
