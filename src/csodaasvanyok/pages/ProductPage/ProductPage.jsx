@@ -12,8 +12,6 @@ const ProductPage = () => {
   const { addToCart } = useCart();
   const [selectedSize, setSelectedSize] = useState(null);
 
-  console.log("ProductPage rendered", slug, id);
-
   const { data: product, loading, error, get: getProduct } = useApi(API_URL);
 
   useEffect(() => {
@@ -21,7 +19,6 @@ const ProductPage = () => {
   }, [id]);
 
   if (!product) return null;
-  console.log(product);
 
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
