@@ -73,6 +73,13 @@ export default function DeliveryInfo() {
 
     if (Object.keys(validationErrors).length === 0) {
       try {
+        const response = await post("/orders", deliveryInfo);
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+        // Handle error
+      }
+      try {
         const response = await fetch(
           `${process.env.REACT_APP_API_URL}/orders/create-checkout-session`,
           {
@@ -97,16 +104,6 @@ export default function DeliveryInfo() {
         // Handle error
       }
     }
-
-    // if (Object.keys(validationErrors).length === 0) {
-    //   try {
-    //     const response = await post("/orders", deliveryInfo);
-    //     console.log(response);
-    //   } catch (error) {
-    //     console.error(error);
-    //     // Handle error
-    //   }
-    // }
   };
 
   return (
