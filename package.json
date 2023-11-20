@@ -25,8 +25,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && shx cp CNAME build/CNAME",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -49,7 +47,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.1.0",
     "shx": "^0.3.4"
   }
 }
