@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import ProductFilter from "../../components/ProductFilter/ProductFilter";
 import ProductList from "../../components/ProductList/ProductList";
 import "./products-page.scss";
-import useApi from "../../../hooks/useApi";
 import IsMobileContext from "../../../hooks/isMobileContext";
 import { ReactComponent as FilterIcon } from "../../../images/icons/filter.svg";
 import ProductSorter from "../../components/ProductSorter/ProductSorter";
+import { useData } from "../../../hooks/dataContext";
 
 function filterProductsByType(product, type) {
   switch (type) {
@@ -21,8 +21,6 @@ function filterProductsByType(product, type) {
   }
 }
 
-const API_URL = process.env.REACT_APP_API_URL;
-
 export default function ProductsPage({ header, type }) {
   const [initialPriceRange, setInitialPriceRange] = useState([0, 0]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -31,22 +29,18 @@ export default function ProductsPage({ header, type }) {
   const [mineralFilter, setMineralFilter] = useState([]);
   const [benefitFilter, setBenefitFilter] = useState([]);
   const [initialRender, setInitialRender] = useState(true);
-  const [sortTitle, setSortTitle] = useState(null);
+  const [sortTitle, setSortTitle] = useState("");
   const isMobile = useContext(IsMobileContext);
   const [showFilter, setShowFilter] = useState(false);
   const [filterKey, setFilterKey] = useState(0);
 
-  const { data: allProducts, loading, error, get } = useApi(API_URL);
-
-  useEffect(() => {
-    get("/products");
-  }, []);
+  const { allProducts, productsFetching, productsError } = useData();
 
   useEffect(() => {
     setInitialRender(true);
   }, [type]);
 
-  if (allProducts && initialRender) {
+  if (allProducts && initialRender && !productsFetching) {
     setInitialRender(false);
     let maxPriceValue = 0;
     let minPriceValue = Infinity;
@@ -174,7 +168,7 @@ export default function ProductsPage({ header, type }) {
   };
 
   const resetFilters = () => {
-    setSortTitle(null);
+    setSortTitle("");
 
     setFilterKey((prevKey) => prevKey + 1);
   };
@@ -246,7 +240,14 @@ export default function ProductsPage({ header, type }) {
             ""
           )}
 
-          <ProductList products={filteredProducts} />
+          {productsError === null && filteredProducts.length !== 0 ? (
+            <ProductList products={filteredProducts} />
+          ) : (
+            <p>
+              Sajnáljuk, de jelen pillanatban, nem tudunk terméket
+              megjeleníteni.
+            </p>
+          )}
         </div>
       </div>
     </div>

@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
-import useApi from "../../../../hooks/useApi";
 import "./mineral-filter.scss";
 import { ReactComponent as ExpandMoreIcon } from "../../../../images/icons/expand-more.svg";
-const API_URL = process.env.REACT_APP_API_URL;
+import { useData } from "../../../../hooks/dataContext";
+import { Skeleton } from "@mui/material";
 export default function MineralFilter({ onValueChange }) {
-  const { data, error, get } = useApi(API_URL);
   const [isPanelVisible, setIsPanelVisible] = useState(true);
   const [selectedMinerals, setSelectedMinerals] = useState([]);
 
-  useEffect(() => {
-    get("/minerals");
-  }, []);
+  const { allMinerals, mineralsFetching } = useData();
 
   const handleChange = (mineral, checked) => {
     if (checked) {
@@ -39,8 +36,17 @@ export default function MineralFilter({ onValueChange }) {
       </button>
       <div className={`panel ${isPanelVisible ? "open" : ""}`}>
         <div className="box-wrapper">
-          {data &&
-            data.map((mineral, i) => (
+          {mineralsFetching && (
+            <>
+              <Skeleton animation="wave" />
+              <Skeleton animation="wave" />
+              <Skeleton animation="wave" />
+              <Skeleton animation="wave" />
+            </>
+          )}
+          {allMinerals &&
+            !mineralsFetching &&
+            allMinerals.map((mineral, i) => (
               <div key={mineral.id} className="item">
                 <input
                   id={`mineral${i + 1}`}

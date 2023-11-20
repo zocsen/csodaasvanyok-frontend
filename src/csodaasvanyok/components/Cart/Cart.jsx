@@ -131,7 +131,7 @@ export default function Cart() {
             )}
             <p className="deliver-fee-title">
               Szállítás:
-              <span className={deliveryFee === 0 && "free"}>
+              <span className={deliveryFee === 0 ? "free" : undefined}>
                 {deliveryFee > 0 ? formatPrice(deliveryFee) : "Ingyenes"}
               </span>
             </p>

@@ -4,15 +4,20 @@ import { useEffect, useState } from "react";
 import useApi from "../../../hooks/useApi";
 import { useCart } from "../../../hooks/cartContext";
 import formatPrice from "../../../hooks/formatPrice";
+import { Box, Skeleton } from "@mui/material";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 const ProductPage = () => {
-  const { slug, id } = useParams();
+  const { id } = useParams();
   const { addToCart } = useCart();
   const [selectedSize, setSelectedSize] = useState(null);
 
   const { data: product, loading, error, get: getProduct } = useApi(API_URL);
+
+  if (error !== null) {
+    console.error(`Failed to fetch product: ${error}`);
+  }
 
   useEffect(() => {
     getProduct("/products/" + id);
@@ -21,8 +26,9 @@ const ProductPage = () => {
   if (!product) return null;
 
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
+  console.log(loading);
 
-  return (
+  return !loading ? (
     <div className="product-page">
       <img src={product?.image} alt="Termék" />
       <div className="product-details">
@@ -59,6 +65,10 @@ const ProductPage = () => {
         </button>
       </div>
     </div>
+  ) : (
+    <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Skeleton variant="rounded" width={1400} height={1000} />
+    </Box>
   );
 };
 

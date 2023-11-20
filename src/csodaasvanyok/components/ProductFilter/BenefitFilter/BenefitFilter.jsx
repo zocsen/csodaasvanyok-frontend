@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
-import useApi from "../../../../hooks/useApi";
 import "./benefit-filter.scss";
 import { ReactComponent as ExpandMoreIcon } from "../../../../images/icons/expand-more.svg";
-const API_URL = process.env.REACT_APP_API_URL;
-export default function BenefitFilter({ onValueChange }) {
-  const { data, error, get } = useApi(API_URL);
+import { useData } from "../../../../hooks/dataContext";
+import { Skeleton } from "@mui/material";
 
+export default function BenefitFilter({ onValueChange }) {
   const [isPanelVisible, setIsPanelVisible] = useState(true);
   const [selectedMinerals, setSelectedMinerals] = useState([]);
 
-  useEffect(() => {
-    get("/benefits");
-  }, []);
+  const { allBenefits, benefitsFetching, benefitsError } = useData();
 
   const handleChange = (mineral, checked) => {
     if (checked) {
@@ -39,8 +36,17 @@ export default function BenefitFilter({ onValueChange }) {
 
       <div className={`panel ${isPanelVisible ? "open" : ""}`}>
         <div className="box-wrapper">
-          {data &&
-            data.map((benefit, i) => (
+          {benefitsFetching && (
+            <>
+              <Skeleton animation="wave" />
+              <Skeleton animation="wave" />
+              <Skeleton animation="wave" />
+              <Skeleton animation="wave" />
+            </>
+          )}
+          {allBenefits &&
+            !benefitsFetching &&
+            allBenefits.map((benefit, i) => (
               <div key={benefit.id} className="item">
                 <input
                   id={`benefit${i + 1}`}

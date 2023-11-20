@@ -5,6 +5,7 @@ import { CartProvider } from "./hooks/cartContext";
 import { DeliveryProvider } from "./hooks/deliveryContext";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import { DataProvider } from "./hooks/dataContext";
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
 function App() {
@@ -26,15 +27,17 @@ function App() {
 
   return (
     <IsMobileContext.Provider value={isMobile}>
-      <CartProvider>
-        <DeliveryProvider>
-          <Elements stripe={stripePromise}>
-            <div className="App">
-              <Csodaasvanyok></Csodaasvanyok>
-            </div>
-          </Elements>
-        </DeliveryProvider>
-      </CartProvider>
+      <DataProvider>
+        <CartProvider>
+          <DeliveryProvider>
+            <Elements stripe={stripePromise}>
+              <div className="App">
+                <Csodaasvanyok></Csodaasvanyok>
+              </div>
+            </Elements>
+          </DeliveryProvider>
+        </CartProvider>
+      </DataProvider>
     </IsMobileContext.Provider>
   );
 }

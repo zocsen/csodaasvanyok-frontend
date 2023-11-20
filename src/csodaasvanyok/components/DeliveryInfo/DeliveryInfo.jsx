@@ -318,11 +318,11 @@ export default function DeliveryInfo() {
             }}
             helperText="Nem kötelező megadni"
           />
-          <p class="shipping-disclaimer">
+          <p className="shipping-disclaimer">
             <span>Kedves vásárlóink!</span> <br /> Jelenleg csak hagyományos,
             postai úton tudjuk házhozszállítani megrendelt termékeit. Hamarosan{" "}
-            <span class="shipment-red">FOXPOST</span> és{" "}
-            <span class="shipment-red">Packeta </span>
+            <span className="shipment-red">FOXPOST</span> és{" "}
+            <span className="shipment-red">Packeta </span>
             lehetőségek is elérhetőek lesznek. Megértésüket köszönjük!
           </p>
         </div>
