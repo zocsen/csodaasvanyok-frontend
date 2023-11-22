@@ -106,6 +106,14 @@ export default function DeliveryInfo() {
     }
   };
 
+  useEffect(() => {
+    setDeliveryInfo((prevInfo) => ({
+      ...prevInfo,
+      orderItems: cartItems,
+      totalPrice: totalPriceWithDeliveryFee,
+    }));
+  }, [cartItems, totalPriceWithDeliveryFee]);
+
   return (
     <>
       <div
