@@ -16,7 +16,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 export default function DeliveryInfo() {
   const stripe = useStripe();
-  const { cartItems, totalPriceWithDeliveryFee } = useCart();
+  const { cartItems, totalPriceWithDeliveryFee, deliveryFee } = useCart();
   const { data, post, loading, error } = useApi(API_URL);
   const [errors, setErrors] = useState({});
   const { isDeliveryPanelOpen, closeDeliveryPanel } = useDelivery();
@@ -34,6 +34,7 @@ export default function DeliveryInfo() {
     email: "",
     status: 0,
     totalPrice: totalPriceWithDeliveryFee,
+    deliveryFee: deliveryFee,
   });
 
   const handleChange = (event) => {
@@ -58,7 +59,8 @@ export default function DeliveryInfo() {
         !value &&
         key !== "phone" &&
         key !== "totalPrice" &&
-        key !== "status"
+        key !== "status" &&
+        key !== "deliveryFee"
       ) {
         validationErrors[key] = "This field is required";
       }
@@ -87,7 +89,11 @@ export default function DeliveryInfo() {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ items: cartItems }), // ensure this matches your backend expectations
+            body: JSON.stringify({
+              items: cartItems,
+              deliveryFee: deliveryFee,
+              email: deliveryInfo.email,
+            }),
           }
         );
         const session = await response.json();
@@ -111,8 +117,9 @@ export default function DeliveryInfo() {
       ...prevInfo,
       orderItems: cartItems,
       totalPrice: totalPriceWithDeliveryFee,
+      deliveryFee: deliveryFee,
     }));
-  }, [cartItems, totalPriceWithDeliveryFee]);
+  }, [cartItems, totalPriceWithDeliveryFee, deliveryFee]);
 
   return (
     <>
