@@ -5,7 +5,7 @@ import DesktopAccordion from "./DesktopAccordion";
 import MobileAccordion from "./MobileAccordion";
 import IsMobileContext from "../../../hooks/isMobileContext";
 
-import Logo from "../../../images/logo/logo.png";
+import Logo from "../../../images/logo/logo.svg";
 
 import { ReactComponent as ShoppingBagIcon } from "../../../images/icons/shopping-bag.svg";
 import { Link } from "react-router-dom";
