@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useDelivery } from "../../../hooks/deliveryContext";
 
 const PaymentSuccessfulPage = () => {
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get("session_id");
-  const { deliveryInfo } = useDelivery();
 
   useEffect(() => {
     if (sessionId) {
@@ -15,15 +13,15 @@ const PaymentSuccessfulPage = () => {
 
   const postOrderDetails = async (sessionId) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
+      const tempOrderId = localStorage.getItem("tempOrderId");
+
+      await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ sessionId, deliveryInfo }),
+        body: JSON.stringify({ sessionId, tempOrderId }),
       });
-      const data = await response.json();
-      // Handle response
     } catch (error) {
       console.error("Error posting order details:", error);
     }

@@ -26,7 +26,7 @@ export function DeliveryProvider({ children }) {
     deliveryFee: deliveryFee,
   });
 
-  const openDelvieryPanel = () => {
+  const openDeliveryPanel = () => {
     setIsDeliveryPanelOpen(true);
   };
 
@@ -36,7 +36,7 @@ export function DeliveryProvider({ children }) {
 
   const value = {
     isDeliveryPanelOpen,
-    openDelvieryPanel,
+    openDeliveryPanel,
     closeDeliveryPanel,
     deliveryInfo,
     setDeliveryInfo,

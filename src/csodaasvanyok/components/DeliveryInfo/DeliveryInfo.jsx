@@ -61,6 +61,26 @@ export default function DeliveryInfo() {
     if (Object.keys(validationErrors).length === 0) {
       try {
         const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/orders/temp-order`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              deliveryInfo,
+            }),
+          }
+        );
+
+        const data = await response.json();
+
+        localStorage.setItem("tempOrderId", data.tempOrderId);
+      } catch (error) {
+        console.error(error);
+      }
+      try {
+        const response = await fetch(
           `${process.env.REACT_APP_API_URL}/orders/create-checkout-session`,
           {
             method: "POST",

@@ -31,7 +31,7 @@ export default function Cart() {
     freeDeliveryThreshold,
   } = useCart();
 
-  const { openDelvieryPanel } = useDelivery();
+  const { openDeliveryPanel } = useDelivery();
 
   // if (!isCartOpen) return null;
   const remainingPrice = freeDeliveryThreshold - totalPrice;
@@ -143,7 +143,7 @@ export default function Cart() {
           </div>
           <button
             className="to-payment-info-button"
-            onClick={openDelvieryPanel}
+            onClick={openDeliveryPanel}
           >
             Tovább a fizetéshez
           </button>
