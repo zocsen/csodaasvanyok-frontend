@@ -3,7 +3,6 @@ import "./delivery-info.scss";
 import { useDelivery } from "../../../hooks/deliveryContext";
 import { ReactComponent as CloseIcon } from "../../../images/icons/close.svg";
 import { TextField } from "@material-ui/core";
-import useApi from "../../../hooks/useApi";
 import { useCart } from "../../../hooks/cartContext";
 import { useStripe } from "@stripe/react-stripe-js";
 
@@ -12,30 +11,16 @@ const validateEmail = (email) => {
   return emailRegex.test(email);
 };
 
-const API_URL = process.env.REACT_APP_API_URL;
-
 export default function DeliveryInfo() {
   const stripe = useStripe();
   const { cartItems, totalPriceWithDeliveryFee, deliveryFee } = useCart();
-  const { data, post, loading, error } = useApi(API_URL);
   const [errors, setErrors] = useState({});
-  const { isDeliveryPanelOpen, closeDeliveryPanel } = useDelivery();
-
-  const [deliveryInfo, setDeliveryInfo] = useState({
-    orderItems: cartItems,
-    shippingAddress1: "",
-    city: "",
-    zip: "",
-    country: "Magyarország",
-    phone: "",
-    name: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    status: 0,
-    totalPrice: totalPriceWithDeliveryFee,
-    deliveryFee: deliveryFee,
-  });
+  const {
+    isDeliveryPanelOpen,
+    closeDeliveryPanel,
+    deliveryInfo,
+    setDeliveryInfo,
+  } = useDelivery();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -74,13 +59,6 @@ export default function DeliveryInfo() {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      try {
-        const response = await post("/orders", deliveryInfo);
-        console.log(response);
-      } catch (error) {
-        console.error(error);
-        // Handle error
-      }
       try {
         const response = await fetch(
           `${process.env.REACT_APP_API_URL}/orders/create-checkout-session`,

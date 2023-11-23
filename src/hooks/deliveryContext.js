@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { useCart } from "./cartContext";
 
 const DeliveryContext = createContext();
 
@@ -7,7 +8,23 @@ export function useDelivery() {
 }
 
 export function DeliveryProvider({ children }) {
+  const { cartItems, totalPriceWithDeliveryFee, deliveryFee } = useCart();
   const [isDeliveryPanelOpen, setIsDeliveryPanelOpen] = useState(false);
+  const [deliveryInfo, setDeliveryInfo] = useState({
+    orderItems: cartItems,
+    shippingAddress1: "",
+    city: "",
+    zip: "",
+    country: "Magyarország",
+    phone: "",
+    name: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    status: 0,
+    totalPrice: totalPriceWithDeliveryFee,
+    deliveryFee: deliveryFee,
+  });
 
   const openDelvieryPanel = () => {
     setIsDeliveryPanelOpen(true);
@@ -21,6 +38,8 @@ export function DeliveryProvider({ children }) {
     isDeliveryPanelOpen,
     openDelvieryPanel,
     closeDeliveryPanel,
+    deliveryInfo,
+    setDeliveryInfo,
   };
 
   return (

@@ -6,6 +6,7 @@ import ProductsPage from "./pages/ProductsPage/ProductsPage";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import Cart from "./components/Cart/Cart";
 import DeliveryInfo from "./components/DeliveryInfo/DeliveryInfo";
+import PaymentSuccessfulPage from "./pages/PaymentSuccessfulPage/PaymentSuccessfulPage";
 
 export default function Csodaasvanyok() {
   return (
@@ -36,6 +37,9 @@ export default function Csodaasvanyok() {
         />
 
         <Route path="/termek/:slug/:id" element={<ProductPage />} />
+
+        <Route path="success" element={<PaymentSuccessfulPage />} />
+        {/* <Route path="cancel" element={<PaymentSuccessfulPage />} /> */}
 
         <Route path="/" element={<Homepage />} />
         <Route path="*" element={<Homepage />} />
