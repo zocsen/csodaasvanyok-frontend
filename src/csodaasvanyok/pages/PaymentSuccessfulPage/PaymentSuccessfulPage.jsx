@@ -15,22 +15,26 @@ const PaymentSuccessfulPage = () => {
     try {
       const tempOrderId = localStorage.getItem("tempOrderId");
 
-      await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ sessionId, tempOrderId }),
       });
+
+      if (response.ok) {
+        localStorage.clear();
+      }
     } catch (error) {
       console.error("Error posting order details:", error);
     }
   };
 
   return (
-    <div>
-      <h1>Payment Successful</h1>
-      {/* Additional order details or actions */}
+    <div style={{ display: "block", textAlign: "center", paddingTop: "100px" }}>
+      <h1>Köszönjük a vásárlást!</h1>
+      <h2>A szállítás részleteiről hamarosan küldünk egy e-mailt!</h2>
     </div>
   );
 };
