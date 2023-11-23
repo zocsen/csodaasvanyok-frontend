@@ -105,8 +105,9 @@
       border-width: 2px;
       font-size: 2rem;
       border-radius: var(--border-radius-md);
-      background-color: var(--primary-button-color);
-      font-weight: 700;
+      background-color: var(--primary-font-color);
+      color: var(--primary-background-color);
+      font-weight: 400;
     }
   }
 }
