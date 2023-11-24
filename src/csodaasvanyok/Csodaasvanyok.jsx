@@ -9,6 +9,7 @@ import DeliveryInfo from "./components/DeliveryInfo/DeliveryInfo";
 import PaymentSuccessfulPage from "./pages/PaymentSuccessfulPage/PaymentSuccessfulPage";
 import PaymentFailedPage from "./pages/PaymentFailedPage/PaymentFailedPage";
 import ProductBuilderPage from "./pages/ProductBuilderPage/ProductBuilderPage";
+import Footer from "./components/Footer/Footer";
 
 export default function Csodaasvanyok() {
   return (
@@ -63,6 +64,7 @@ export default function Csodaasvanyok() {
         <Route path="/" element={<Homepage />} />
         <Route path="*" element={<Homepage />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
