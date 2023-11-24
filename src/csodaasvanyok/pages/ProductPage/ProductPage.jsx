@@ -55,7 +55,11 @@ const ProductPage = () => {
         )}
 
         <button
-          className="add-to-cart-button"
+          className={`add-to-cart-button ${
+            product.category.name === "Karkötő" && selectedSize === null
+              ? "disabled"
+              : ""
+          }`}
           disabled={
             product.category.name === "Karkötő" && selectedSize === null
           }

@@ -52,6 +52,10 @@
       margin: 20px 0 40px;
       background-color: var(--primary-font-color);
       color: var(--primary-background-color);
+
+      &.disabled {
+        background-color: var(--secondary-background-color);
+      }
     }
   }
 }

@@ -8,6 +8,7 @@ import Cart from "./components/Cart/Cart";
 import DeliveryInfo from "./components/DeliveryInfo/DeliveryInfo";
 import PaymentSuccessfulPage from "./pages/PaymentSuccessfulPage/PaymentSuccessfulPage";
 import PaymentFailedPage from "./pages/PaymentFailedPage/PaymentFailedPage";
+import ProductBuilderPage from "./pages/ProductBuilderPage/ProductBuilderPage";
 
 export default function Csodaasvanyok() {
   return (
@@ -36,6 +37,23 @@ export default function Csodaasvanyok() {
           path="termekek/marokkovek"
           element={<ProductsPage header="Marokkövek" type="Ásványok" />}
         />
+        <Route
+          path="termekek/teli-termekek"
+          element={<ProductsPage header="Téli varázs ❄️" type="Tél" />}
+        />
+        <Route
+          path="termekek/termekek-szerelmeseknek"
+          element={<ProductsPage header="Szerelmeseknek 💖" type="Szerelem" />}
+        />
+        <Route
+          path="termekek/horoszkopos-termekek"
+          element={<ProductsPage header="Horoszkóp ♌" type="Horoszkóp" />}
+        />
+        <Route
+          path="termekek/akcios-termekek"
+          element={<ProductsPage header="Akciós termékek 🏷️" type="Akció" />}
+        />
+        <Route path="karkoto-tervezo" element={<ProductBuilderPage />}></Route>
 
         <Route path="/termek/:slug/:id" element={<ProductPage />} />
 

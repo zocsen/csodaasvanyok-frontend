@@ -12,6 +12,10 @@ function filterProductsByType(product, type) {
     case "Női":
     case "Férfi":
     case "Páros":
+    case "Tél":
+    case "Szerelem":
+    case "Horoszkóp":
+    case "Akció":
       return product.subcategory[0].name === type;
     case "Karkötő":
     case "Ásványok":
@@ -51,6 +55,10 @@ export default function ProductsPage({ header, type }) {
         case "Női":
         case "Férfi":
         case "Páros":
+        case "Tél":
+        case "Szerelem":
+        case "Horoszkóp":
+        case "Akció":
           if (product.subcategory[0].name === type) {
             matchesType = true;
           }
@@ -233,7 +241,7 @@ export default function ProductsPage({ header, type }) {
                 className="filter-button"
                 onClick={toggleFilterVisibility}
               >
-                <FilterIcon /> <span>Szűrő</span>
+                <FilterIcon className="base-svg" /> <span>Szűrő</span>
               </button>
             </div>
           ) : (

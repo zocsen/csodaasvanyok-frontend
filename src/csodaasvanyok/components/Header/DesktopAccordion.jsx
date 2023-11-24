@@ -57,10 +57,32 @@ export default function DesktopAccordion() {
           <nav className="desktop-menu-navigation">
             <ul className="desktop-menu-items">
               <h2>Népszerűek</h2>
-              <li>Téli varázs ❄️</li>
-              <li>Szerelmeseknek 💖</li>
-              <li>Horoszkóp ♌</li>
-              <li>Akciós termékek 🏷️</li>
+              <li>
+                <Link onClick={handleLinkClick} to="/termekek/teli-termekek">
+                  Téli varázs ❄️
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={handleLinkClick}
+                  to="/termekek/termekek-szerelmeseknek"
+                >
+                  Szerelmeseknek 💖
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={handleLinkClick}
+                  to="/termekek/horoszkopos-termekek"
+                >
+                  Horoszkóp ♌
+                </Link>
+              </li>
+              <li>
+                <Link onClick={handleLinkClick} to="/termekek/akcios-termekek">
+                  Akciós termékek 🏷️
+                </Link>
+              </li>
             </ul>
             <ul className="desktop-menu-items">
               <h2>Karkötők</h2>
@@ -85,7 +107,7 @@ export default function DesktopAccordion() {
                 </Link>
               </li>
               <li>
-                <Link onClick={handleLinkClick} to="/tervezo">
+                <Link onClick={handleLinkClick} to="/karkoto-tervezo">
                   Karkötő Tervező <br /> (HAMAROSAN)
                 </Link>
               </li>
@@ -97,17 +119,12 @@ export default function DesktopAccordion() {
                 </Link>
               </h2>
               <h2>
-                <Link onClick={handleLinkClick} to="/termekek/akcio">
+                <Link onClick={handleLinkClick} to="/termekek/akcios-termekek">
                   Akciós termékek 🏷️
                 </Link>
               </h2>
               <h2>
-                <Link onClick={handleLinkClick} to="blog">
-                  Blogunk
-                </Link>
-              </h2>
-              <h2>
-                <Link onClick={handleLinkClick} to="/tervezo">
+                <Link onClick={handleLinkClick} to="/karkoto-tervezo">
                   Ékszer tervező <br />
                   (HAMAROSAN)
                 </Link>

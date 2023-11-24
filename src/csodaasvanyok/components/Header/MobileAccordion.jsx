@@ -77,10 +77,29 @@ export default function MobileAccordion() {
 
         <hr />
         <AccordionItem title="Népszerűek">
-          <li>Téli varázs ❄️</li>
-          <li>Szerelmeseknek 💖</li>
-          <li>Horoszkóp ♌</li>
-          <li>Akciós termékek 🏷️</li>
+          <li>
+            <Link onClick={handleLinkClick} to="/termekek/teli-termekek">
+              Téli varázs ❄️
+            </Link>
+          </li>
+          <li>
+            <Link
+              onClick={handleLinkClick}
+              to="/termekek/termekek-szerelmeseknek"
+            >
+              Szerelmeseknek 💖
+            </Link>
+          </li>
+          <li>
+            <Link onClick={handleLinkClick} to="/termekek/horoszkopos-termekek">
+              Horoszkóp ♌
+            </Link>
+          </li>
+          <li>
+            <Link onClick={handleLinkClick} to="/termekek/akcios-termekek">
+              Akciós termékek 🏷️
+            </Link>
+          </li>
         </AccordionItem>
         <hr />
         <AccordionItem title="Karkötők">
@@ -105,7 +124,7 @@ export default function MobileAccordion() {
             </Link>
           </li>
           <li>
-            <Link onClick={handleLinkClick} to="/tervezo">
+            <Link onClick={handleLinkClick} to="/karkoto-tervezo">
               Karkötő Tervező (HAMAROSAN)
             </Link>
           </li>
@@ -115,16 +134,12 @@ export default function MobileAccordion() {
           Marokkövek
         </Link>
         <hr />
-        <Link onClick={handleLinkClick} to="/termekek/akcio">
+        <Link onClick={handleLinkClick} to="/termekek/akcios-termekek">
           Akciós termékek
         </Link>
         <hr />
-        <Link onClick={handleLinkClick} to="/tervezo">
+        <Link onClick={handleLinkClick} to="/karkoto-tervezo">
           Ékszer tervező (HAMAROSAN)
-        </Link>
-        <hr />
-        <Link onClick={handleLinkClick} to="blog">
-          Blogunk
         </Link>
         <hr />
       </div>
