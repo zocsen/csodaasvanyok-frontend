@@ -253,7 +253,8 @@ export default function ProductsPage({ header, type }) {
           ) : (
             <p>
               Sajnáljuk, de jelen pillanatban, nem tudunk terméket
-              megjeleníteni.
+              megjeleníteni. Készletünk folyamatosan növekszik, nézz vissza
+              később! ❤️
             </p>
           )}
         </div>
