@@ -10,7 +10,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 const ProductPage = () => {
   const { id } = useParams();
-  const { addToCart } = useCart();
+  const { addToCart, openCart } = useCart();
   const [selectedSize, setSelectedSize] = useState(null);
 
   const { data: product, loading, error, get: getProduct } = useApi(API_URL);
@@ -59,7 +59,10 @@ const ProductPage = () => {
           disabled={
             product.category.name === "Karkötő" && selectedSize === null
           }
-          onClick={() => addToCart({ ...product, size: selectedSize })}
+          onClick={() => {
+            openCart();
+            addToCart({ ...product, size: selectedSize });
+          }}
         >
           Kosárba
         </button>

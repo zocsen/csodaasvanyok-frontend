@@ -32,8 +32,10 @@
           padding: 10px;
           border-width: 2px;
           font-weight: 700;
+          font-size: 1.4rem;
           &.selected {
-            background-color: var(--secondary-background-color);
+            background-color: var(--primary-font-color);
+            color: var(--primary-background-color);
           }
         }
       }
@@ -43,12 +45,13 @@
       padding: 15px 30px;
       border-radius: var(--border-radius-button);
       border-width: 2px;
-      font-size: 1.8rem;
-      font-weight: 700;
+      font-size: 2rem;
+      font-weight: 500;
       width: 100%;
       max-width: 400px;
       margin: 20px 0 40px;
-      background-color: var(--secondary-background-color);
+      background-color: var(--primary-font-color);
+      color: var(--primary-background-color);
     }
   }
 }
