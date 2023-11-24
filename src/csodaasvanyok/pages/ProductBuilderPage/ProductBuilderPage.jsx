@@ -7,6 +7,10 @@ export default function ProductBuilderPage() {
         Ezen az oldalon hamarosan saját magad is összeállíthatod kedvenc
         karkötőid!
       </h2>
+      <h3 style={{ marginTop: "40px", textAlign: "center", color: "green" }}>
+        Ha egyedi karkötőt szeretnél, vedd fel a kapcsolatot velünk valamelyik
+        elérhetőségeink közül:
+      </h3>
     </div>
   );
 }

@@ -23,13 +23,13 @@
         background-color: var(--primary-background-color);
         padding: 7px 14px;
         border-radius: var(--border-radius-md);
-        border-width: 2px;
+        border-width: 1px;
         border-color: var(--primary-font-color);
         display: flex;
         align-items: center;
 
         span {
-          font-weight: 700;
+          font-weight: 600;
           font-size: 1.4rem;
           margin-left: 2px;
         }
