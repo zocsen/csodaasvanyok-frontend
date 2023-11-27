@@ -10,61 +10,74 @@ import PaymentSuccessfulPage from "./pages/PaymentSuccessfulPage/PaymentSuccessf
 import PaymentFailedPage from "./pages/PaymentFailedPage/PaymentFailedPage";
 import ProductBuilderPage from "./pages/ProductBuilderPage/ProductBuilderPage";
 import Footer from "./components/Footer/Footer";
+import ASZFPage from "./pages/ASZFPage/ASZFPage";
 
 export default function Csodaasvanyok() {
   return (
     <BrowserRouter>
-      <Header />
-      <Cart />
-      <DeliveryInfo />
-      <Routes>
-        <Route
-          path="termekek/osszes-karkoto"
-          element={<ProductsPage header="Összes karkötő" type="Karkötő" />}
-        />
-        <Route
-          path="termekek/noi-karkotok"
-          element={<ProductsPage header="Női karkötők" type="Női" />}
-        />
-        <Route
-          path="termekek/ferfi-karkotok"
-          element={<ProductsPage header="Férfi karkötők" type="Férfi" />}
-        />
-        <Route
-          path="termekek/paros-karkotok"
-          element={<ProductsPage header="Páros karkötők" type="Páros" />}
-        />
-        <Route
-          path="termekek/marokkovek"
-          element={<ProductsPage header="Marokkövek" type="Ásványok" />}
-        />
-        <Route
-          path="termekek/teli-termekek"
-          element={<ProductsPage header="Téli varázs ❄️" type="Tél" />}
-        />
-        <Route
-          path="termekek/termekek-szerelmeseknek"
-          element={<ProductsPage header="Szerelmeseknek 💖" type="Szerelem" />}
-        />
-        <Route
-          path="termekek/horoszkopos-termekek"
-          element={<ProductsPage header="Horoszkóp ♌" type="Horoszkóp" />}
-        />
-        <Route
-          path="termekek/akcios-termekek"
-          element={<ProductsPage header="Akciós termékek 🏷️" type="Akció" />}
-        />
-        <Route path="karkoto-tervezo" element={<ProductBuilderPage />}></Route>
+      <div className="app-container">
+        <Header />
+        <div className="main-content">
+          <Cart />
+          <DeliveryInfo />
+          <Routes>
+            <Route
+              path="termekek/osszes-karkoto"
+              element={<ProductsPage header="Összes karkötő" type="Karkötő" />}
+            />
+            <Route
+              path="termekek/noi-karkotok"
+              element={<ProductsPage header="Női karkötők" type="Női" />}
+            />
+            <Route
+              path="termekek/ferfi-karkotok"
+              element={<ProductsPage header="Férfi karkötők" type="Férfi" />}
+            />
+            <Route
+              path="termekek/paros-karkotok"
+              element={<ProductsPage header="Páros karkötők" type="Páros" />}
+            />
+            <Route
+              path="termekek/marokkovek"
+              element={<ProductsPage header="Marokkövek" type="Ásványok" />}
+            />
+            <Route
+              path="termekek/teli-termekek"
+              element={<ProductsPage header="Téli varázs ❄️" type="Tél" />}
+            />
+            <Route
+              path="termekek/termekek-szerelmeseknek"
+              element={
+                <ProductsPage header="Szerelmeseknek 💖" type="Szerelem" />
+              }
+            />
+            <Route
+              path="termekek/horoszkopos-termekek"
+              element={<ProductsPage header="Horoszkóp ♌" type="Horoszkóp" />}
+            />
+            <Route
+              path="termekek/akcios-termekek"
+              element={
+                <ProductsPage header="Akciós termékek 🏷️" type="Akció" />
+              }
+            />
+            <Route
+              path="karkoto-tervezo"
+              element={<ProductBuilderPage />}
+            ></Route>
 
-        <Route path="/termek/:slug/:id" element={<ProductPage />} />
+            <Route path="/termek/:slug/:id" element={<ProductPage />} />
 
-        <Route path="success" element={<PaymentSuccessfulPage />} />
-        <Route path="cancel" element={<PaymentFailedPage />} />
+            <Route path="success" element={<PaymentSuccessfulPage />} />
+            <Route path="cancel" element={<PaymentFailedPage />} />
+            <Route path="aszf" element={<ASZFPage />} />
 
-        <Route path="/" element={<Homepage />} />
-        <Route path="*" element={<Homepage />} />
-      </Routes>
-      <Footer />
+            <Route path="/" element={<Homepage />} />
+            <Route path="*" element={<Homepage />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }
