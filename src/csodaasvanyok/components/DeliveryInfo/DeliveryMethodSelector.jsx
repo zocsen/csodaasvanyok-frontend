@@ -8,6 +8,7 @@ export default function DeliveryMethodSelector({
     <FormControl
       sx={{
         width: "100%",
+        minHeight: "50px",
         padding: "0 15px 10px",
         "& .MuiOutlinedInput-input": {
           color: "var(--primary-font-color)",
