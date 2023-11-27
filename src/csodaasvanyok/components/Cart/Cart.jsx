@@ -145,7 +145,7 @@ export default function Cart() {
             className="to-payment-info-button"
             onClick={openDeliveryPanel}
           >
-            Tovább a fizetéshez
+            Tovább a szállításhoz
           </button>
         </div>
       </div>

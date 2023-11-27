@@ -24,6 +24,7 @@ export function DeliveryProvider({ children }) {
     status: 0,
     totalPrice: totalPriceWithDeliveryFee,
     deliveryFee: deliveryFee,
+    deliveryMethod: "",
   });
 
   const openDeliveryPanel = () => {

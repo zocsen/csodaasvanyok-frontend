@@ -5,6 +5,7 @@ import { ReactComponent as CloseIcon } from "../../../images/icons/close.svg";
 import { TextField } from "@material-ui/core";
 import { useCart } from "../../../hooks/cartContext";
 import { useStripe } from "@stripe/react-stripe-js";
+import DeliveryMethodSelector from "./DeliveryMethodSelector";
 
 const validateEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -13,7 +14,12 @@ const validateEmail = (email) => {
 
 export default function DeliveryInfo() {
   const stripe = useStripe();
-  const { cartItems, totalPriceWithDeliveryFee, deliveryFee } = useCart();
+  const {
+    cartItems,
+    totalPriceWithDeliveryFee,
+    deliveryFee,
+    setBaseDeliveryFee,
+  } = useCart();
   const [errors, setErrors] = useState({});
   const {
     isDeliveryPanelOpen,
@@ -21,6 +27,10 @@ export default function DeliveryInfo() {
     deliveryInfo,
     setDeliveryInfo,
   } = useDelivery();
+
+  const [deliveryMethod, setDeliveryMethod] = useState("");
+  const [isFoxPostLocationSelected, setIsFoxPostLocationSelected] =
+    useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -35,6 +45,14 @@ export default function DeliveryInfo() {
     });
   };
 
+  if (deliveryMethod === "FoxPost Automata") {
+    setBaseDeliveryFee(990);
+  } else if (deliveryMethod === "FoxPost Házhozszállítás") {
+    setBaseDeliveryFee(1590);
+  } else if (deliveryMethod === "Posta Házhozszállítás") {
+    setBaseDeliveryFee(1690);
+  }
+
   const handleSubmit = async () => {
     let validationErrors = {};
 
@@ -47,7 +65,7 @@ export default function DeliveryInfo() {
         key !== "status" &&
         key !== "deliveryFee"
       ) {
-        validationErrors[key] = "This field is required";
+        validationErrors[key] = "További információkra lenne szükségünk";
       }
     });
 
@@ -116,8 +134,43 @@ export default function DeliveryInfo() {
       orderItems: cartItems,
       totalPrice: totalPriceWithDeliveryFee,
       deliveryFee: deliveryFee,
+      deliveryMethod: deliveryMethod,
     }));
-  }, [cartItems, totalPriceWithDeliveryFee, deliveryFee]);
+  }, [cartItems, totalPriceWithDeliveryFee, deliveryFee, deliveryMethod]);
+
+  const handleDeliverySelection = (event) => {
+    setDeliveryMethod(event.target.value);
+  };
+
+  window.addEventListener("message", receiveMessage, false);
+
+  const saveFoxPostAddress = (event) => {
+    setDeliveryInfo((prevInfo) => ({
+      ...prevInfo,
+      shippingAddress1: event.street,
+      city: event.city,
+      zip: event.zip,
+    }));
+    setIsFoxPostLocationSelected(true);
+  };
+
+  function receiveMessage(event) {
+    if (event.origin !== "https://cdn.foxpost.hu") {
+      return;
+    }
+
+    if (typeof event.data !== "string") {
+      console.error("event.data is not a string:", event.data);
+      return;
+    }
+
+    try {
+      var apt = JSON.parse(event.data);
+      saveFoxPostAddress({ street: apt.street, city: apt.city, zip: apt.zip });
+    } catch (error) {
+      console.error("Error parsing JSON:", error);
+    }
+  }
 
   return (
     <>
@@ -135,209 +188,230 @@ export default function DeliveryInfo() {
             />
           </button>
         </div>
-        <div className="delivery-content">
-          <TextField
-            className="full-text-field"
-            id="outlined-read-only-input"
-            label="Ország / régió"
-            defaultValue="Magyarország"
-            InputProps={{
-              readOnly: true,
-              style: {
-                fontSize: "1.8rem",
-                color: "var(--primary-font-color)",
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                fontSize: "1.8rem",
-                color: "var(--primary-font-color)",
-                fontWeight: "500",
-              },
-            }}
-          />
-          <TextField
-            className="full-text-field"
-            required
-            id="outlined-required"
-            label="E-mail-cím"
-            name="email"
-            onChange={handleChange}
-            value={deliveryInfo.email}
-            error={!!errors.email}
-            helperText={errors.email}
-            InputLabelProps={{
-              style: {
-                fontSize: "1.8rem",
-                color: "var(--primary-font-color)",
-                fontWeight: "500",
-              },
-            }}
-            InputProps={{
-              style: {
-                fontSize: "1.8rem",
-                color: "var(--primary-font-color)",
-              },
-            }}
-          />
 
-          <div className="half-fields">
-            <TextField
-              className="half-text-field"
-              required
-              id="outlined-required"
-              label="Vezetéknév"
-              name="lastName"
-              onChange={handleChange}
-              value={deliveryInfo.lastName}
-              error={!!errors.lastName}
-              helperText={errors.lastName}
-              InputLabelProps={{
-                style: {
-                  fontSize: "1.8rem",
-                  color: "var(--primary-font-color)",
-                  fontWeight: "500",
-                },
-              }}
-              InputProps={{
-                style: {
-                  fontSize: "1.8rem",
-                  color: "var(--primary-font-color)",
-                },
-              }}
-            />
-            <TextField
-              className="half-text-field"
-              required
-              id="outlined-required"
-              label="Keresztnév"
-              name="firstName"
-              onChange={handleChange}
-              value={deliveryInfo.firstName}
-              error={!!errors.firstName}
-              helperText={errors.firstName}
-              InputLabelProps={{
-                style: {
-                  fontSize: "1.8rem",
-                  color: "var(--primary-font-color)",
-                  fontWeight: "500",
-                },
-              }}
-              InputProps={{
-                style: {
-                  fontSize: "1.8rem",
-                  color: "var(--primary-font-color)",
-                },
-              }}
-            />
-          </div>
-
-          <div className="half-fields">
-            <TextField
-              className="half-text-field"
-              required
-              id="outlined-required"
-              label="Település"
-              name="city"
-              onChange={handleChange}
-              value={deliveryInfo.city}
-              error={!!errors.city}
-              helperText={errors.city}
-              InputLabelProps={{
-                style: {
-                  fontSize: "1.8rem",
-                  color: "var(--primary-font-color)",
-                  fontWeight: "500",
-                },
-              }}
-              InputProps={{
-                style: {
-                  fontSize: "1.8rem",
-                  color: "var(--primary-font-color)",
-                },
-              }}
-            />
-            <TextField
-              className="half-text-field"
-              required
-              id="outlined-required"
-              label="Irányítószám"
-              type="number"
-              name="zip"
-              onChange={handleChange}
-              value={deliveryInfo.zip}
-              error={!!errors.zip}
-              helperText={errors.zip}
-              InputLabelProps={{
-                style: {
-                  fontSize: "1.8rem",
-                  color: "var(--primary-font-color)",
-                  fontWeight: "500",
-                },
-              }}
-              InputProps={{
-                style: {
-                  fontSize: "1.8rem",
-                  color: "var(--primary-font-color)",
-                },
-              }}
-            />
-          </div>
-
-          <TextField
-            className="full-text-field"
-            required
-            id="outlined-required"
-            label="Szállítási Cím"
-            name="shippingAddress1"
-            onChange={handleChange}
-            value={deliveryInfo.shippingAddress1}
-            error={!!errors.shippingAddress1}
-            helperText={errors.shippingAddress1}
-            InputLabelProps={{
-              style: {
-                fontSize: "1.8rem",
-                color: "var(--primary-font-color)",
-                fontWeight: "500",
-              },
-            }}
-            InputProps={{
-              style: {
-                fontSize: "1.8rem",
-                color: "var(--primary-font-color)",
-              },
-            }}
+        <div className="delivery-options">
+          <DeliveryMethodSelector
+            deliveryMethod={deliveryMethod}
+            handleDeliverySelection={handleDeliverySelection}
           />
-          <TextField
-            className="full-text-field"
-            id="outlined-phone"
-            label="Telefonszám"
-            onChange={handleChange}
-            name="phone"
-            value={deliveryInfo.phone}
-            InputLabelProps={{
-              style: {
-                fontSize: "1.8rem",
-                color: "var(--primary-font-color)",
-                fontWeight: "500",
-              },
-            }}
-            inputProps={{
-              maxLength: 15, // Adjust based on your needs
-              style: {
-                fontSize: "1.8rem",
-                color: "var(--primary-font-color)",
-              },
-            }}
-            helperText="Nem kötelező megadni"
-          />
-          <p className="shipping-disclaimer">
-            <span>Kedves vásárlóink!</span> <br /> Jelenleg csak hagyományos,
-            postai úton tudjuk házhozszállítani megrendelt termékeit. Hamarosan{" "}
-            <span className="shipment-red">FOXPOST</span> és{" "}
-            <span className="shipment-red">Packeta </span>
-            lehetőségek is elérhetőek lesznek. Megértésüket köszönjük!
-          </p>
+        </div>
+        <div className="delivery-middle">
+          {deliveryMethod === "" ? null : deliveryMethod ===
+              "FoxPost Automata" && isFoxPostLocationSelected === false ? (
+            <iframe
+              className="delivery-iframe"
+              frameborder="0"
+              loading="lazy"
+              src="https://cdn.foxpost.hu/apt-finder/v1/app/"
+            ></iframe>
+          ) : (
+            <div className="delivery-content">
+              {isFoxPostLocationSelected === true &&
+                deliveryMethod === "FoxPost Automata" && (
+                  <button
+                    onClick={() => setIsFoxPostLocationSelected(false)}
+                    className="foxpost-delivery-delete-button"
+                  >
+                    Kiválasztott autómata törlése
+                  </button>
+                )}
+              <TextField
+                className="full-text-field"
+                id="outlined-read-only-input"
+                label="Ország / régió"
+                defaultValue="Magyarország"
+                InputProps={{
+                  readOnly: true,
+                  style: {
+                    fontSize: "1.8rem",
+                    color: "var(--primary-font-color)",
+                  },
+                }}
+                InputLabelProps={{
+                  style: {
+                    fontSize: "1.8rem",
+                    color: "var(--primary-font-color)",
+                    fontWeight: "500",
+                  },
+                }}
+              />
+              <TextField
+                className="full-text-field"
+                required
+                id="outlined-required"
+                label="E-mail-cím"
+                name="email"
+                onChange={handleChange}
+                value={deliveryInfo.email}
+                error={!!errors.email}
+                helperText={errors.email}
+                InputLabelProps={{
+                  style: {
+                    fontSize: "1.8rem",
+                    color: "var(--primary-font-color)",
+                    fontWeight: "500",
+                  },
+                }}
+                InputProps={{
+                  style: {
+                    fontSize: "1.8rem",
+                    color: "var(--primary-font-color)",
+                  },
+                }}
+              />
+
+              <div className="half-fields">
+                <TextField
+                  className="half-text-field"
+                  required
+                  id="outlined-required"
+                  label="Vezetéknév"
+                  name="lastName"
+                  onChange={handleChange}
+                  value={deliveryInfo.lastName}
+                  error={!!errors.lastName}
+                  helperText={errors.lastName}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: "1.8rem",
+                      color: "var(--primary-font-color)",
+                      fontWeight: "500",
+                    },
+                  }}
+                  InputProps={{
+                    style: {
+                      fontSize: "1.8rem",
+                      color: "var(--primary-font-color)",
+                    },
+                  }}
+                />
+                <TextField
+                  className="half-text-field"
+                  required
+                  id="outlined-required"
+                  label="Keresztnév"
+                  name="firstName"
+                  onChange={handleChange}
+                  value={deliveryInfo.firstName}
+                  error={!!errors.firstName}
+                  helperText={errors.firstName}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: "1.8rem",
+                      color: "var(--primary-font-color)",
+                      fontWeight: "500",
+                    },
+                  }}
+                  InputProps={{
+                    style: {
+                      fontSize: "1.8rem",
+                      color: "var(--primary-font-color)",
+                    },
+                  }}
+                />
+              </div>
+
+              <div className="half-fields">
+                <TextField
+                  className="half-text-field"
+                  required
+                  id="outlined-required"
+                  label="Település"
+                  name="city"
+                  onChange={handleChange}
+                  value={deliveryInfo.city}
+                  error={!!errors.city}
+                  helperText={errors.city}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: "1.8rem",
+                      color: "var(--primary-font-color)",
+                      fontWeight: "500",
+                    },
+                  }}
+                  InputProps={{
+                    style: {
+                      fontSize: "1.8rem",
+                      color: "var(--primary-font-color)",
+                    },
+                  }}
+                />
+                <TextField
+                  className="half-text-field"
+                  required
+                  id="outlined-required"
+                  label="Irányítószám"
+                  type="number"
+                  name="zip"
+                  onChange={handleChange}
+                  value={deliveryInfo.zip}
+                  error={!!errors.zip}
+                  helperText={errors.zip}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: "1.8rem",
+                      color: "var(--primary-font-color)",
+                      fontWeight: "500",
+                    },
+                  }}
+                  InputProps={{
+                    style: {
+                      fontSize: "1.8rem",
+                      color: "var(--primary-font-color)",
+                    },
+                  }}
+                />
+              </div>
+
+              <TextField
+                className="full-text-field"
+                required
+                id="outlined-required"
+                label="Szállítási Cím"
+                name="shippingAddress1"
+                onChange={handleChange}
+                value={deliveryInfo.shippingAddress1}
+                error={!!errors.shippingAddress1}
+                helperText={errors.shippingAddress1}
+                InputLabelProps={{
+                  style: {
+                    fontSize: "1.8rem",
+                    color: "var(--primary-font-color)",
+                    fontWeight: "500",
+                  },
+                }}
+                InputProps={{
+                  style: {
+                    fontSize: "1.8rem",
+                    color: "var(--primary-font-color)",
+                  },
+                }}
+              />
+              <TextField
+                className="full-text-field"
+                id="outlined-phone"
+                label="Telefonszám"
+                onChange={handleChange}
+                name="phone"
+                value={deliveryInfo.phone}
+                InputLabelProps={{
+                  style: {
+                    fontSize: "1.8rem",
+                    color: "var(--primary-font-color)",
+                    fontWeight: "500",
+                  },
+                }}
+                inputProps={{
+                  maxLength: 15, // Adjust based on your needs
+                  style: {
+                    fontSize: "1.8rem",
+                    color: "var(--primary-font-color)",
+                  },
+                }}
+                helperText="Nem kötelező megadni"
+              />
+            </div>
+          )}
         </div>
 
         <div className="delivery-footer">

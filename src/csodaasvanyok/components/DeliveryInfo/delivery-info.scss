@@ -23,12 +23,37 @@
     margin-bottom: 50px;
   }
 
-  .delivery-content {
+  .delivery-middle {
     flex-grow: 1;
-    overflow-y: auto;
     margin-right: -14px;
     padding-right: 7px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-top: 10px;
+  }
+
+  .delivery-iframe {
+    position: relative;
+    top: 20px;
+    width: 100%;
+    max-width: 600px;
+    height: 900px;
+  }
+
+  .delivery-content {
     justify-content: space-between;
+
+    .foxpost-delivery-delete-button {
+      display: flex;
+      color: red;
+      font-weight: 600;
+      border-width: 1px;
+      border-radius: var(--border-radius-md);
+      padding: 6px 12px;
+      z-index: 2000;
+      margin: 0 auto 10px auto;
+    }
+
     .half-fields {
       display: flex;
       justify-content: space-between;
@@ -43,15 +68,6 @@
     .half-text-field {
       width: 48%;
       margin-bottom: 20px;
-    }
-
-    .shipping-disclaimer {
-      font-size: 1.4rem;
-      font-weight: 500;
-      .shipment-red {
-        color: red;
-        font-weight: 600;
-      }
     }
   }
 
