@@ -8,6 +8,7 @@ export default function DeliveryMethodSelector({
     <FormControl
       sx={{
         width: "100%",
+        padding: "0 15px 10px",
         "& .MuiOutlinedInput-input": {
           color: "var(--primary-font-color)",
           marginLeft: "6px",
@@ -16,8 +17,8 @@ export default function DeliveryMethodSelector({
           color: "var(--primary-font-color)",
           fontFamily: "var(--primary-font-family)",
           fontWeight: "600",
-          fontSize: "1.8rem",
-          marginLeft: "6px",
+          fontSize: "1.6rem",
+          marginLeft: "18px",
         },
         "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
           borderColor: "var(--primary-font-color) ",
@@ -46,6 +47,12 @@ export default function DeliveryMethodSelector({
           color: "var(--primary-font-color)",
           fontSize: "2.6rem",
         },
+        "@media (min-width: 600px)": {
+          padding: "0 30px",
+          "& .MuiInputLabel-root": {
+            marginLeft: "30px",
+          },
+        },
       }}
     >
       <InputLabel
@@ -63,15 +70,15 @@ export default function DeliveryMethodSelector({
         value={deliveryMethod}
         onChange={handleDeliverySelection}
         label="Rendezés"
-        sx={{ fontSize: "1.8rem" }}
+        sx={{ fontSize: "1.4rem" }}
       >
-        <MenuItem sx={{ fontSize: "1.8rem" }} value={"FoxPost Automata"}>
+        <MenuItem sx={{ fontSize: "1.5rem" }} value={"FoxPost Automata"}>
           FoxPost csomagautómata 990Ft
         </MenuItem>
-        <MenuItem sx={{ fontSize: "1.8rem" }} value={"FoxPost Házhozszállítás"}>
+        <MenuItem sx={{ fontSize: "1.5rem" }} value={"FoxPost Házhozszállítás"}>
           FoxPost házhozszállítás 1590Ft
         </MenuItem>
-        <MenuItem sx={{ fontSize: "1.8rem" }} value={"Posta Házhozszállítás"}>
+        <MenuItem sx={{ fontSize: "1.5rem" }} value={"Posta Házhozszállítás"}>
           Magyar Posta házhozszállítás 1190Ft
         </MenuItem>
       </Select>
