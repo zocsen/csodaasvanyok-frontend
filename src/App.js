@@ -3,9 +3,8 @@ import Csodaasvanyok from "./csodaasvanyok/Csodaasvanyok";
 import IsMobileContext from "./hooks/isMobileContext";
 import { CartProvider } from "./hooks/cartContext";
 import { DeliveryProvider } from "./hooks/deliveryContext";
-import { Elements } from "@stripe/react-stripe-js";
 import { DataProvider } from "./hooks/dataContext";
-import { StripeProvider, useStripeContext } from "./hooks/stripeContext";
+import { StripeProvider } from "./hooks/stripeContext";
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);

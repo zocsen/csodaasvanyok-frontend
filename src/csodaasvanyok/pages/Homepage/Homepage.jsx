@@ -4,10 +4,15 @@ import HomepageMinerals from "../../../images/homepage-minerals.webp";
 import HomepageWinter from "../../../images/homepage-winter.webp";
 import HomepageLove from "../../../images/homepage-love.webp";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function Homepage() {
   return (
     <div className="homepage">
+      <Helmet>
+        <link rel="preload" href={HomepageBracelets} as="image" />
+      </Helmet>
+
       <h1 className="homepage-main-title">
         Mi hiszünk az ásványok <br /> természetes erejében!
       </h1>
