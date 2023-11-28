@@ -1,8 +1,8 @@
 import "./homepage.scss";
-import HomepageBracelets from "../../../images/homepage-bracelets.png";
-import HomepageMinerals from "../../../images/homepage-minerals.png";
-import HomepageWinter from "../../../images/homepage-winter.png";
-import HomepageLove from "../../../images/homepage-love.png";
+import HomepageBracelets from "../../../images/homepage-bracelets.webp";
+import HomepageMinerals from "../../../images/homepage-minerals.webp";
+import HomepageWinter from "../../../images/homepage-winter.webp";
+import HomepageLove from "../../../images/homepage-love.webp";
 import { Link } from "react-router-dom";
 
 export default function Homepage() {
@@ -16,7 +16,9 @@ export default function Homepage() {
           <img
             className="collection-image"
             src={HomepageBracelets}
-            alt="Homepage Arm"
+            alt="Bracelets Showcase"
+            width={500}
+            height={500}
           />
           <h2 className="collection-name">Karkötők</h2>
         </Link>
@@ -24,7 +26,9 @@ export default function Homepage() {
           <img
             className="collection-image"
             src={HomepageMinerals}
-            alt="Homepage Arm"
+            alt="Minerals Showcase"
+            width={500}
+            height={500}
           />
           <h2 className="collection-name">Marokkövek</h2>
         </Link>
@@ -32,7 +36,9 @@ export default function Homepage() {
           <img
             className="collection-image"
             src={HomepageWinter}
-            alt="Homepage Arm"
+            alt="Winter Bracelets Showcase"
+            width={500}
+            height={500}
           />
           <h2 className="collection-name">Téli varázs</h2>
         </Link>
@@ -43,7 +49,9 @@ export default function Homepage() {
           <img
             className="collection-image"
             src={HomepageLove}
-            alt="Homepage Arm"
+            alt="Love Showcase"
+            width={500}
+            height={500}
           />
           <h2 className="collection-name">Szerelem</h2>
         </Link>
