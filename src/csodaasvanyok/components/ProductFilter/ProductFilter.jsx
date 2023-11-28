@@ -43,12 +43,7 @@ export default function ProductFilter({
         {isMobile && productSorter && (
           <div className="mobile-product-sorter">{productSorter}</div>
         )}
-        {!isMobile && (
-          <button className="desktop-filter-reset" onClick={resetFilters}>
-            Szűrők törlése{" "}
-            <DeleteIcon className="red-svg" width={24} height={24} />
-          </button>
-        )}
+
         <PriceFilter
           onValueChange={(value) => onFilterChange("price", value)}
           priceRange={priceRange}
@@ -66,6 +61,12 @@ export default function ProductFilter({
         <BenefitFilter
           onValueChange={(value) => onFilterChange("benefit", value)}
         />
+        {!isMobile && (
+          <button className="desktop-filter-reset" onClick={resetFilters}>
+            Szűrők törlése{" "}
+            <DeleteIcon className="red-svg" width={24} height={24} />
+          </button>
+        )}
       </div>
       {isMobile && (
         <div className="filter-footer">
