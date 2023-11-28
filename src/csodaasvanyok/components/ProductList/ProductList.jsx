@@ -45,9 +45,9 @@ export default function ProductList({ products }) {
             <div className="grid-item" key={product.id}>
               <Link to={`/termek/${productSlug}/${product.id}`}>
                 <LazyImage src={product.image} alt="Termék" />
+                <h1 className="product-name">{product.name}</h1>
+                <p className="product-price">{formatPrice(product.price)}</p>
               </Link>
-              <h1 className="product-name">{product.name}</h1>
-              <p className="product-price">{formatPrice(product.price)}</p>
             </div>
           );
         })}

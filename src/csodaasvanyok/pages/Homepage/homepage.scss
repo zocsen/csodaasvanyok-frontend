@@ -13,12 +13,13 @@
       align-items: center;
       text-align: center;
       .collection-image {
+        background-color: var(--secondary-background-color);
         width: 100%;
         max-width: 500px;
         max-height: 500px;
         height: auto;
         justify-content: center;
-        border-radius: var(--border-radius-md);
+        border-radius: var(--border-radius-bg);
       }
       .collection-name {
         position: absolute;
