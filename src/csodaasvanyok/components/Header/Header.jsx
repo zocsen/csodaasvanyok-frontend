@@ -22,7 +22,7 @@ function Header() {
           {isMobile ? <MobileAccordion /> : <DesktopAccordion />}
         </div>
         <Link to="/" className="logo">
-          <img src={Logo} height={100} alt="Company Logo" />
+          <img src={Logo} width={120} height={100} alt="Company Logo" />
         </Link>
         <button className="cart-icon" onClick={openCart}>
           <ShoppingBagIcon
