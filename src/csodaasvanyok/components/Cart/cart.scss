@@ -18,6 +18,15 @@
     right: 0;
   }
 
+  .cart-empty-disclaimer {
+    text-align: center;
+
+    h2 {
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+  }
+
   .cart-header {
     display: flex;
     justify-content: space-between;
