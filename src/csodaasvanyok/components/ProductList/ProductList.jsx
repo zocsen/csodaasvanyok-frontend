@@ -1,4 +1,5 @@
 import formatPrice from "../../../hooks/formatPrice";
+import LazyImage from "../LazyImage/LazyImage";
 import "./product-list.scss";
 import { Link } from "react-router-dom";
 
@@ -43,11 +44,7 @@ export default function ProductList({ products }) {
           return (
             <div className="grid-item" key={product.id}>
               <Link to={`/termek/${productSlug}/${product.id}`}>
-                <img
-                  className="product-image"
-                  src={product.image}
-                  alt="Termék"
-                />
+                <LazyImage src={product.image} alt="Termék" />
               </Link>
               <h1 className="product-name">{product.name}</h1>
               <p className="product-price">{formatPrice(product.price)}</p>
