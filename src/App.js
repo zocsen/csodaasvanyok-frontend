@@ -31,11 +31,9 @@ function App() {
         <CartProvider>
           <DeliveryProvider>
             <StripeProvider>
-              <StripeElementsWrapper>
-                <div className="App">
-                  <Csodaasvanyok></Csodaasvanyok>
-                </div>
-              </StripeElementsWrapper>
+              <div className="App">
+                <Csodaasvanyok></Csodaasvanyok>
+              </div>
             </StripeProvider>
           </DeliveryProvider>
         </CartProvider>
@@ -43,11 +41,5 @@ function App() {
     </IsMobileContext.Provider>
   );
 }
-
-const StripeElementsWrapper = ({ children }) => {
-  const { stripe } = useStripeContext();
-
-  return <Elements stripe={stripe}>{children}</Elements>;
-};
 
 export default App;

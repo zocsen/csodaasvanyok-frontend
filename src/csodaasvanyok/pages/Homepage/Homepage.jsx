@@ -14,6 +14,7 @@ export default function Homepage() {
       <div className="homepage-image-links">
         <Link className="image-container" to="/termekek/osszes-karkoto">
           <img
+            fetchpriority="high"
             className="collection-image"
             src={HomepageBracelets}
             alt="Bracelets Showcase"
@@ -24,6 +25,7 @@ export default function Homepage() {
         </Link>
         <Link className="image-container" to="/termekek/marokkovek">
           <img
+            fetchpriority="high"
             className="collection-image"
             src={HomepageMinerals}
             alt="Minerals Showcase"
@@ -34,6 +36,7 @@ export default function Homepage() {
         </Link>
         <Link className="image-container" to="/termekek/teli-termekek">
           <img
+            fetchpriority="high"
             className="collection-image"
             src={HomepageWinter}
             alt="Winter Bracelets Showcase"
@@ -47,6 +50,7 @@ export default function Homepage() {
           to="/termekek/termekek-szerelmeseknek"
         >
           <img
+            fetchpriority="high"
             className="collection-image"
             src={HomepageLove}
             alt="Love Showcase"
