@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { useStripeContext } from "./stripeContext";
 
 const CartContext = createContext();
 

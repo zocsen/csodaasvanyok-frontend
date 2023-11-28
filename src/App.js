@@ -3,13 +3,13 @@ import Csodaasvanyok from "./csodaasvanyok/Csodaasvanyok";
 import IsMobileContext from "./hooks/isMobileContext";
 import { CartProvider } from "./hooks/cartContext";
 import { DeliveryProvider } from "./hooks/deliveryContext";
-import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { DataProvider } from "./hooks/dataContext";
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
+import { StripeProvider, useStripeContext } from "./hooks/stripeContext";
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+
   useEffect(() => {
     const handleResize = () => {
       const currentIsMobile = window.innerWidth < 1024;
@@ -30,16 +30,24 @@ function App() {
       <DataProvider>
         <CartProvider>
           <DeliveryProvider>
-            <Elements stripe={stripePromise}>
-              <div className="App">
-                <Csodaasvanyok></Csodaasvanyok>
-              </div>
-            </Elements>
+            <StripeProvider>
+              <StripeElementsWrapper>
+                <div className="App">
+                  <Csodaasvanyok></Csodaasvanyok>
+                </div>
+              </StripeElementsWrapper>
+            </StripeProvider>
           </DeliveryProvider>
         </CartProvider>
       </DataProvider>
     </IsMobileContext.Provider>
   );
 }
+
+const StripeElementsWrapper = ({ children }) => {
+  const { stripe } = useStripeContext();
+
+  return <Elements stripe={stripe}>{children}</Elements>;
+};
 
 export default App;

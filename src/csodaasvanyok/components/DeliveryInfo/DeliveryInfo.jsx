@@ -4,8 +4,8 @@ import { useDelivery } from "../../../hooks/deliveryContext";
 import { ReactComponent as CloseIcon } from "../../../images/icons/close.svg";
 import { TextField } from "@material-ui/core";
 import { useCart } from "../../../hooks/cartContext";
-import { useStripe } from "@stripe/react-stripe-js";
 import DeliveryMethodSelector from "./DeliveryMethodSelector";
+import { useStripeContext } from "../../../hooks/stripeContext";
 
 const validateEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -13,7 +13,7 @@ const validateEmail = (email) => {
 };
 
 export default function DeliveryInfo() {
-  const stripe = useStripe();
+  const { stripe, initializeStripe } = useStripeContext();
   const {
     cartItems,
     totalPriceWithDeliveryFee,
@@ -113,13 +113,18 @@ export default function DeliveryInfo() {
           }
         );
         const session = await response.json();
+
         // Redirect to Stripe Checkout
-        const result = await stripe.redirectToCheckout({
-          sessionId: session.id,
-        });
-        if (result.error) {
-          // Handle error here
-          console.error(result.error.message);
+        if (stripe) {
+          const result = await stripe.redirectToCheckout({
+            sessionId: session.id,
+          });
+          if (result.error) {
+            // Handle error here
+            console.error(result.error.message);
+          }
+        } else {
+          console.error("Stripe has not been initialized yet.");
         }
       } catch (error) {
         console.error(error);
@@ -170,6 +175,10 @@ export default function DeliveryInfo() {
     } catch (error) {
       console.error("Error parsing JSON:", error);
     }
+  }
+
+  if (isDeliveryPanelOpen) {
+    initializeStripe();
   }
 
   return (
