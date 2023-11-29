@@ -34,7 +34,10 @@ const ProductPage = () => {
       <div className="product-details">
         <h1 className="product-name">{product?.name}</h1>
         <p className="product-price">{formatPrice(product.price)}</p>
-        <p className="product-description">{product?.description}</p>
+        <p className="product-description">
+          <span className="description-header">TERMÉK LEÍRÁSA</span> <br />
+          {product?.description}
+        </p>
         {product.category.name === "Karkötő" && (
           <div className="product-size-wrapper">
             <h3 className="size-title">Méret</h3>
