@@ -221,7 +221,7 @@ export default function DeliveryInfo() {
                     onClick={() => setIsFoxPostLocationSelected(false)}
                     className="foxpost-delivery-delete-button"
                   >
-                    Kiválasztott autómata törlése
+                    Kiválasztott automata törlése
                   </button>
                 )}
               <TextField

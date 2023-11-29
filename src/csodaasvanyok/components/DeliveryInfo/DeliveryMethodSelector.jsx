@@ -74,7 +74,7 @@ export default function DeliveryMethodSelector({
         sx={{ fontSize: "1.4rem" }}
       >
         <MenuItem sx={{ fontSize: "1.5rem" }} value={"FoxPost Automata"}>
-          FoxPost csomagautómata 990Ft
+          FoxPost csomagautomata 990Ft
         </MenuItem>
         <MenuItem sx={{ fontSize: "1.5rem" }} value={"FoxPost Házhozszállítás"}>
           FoxPost házhozszállítás 1590Ft
