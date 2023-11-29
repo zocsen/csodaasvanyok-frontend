@@ -17,6 +17,7 @@
 
   // Border Radius
   --border-radius-round: 50%;
+  --border-radius-button: 20px;
   --border-radius-bg: 20px;
   --border-radius-md: 10px;
   --border-radius-sm: 5px;
@@ -143,8 +144,8 @@ li {
   clip: rect(1px, 1px, 1px, 1px);
   padding: 0;
   border: 0;
-  height: 1px;
-  width: 1px;
+  height: 0px;
+  width: 0px;
   overflow: hidden;
 }
 
