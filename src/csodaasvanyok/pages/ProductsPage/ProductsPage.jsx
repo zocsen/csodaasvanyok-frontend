@@ -11,12 +11,18 @@ function filterProductsByType(product, type) {
   switch (type) {
     case "Női":
     case "Férfi":
+      return product.subcategory.some(
+        (subcategory) =>
+          subcategory.name === type || subcategory.name === "Páros"
+      );
     case "Páros":
     case "Tél":
     case "Szerelem":
     case "Horoszkóp":
     case "Akció":
-      return product.subcategory[0].name === type;
+      return product.subcategory.some(
+        (subcategory) => subcategory.name === type
+      );
     case "Karkötő":
     case "Ásványok":
       return product.category.name === type;
@@ -49,30 +55,7 @@ export default function ProductsPage({ header, type }) {
     let maxPriceValue = 0;
     let minPriceValue = Infinity;
     allProducts.forEach((product) => {
-      let matchesType = false;
-
-      switch (type) {
-        case "Női":
-        case "Férfi":
-        case "Páros":
-        case "Tél":
-        case "Szerelem":
-        case "Horoszkóp":
-        case "Akció":
-          if (product.subcategory[0].name === type) {
-            matchesType = true;
-          }
-          break;
-        case "Karkötő":
-        case "Ásványok": //marokkövek
-          if (product.category.name === type) {
-            matchesType = true;
-          }
-          break;
-        default:
-          break;
-      }
-      if (matchesType) {
+      if (filterProductsByType(product, type)) {
         maxPriceValue = Math.max(maxPriceValue, product.price);
         minPriceValue = Math.min(minPriceValue, product.price);
       }
