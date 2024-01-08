@@ -6,6 +6,7 @@ import IsMobileContext from "../../../hooks/isMobileContext";
 import { ReactComponent as FilterIcon } from "../../../images/icons/filter.svg";
 import ProductSorter from "../../components/ProductSorter/ProductSorter";
 import { useData } from "../../../hooks/dataContext";
+import { forceCheck } from "react-lazyload";
 
 function filterProductsByType(product, type) {
   switch (type) {
@@ -116,6 +117,7 @@ export default function ProductsPage({ header, type }) {
       default:
         break;
     }
+
     return sortedProducts;
   }
 
@@ -134,6 +136,10 @@ export default function ProductsPage({ header, type }) {
     benefitFilter,
     sortTitle,
   ]);
+
+  useEffect(() => {
+    forceCheck();
+  }, [filteredProducts]);
 
   const handleFilterChange = (filterType, value) => {
     const filterSetters = {
