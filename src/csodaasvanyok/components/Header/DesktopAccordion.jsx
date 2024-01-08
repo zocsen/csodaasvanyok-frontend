@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "./desktop-accordion.scss";
 import { Link } from "react-router-dom";
 
-import { ReactComponent as ExpandMoreIcon } from "../../../images/icons/expand-more.svg";
+import ExpandMoreIcon from "../../../images/icons/expand-more.svg";
 
 export default function DesktopAccordion() {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,8 +45,10 @@ export default function DesktopAccordion() {
       >
         <p className="desktop-header-menu-title">
           Termékek{" "}
-          <ExpandMoreIcon
-            className="arrow-img base-svg"
+          <img
+            src={ExpandMoreIcon}
+            alt="Expand"
+            className={`arrow-img base-svg ${isOpen ? "rotate-180" : ""}`}
             width={34}
             height={34}
           />

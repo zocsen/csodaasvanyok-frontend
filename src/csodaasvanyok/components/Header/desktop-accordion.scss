@@ -8,15 +8,13 @@
       font-weight: 600;
       vertical-align: middle;
 
-      .title-arrow {
-        transition: transform 0.7s;
+      .arrow-img {
+        transition: transform 0.3s ease-in-out;
       }
-    }
 
-    //TODO - use active state instead of focus
-    &:focus .title-arrow {
-      transform: rotateZ(180deg);
-      transition: transform 0.7s;
+      .rotate-180 {
+        transform: rotate(180deg);
+      }
     }
   }
   .desktop-accordion {

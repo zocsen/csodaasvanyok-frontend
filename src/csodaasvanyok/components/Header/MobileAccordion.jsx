@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import "./mobile-accordion.scss";
 import { Link } from "react-router-dom";
 
-import { ReactComponent as MenuIcon } from "../../../images/icons/menu.svg";
-import { ReactComponent as CloseIcon } from "../../../images/icons/close.svg";
-import { ReactComponent as RemoveIcon } from "../../../images/icons/remove.svg";
-import { ReactComponent as AddIcon } from "../../../images/icons/add.svg";
+import MenuIcon from "../../../images/icons/menu.svg";
+import CloseIcon from "../../../images/icons/close.svg";
+import RemoveIcon from "../../../images/icons/remove.svg";
+import AddIcon from "../../../images/icons/add.svg";
 
 export default function MobileAccordion() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,12 +19,14 @@ export default function MobileAccordion() {
         <div className="accordion-style" onClick={() => setIsOpen(!isOpen)}>
           <div>{title}</div>{" "}
           {isOpen ? (
-            <RemoveIcon
+            <img
+              src={RemoveIcon}
               className={`rotate-icon ${isOpen ? "open" : ""} base-svg`}
               aria-label="-"
             />
           ) : (
-            <AddIcon
+            <img
+              src={AddIcon}
               className={`rotate-icon ${isOpen ? "open" : ""} base-svg`}
               aria-label="+"
             />
@@ -60,15 +62,16 @@ export default function MobileAccordion() {
         className="mobile-header-menu-btn"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <MenuIcon className="menu-icon" aria-label="Menu icon" />
+        <img src={MenuIcon} className="menu-icon" aria-label="Menu icon" />
       </button>
       <div className={`mobile-accordion-container ${isOpen ? "open" : ""}`}>
         <div className="mobile-accordion-header">
           <h2>Termékek</h2>
           <button className="close-button" onClick={() => setIsOpen(!isOpen)}>
-            <CloseIcon
+            <img
+              src={CloseIcon}
               className="base-svg"
-              alt="Close icon"
+              alt="Close"
               width={34}
               height={34}
             />

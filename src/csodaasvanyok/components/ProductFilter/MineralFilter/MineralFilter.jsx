@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./mineral-filter.scss";
-import { ReactComponent as ExpandMoreIcon } from "../../../../images/icons/expand-more.svg";
+import ExpandMoreIcon from "../../../../images/icons/expand-more.svg";
 import { useData } from "../../../../hooks/dataContext";
 import { Skeleton } from "@mui/material";
 export default function MineralFilter({ onValueChange }) {
@@ -32,7 +32,11 @@ export default function MineralFilter({ onValueChange }) {
         }}
       >
         <span>Ásvány</span>
-        <ExpandMoreIcon className="arrow-img base-svg" />
+        <img
+          src={ExpandMoreIcon}
+          className={`arrow-img base-svg ${isPanelVisible ? "rotate-180" : ""}`}
+          alt="expand"
+        />
       </button>
       <div className={`panel ${isPanelVisible ? "open" : ""}`}>
         <div className="box-wrapper">

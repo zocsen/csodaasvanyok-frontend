@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./color-filter.scss";
-import { ReactComponent as ExpandMoreIcon } from "../../../../images/icons/expand-more.svg";
+import ExpandMoreIcon from "../../../../images/icons/expand-more.svg";
 function ColorFilter({ onValueChange }) {
   const [selectedColors, setSelectedColors] = useState([]);
   const [isPanelVisible, setIsPanelVisible] = useState(true);
@@ -57,7 +57,11 @@ function ColorFilter({ onValueChange }) {
         onClick={() => setIsPanelVisible(!isPanelVisible)}
       >
         <span>Szín</span>
-        <ExpandMoreIcon className="arrow-img base-svg" />
+        <img
+          src={ExpandMoreIcon}
+          className={`arrow-img base-svg ${isPanelVisible ? "rotate-180" : ""}`}
+          alt="expand"
+        />
       </button>
       <div className={`${isPanelVisible ? "open" : ""} panel`}>
         <div className="color-palette">

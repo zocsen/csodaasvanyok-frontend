@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./price-filter.scss";
 import { Slider } from "@mui/material";
 
-import { ReactComponent as ExpandMoreIcon } from "../../../../images/icons/expand-more.svg";
+import ExpandMoreIcon from "../../../../images/icons/expand-more.svg";
 
 function PriceFilter({ onValueChange, priceRange, minMaxValues }) {
   const [rangeValues, setRangeValues] = useState(priceRange);
@@ -28,7 +28,11 @@ function PriceFilter({ onValueChange, priceRange, minMaxValues }) {
     <div className="filter-block">
       <button className="filter-accordion" onClick={togglePanelVisibility}>
         <span>Ár</span>
-        <ExpandMoreIcon className="arrow-img base-svg" />
+        <img
+          src={ExpandMoreIcon}
+          className={`arrow-img base-svg ${isPanelVisible ? "rotate-180" : ""}`}
+          alt="expand"
+        />
       </button>
       <div className={`faster-panel ${isPanelVisible ? "open" : ""} panel`}>
         <div className="min-max">
