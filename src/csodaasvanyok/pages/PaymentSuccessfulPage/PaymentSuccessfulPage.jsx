@@ -34,7 +34,7 @@ const PaymentSuccessfulPage = () => {
   return (
     <div style={{ display: "block", textAlign: "center", paddingTop: "100px" }}>
       <h1>Köszönjük a vásárlást!</h1>
-      <h2>A szállítás részleteiről hamarosan küldünk egy e-mailt!</h2>
+      <h2>A szállítás részleteiről hamarosan e-mailben értesítjük!</h2>
     </div>
   );
 };

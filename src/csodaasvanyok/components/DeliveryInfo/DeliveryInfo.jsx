@@ -331,6 +331,10 @@ export default function DeliveryInfo() {
                   value={deliveryInfo.city}
                   error={!!errors.city}
                   helperText={errors.city}
+                  disabled={
+                    isFoxPostLocationSelected &&
+                    deliveryMethod === "FoxPost Automata"
+                  }
                   InputLabelProps={{
                     style: {
                       fontSize: "1.8rem",
@@ -356,6 +360,10 @@ export default function DeliveryInfo() {
                   value={deliveryInfo.zip}
                   error={!!errors.zip}
                   helperText={errors.zip}
+                  disabled={
+                    isFoxPostLocationSelected &&
+                    deliveryMethod === "FoxPost Automata"
+                  }
                   InputLabelProps={{
                     style: {
                       fontSize: "1.8rem",
@@ -382,6 +390,10 @@ export default function DeliveryInfo() {
                 value={deliveryInfo.shippingAddress1}
                 error={!!errors.shippingAddress1}
                 helperText={errors.shippingAddress1}
+                disabled={
+                  isFoxPostLocationSelected &&
+                  deliveryMethod === "FoxPost Automata"
+                }
                 InputLabelProps={{
                   style: {
                     fontSize: "1.8rem",

@@ -1,0 +1,22 @@
+.delivery-method-selector {
+  padding: 0 15px 10px;
+}
+
+.delivery-selector {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: var(--border-radius-sm);
+  border-color: var(--primary-font-color);
+  border-width: 2px;
+  font-size: 1.6rem;
+}
+
+@media (min-width: 600px) {
+  .delivery-method-selector {
+    padding: 0 30px 10px;
+  }
+
+  .delivery-selector {
+    padding: 15px 20px;
+  }
+}
