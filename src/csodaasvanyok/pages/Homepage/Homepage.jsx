@@ -4,22 +4,16 @@ import HomepageMinerals from "../../../images/homepage-minerals.webp";
 import HomepageWinter from "../../../images/homepage-winter.webp";
 import HomepageLove from "../../../images/homepage-love.webp";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 
 export default function Homepage() {
   return (
     <div className="homepage">
-      <Helmet>
-        <link rel="preload" href={HomepageBracelets} as="image" />
-      </Helmet>
-
       <h1 className="homepage-main-title">
         Mi hiszünk az ásványok <br /> természetes erejében!
       </h1>
       <div className="homepage-image-links">
         <Link className="image-container" to="/termekek/osszes-karkoto">
           <img
-            fetchpriority="high"
             className="collection-image"
             src={HomepageBracelets}
             alt="Bracelets Showcase"
@@ -30,7 +24,6 @@ export default function Homepage() {
         </Link>
         <Link className="image-container" to="/termekek/marokkovek">
           <img
-            fetchpriority="high"
             className="collection-image"
             src={HomepageMinerals}
             alt="Minerals Showcase"
@@ -41,7 +34,6 @@ export default function Homepage() {
         </Link>
         <Link className="image-container" to="/termekek/teli-termekek">
           <img
-            fetchpriority="high"
             className="collection-image"
             src={HomepageWinter}
             alt="Winter Bracelets Showcase"
@@ -55,7 +47,6 @@ export default function Homepage() {
           to="/termekek/termekek-szerelmeseknek"
         >
           <img
-            fetchpriority="high"
             className="collection-image"
             src={HomepageLove}
             alt="Love Showcase"
