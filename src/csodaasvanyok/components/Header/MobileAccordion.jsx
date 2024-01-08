@@ -79,7 +79,7 @@ export default function MobileAccordion() {
         </div>
 
         <hr />
-        <AccordionItem title="Népszerűek">
+        <AccordionItem title="Népszerűek 🔥">
           <li>
             <Link onClick={handleLinkClick} to="/termekek/teli-termekek">
               Téli varázs ❄️

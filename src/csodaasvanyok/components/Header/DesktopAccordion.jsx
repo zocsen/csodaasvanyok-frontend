@@ -58,7 +58,7 @@ export default function DesktopAccordion() {
         <div className="desktop-accordion-container">
           <nav className="desktop-menu-navigation">
             <ul className="desktop-menu-items">
-              <h2>Népszerűek</h2>
+              <h2>Népszerűek 🔥</h2>
               <li>
                 <Link onClick={handleLinkClick} to="/termekek/teli-termekek">
                   Téli varázs ❄️
