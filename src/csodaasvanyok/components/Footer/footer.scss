@@ -1,19 +1,70 @@
 .footer {
-  margin-top: 80px;
+  margin-top: 160px;
   .footer-container {
     display: flex;
     flex-direction: column;
-    text-align: center;
 
-    .contact-icons {
+    .upper-footer {
+      display: grid;
+      font-size: 1.6rem;
+
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      h3 {
+        margin-bottom: 10px;
+      }
+
+      .footer-link {
+        margin-bottom: 6px;
+      }
+
+      .footer-menu {
+        display: flex;
+        flex-direction: column;
+        min-width: 200px;
+        padding-bottom: 30px;
+      }
+      .footer-help {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 30px;
+      }
+
+      .footer-contact {
+        padding-bottom: 30px;
+
+        min-width: 200px;
+        .contact-icons {
+          display: flex;
+          gap: 10px;
+          margin: 10px 0;
+        }
+      }
+    }
+    .lower-footer {
+      margin-top: 30px;
+      margin-bottom: 20px;
       display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin: 10px 0;
+      flex-direction: column;
+      justify-content: space-between;
+      .law-info {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+      }
+      .payment-options {
+        display: flex;
+        gap: 8px;
+      }
     }
-    .law-info {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
-    }
+  }
+}
+
+@media (min-width: 768px) {
+  .footer .footer-container .upper-footer {
+    display: flex;
+    justify-content: space-around;
+  }
+  .footer .footer-container .lower-footer {
+    flex-direction: row;
   }
 }

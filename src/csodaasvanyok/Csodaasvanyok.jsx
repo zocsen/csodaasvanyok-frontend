@@ -11,6 +11,7 @@ import PaymentFailedPage from "./pages/PaymentFailedPage/PaymentFailedPage";
 import ProductBuilderPage from "./pages/ProductBuilderPage/ProductBuilderPage";
 import Footer from "./components/Footer/Footer";
 import ASZFPage from "./pages/ASZFPage/ASZFPage";
+import AboutUs from "./pages/AboutUsPage/AboutUs";
 
 export default function Csodaasvanyok() {
   return (
@@ -71,6 +72,7 @@ export default function Csodaasvanyok() {
             <Route path="success" element={<PaymentSuccessfulPage />} />
             <Route path="cancel" element={<PaymentFailedPage />} />
             <Route path="aszf" element={<ASZFPage />} />
+            <Route path="rolunk" element={<AboutUs />} />
 
             <Route path="/" element={<Homepage />} />
             <Route path="*" element={<Homepage />} />
