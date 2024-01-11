@@ -64,6 +64,7 @@ export default function ProductsPage({ header, type }) {
   if (allProducts && initialRender && !productsFetching) {
     setInitialRender(false);
     resetFilters();
+    setFilteredProductsByType([]);
     let maxPriceValue = 0;
     let minPriceValue = Infinity;
     let tempProducts = new Set();
@@ -176,7 +177,7 @@ export default function ProductsPage({ header, type }) {
   }
 
   useEffect(() => {
-    if (filteredProductsByType && filteredProductsByType.length > 0) {
+    if (filteredProductsByType) {
       let filtered = applyFilters(filteredProductsByType);
       let sortedFiltered = applySorting(filtered);
       setFilteredProducts(sortedFiltered);
