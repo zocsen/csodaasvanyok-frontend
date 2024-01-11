@@ -64,7 +64,6 @@ export default function ProductsPage({ header, type }) {
   if (allProducts && initialRender && !productsFetching) {
     setInitialRender(false);
     resetFilters();
-    setFilteredProductsByType([]);
     let maxPriceValue = 0;
     let minPriceValue = Infinity;
     let tempProducts = new Set();
