@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import "./mineral-filter.scss";
 import ExpandMoreIcon from "../../../../images/icons/expand-more.svg";
-import { useData } from "../../../../hooks/dataContext";
-import { Skeleton } from "@mui/material";
-export default function MineralFilter({ onValueChange }) {
+
+export default function MineralFilter({ onValueChange, mineralsAvailable }) {
   const [isPanelVisible, setIsPanelVisible] = useState(true);
   const [selectedMinerals, setSelectedMinerals] = useState([]);
-
-  const { allMinerals, mineralsFetching } = useData();
 
   const handleChange = (mineral, checked) => {
     if (checked) {
@@ -40,17 +37,8 @@ export default function MineralFilter({ onValueChange }) {
       </button>
       <div className={`panel ${isPanelVisible ? "open" : ""}`}>
         <div className="box-wrapper">
-          {mineralsFetching && (
-            <>
-              <Skeleton animation="wave" />
-              <Skeleton animation="wave" />
-              <Skeleton animation="wave" />
-              <Skeleton animation="wave" />
-            </>
-          )}
-          {allMinerals &&
-            !mineralsFetching &&
-            allMinerals.map((mineral, i) => (
+          {mineralsAvailable &&
+            mineralsAvailable.map((mineral, i) => (
               <div key={mineral.id} className="item">
                 <input
                   id={`mineral${i + 1}`}

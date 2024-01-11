@@ -46,11 +46,11 @@ export default function DeliveryInfo() {
   };
 
   if (deliveryMethod === "FoxPost Automata") {
-    setBaseDeliveryFee(990);
-  } else if (deliveryMethod === "FoxPost Házhozszállítás") {
-    setBaseDeliveryFee(1590);
+    setBaseDeliveryFee(1100);
+  } else if (deliveryMethod === "GLS Házhozszállítás") {
+    setBaseDeliveryFee(1900);
   } else if (deliveryMethod === "Posta Házhozszállítás") {
-    setBaseDeliveryFee(1690);
+    setBaseDeliveryFee(1350);
   }
 
   const handleSubmit = async () => {

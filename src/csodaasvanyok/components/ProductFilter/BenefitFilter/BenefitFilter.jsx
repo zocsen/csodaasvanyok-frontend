@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
 import "./benefit-filter.scss";
 import ExpandMoreIcon from "../../../../images/icons/expand-more.svg";
-import { useData } from "../../../../hooks/dataContext";
-import { Skeleton } from "@mui/material";
 
-export default function BenefitFilter({ onValueChange }) {
+export default function BenefitFilter({ onValueChange, benefitsAvailable }) {
   const [isPanelVisible, setIsPanelVisible] = useState(true);
   const [selectedMinerals, setSelectedMinerals] = useState([]);
-
-  const { allBenefits, benefitsFetching, benefitsError } = useData();
 
   const handleChange = (mineral, checked) => {
     if (checked) {
@@ -40,24 +36,15 @@ export default function BenefitFilter({ onValueChange }) {
 
       <div className={`panel ${isPanelVisible ? "open" : ""}`}>
         <div className="box-wrapper">
-          {benefitsFetching && (
-            <>
-              <Skeleton animation="wave" />
-              <Skeleton animation="wave" />
-              <Skeleton animation="wave" />
-              <Skeleton animation="wave" />
-            </>
-          )}
-          {allBenefits &&
-            !benefitsFetching &&
-            allBenefits.map((benefit, i) => (
+          {benefitsAvailable &&
+            benefitsAvailable.map((benefit, i) => (
               <div key={benefit.id} className="item">
                 <input
                   id={`benefit${i + 1}`}
                   className="css-checkbox"
                   type="checkbox"
                   value={benefit.name}
-                  onChange={(e) => handleChange(benefit.id, e.target.checked)}
+                  onChange={(e) => handleChange(benefit._id, e.target.checked)}
                 />
                 <label htmlFor={`benefit${i + 1}`}>{benefit.name}</label>
               </div>

@@ -44,34 +44,94 @@ export default function ProductsPage({ header, type }) {
   const isMobile = useContext(IsMobileContext);
   const [showFilter, setShowFilter] = useState(false);
   const [filterKey, setFilterKey] = useState(0);
+  const [mineralsAvailable, setMineralsAvailable] = useState([]);
+  const [benefitsAvailable, setBenefitsAvailable] = useState([]);
 
   const { allProducts, productsFetching, productsError } = useData();
+
+  const [filteredProductsByType, setFilteredProductsByType] = useState();
 
   useEffect(() => {
     setInitialRender(true);
   }, [type]);
 
+  const resetFilters = () => {
+    setSortTitle("");
+
+    setFilterKey((prevKey) => prevKey + 1);
+  };
+
   if (allProducts && initialRender && !productsFetching) {
     setInitialRender(false);
+    resetFilters();
     let maxPriceValue = 0;
     let minPriceValue = Infinity;
+    let tempProducts = new Set();
+
     allProducts.forEach((product) => {
       if (filterProductsByType(product, type)) {
         maxPriceValue = Math.max(maxPriceValue, product.price);
         minPriceValue = Math.min(minPriceValue, product.price);
+        tempProducts.add(product);
       }
     });
 
     if (minPriceValue === Infinity) {
       minPriceValue = 0;
     }
+
+    const convertedTempProducts = Array.from(tempProducts.values());
+
     setInitialPriceRange([minPriceValue, maxPriceValue]);
     setPriceRange([minPriceValue, maxPriceValue]);
+    determineMinerals(convertedTempProducts);
+    setFilteredProductsByType(convertedTempProducts);
+  }
+
+  useEffect(() => {
+    if (mineralsAvailable) {
+      determineBenefits(mineralsAvailable);
+    }
+  }, [mineralsAvailable]);
+
+  function determineMinerals(products) {
+    const uniqueMinerals = new Map();
+
+    products.forEach((product) => {
+      if (product.mineral && Array.isArray(product.mineral)) {
+        product.mineral.forEach((mineral) => {
+          if (mineral._id && !uniqueMinerals.has(mineral._id)) {
+            uniqueMinerals.set(mineral._id, mineral);
+          }
+        });
+      }
+    });
+
+    const uniqueMineralObjects = Array.from(uniqueMinerals.values());
+
+    setMineralsAvailable(uniqueMineralObjects);
+  }
+
+  function determineBenefits(minerals) {
+    const uniqueBenefits = new Map();
+
+    minerals.forEach((mineral) => {
+      if (mineral.benefit && Array.isArray(mineral.benefit)) {
+        mineral.benefit.forEach((benefit) => {
+          if (benefit._id && !uniqueBenefits.has(benefit._id)) {
+            uniqueBenefits.set(benefit._id, benefit);
+          }
+        });
+      }
+    });
+
+    const uniqueBenefitObjects = Array.from(uniqueBenefits.values());
+
+    setBenefitsAvailable(uniqueBenefitObjects);
   }
 
   function applyFilters(products) {
     return products.filter((product) => {
-      const matchesCategory = filterProductsByType(product, type);
       const matchesPrice =
         product.price >= priceRange[0] && product.price <= priceRange[1];
       const matchesColor =
@@ -86,17 +146,11 @@ export default function ProductsPage({ header, type }) {
         benefitFilter.length === 0 ||
         product.mineral.some((mineralItem) =>
           mineralItem.benefit.some((pBenefit) =>
-            benefitFilter.includes(pBenefit)
+            benefitFilter.includes(pBenefit.id)
           )
         );
 
-      return (
-        matchesCategory &&
-        matchesPrice &&
-        matchesColor &&
-        matchesMineral &&
-        matchesBenefit
-      );
+      return matchesPrice && matchesColor && matchesMineral && matchesBenefit;
     });
   }
 
@@ -122,13 +176,13 @@ export default function ProductsPage({ header, type }) {
   }
 
   useEffect(() => {
-    if (allProducts) {
-      let filtered = applyFilters(allProducts);
+    if (filteredProductsByType && filteredProductsByType.length > 0) {
+      let filtered = applyFilters(filteredProductsByType);
       let sortedFiltered = applySorting(filtered);
       setFilteredProducts(sortedFiltered);
     }
   }, [
-    allProducts,
+    filteredProductsByType,
     type,
     priceRange,
     colorFilter,
@@ -164,12 +218,6 @@ export default function ProductsPage({ header, type }) {
     }
   };
 
-  const resetFilters = () => {
-    setSortTitle("");
-
-    setFilterKey((prevKey) => prevKey + 1);
-  };
-
   return (
     <div className="products-page">
       {showFilter && isMobile && (
@@ -193,6 +241,8 @@ export default function ProductsPage({ header, type }) {
             toggleFilterVisibility={toggleFilterVisibility}
             resetFilters={resetFilters}
             showFilter={showFilter}
+            mineralsAvailable={mineralsAvailable}
+            benefitsAvailable={benefitsAvailable}
             productSorter={
               <ProductSorter
                 sortTitle={sortTitle}

@@ -17,6 +17,8 @@ export default function ProductFilter({
   productSorter,
   resetFilters,
   showFilter,
+  mineralsAvailable,
+  benefitsAvailable,
 }) {
   const isMobile = useContext(IsMobileContext);
 
@@ -56,10 +58,12 @@ export default function ProductFilter({
         <hr />
         <MineralFilter
           onValueChange={(value) => onFilterChange("mineral", value)}
+          mineralsAvailable={mineralsAvailable}
         />
         <hr />
         <BenefitFilter
           onValueChange={(value) => onFilterChange("benefit", value)}
+          benefitsAvailable={benefitsAvailable}
         />
         {!isMobile && (
           <button className="desktop-filter-reset" onClick={resetFilters}>
