@@ -1,0 +1,53 @@
+.side-drawer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  position: fixed;
+  padding: 40px 15px 20px;
+  right: -600px;
+  top: 0;
+  z-index: 1002;
+  background-color: var(--primary-background-color);
+  transition: right 0.5s ease;
+
+  border-radius: var(--border-radius-md);
+
+  &.open {
+    right: 0;
+  }
+
+  .side-drawer-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+  }
+
+  .side-drawer-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-right: -14px; /* Pushes the scrollbar outwards */
+    padding-right: 7px;
+  }
+
+  .side-drawer-footer {
+    padding-top: 10px;
+  }
+}
+
+.overlay.open {
+  display: block;
+}
+
+@media (min-width: 360px) {
+  .side-drawer {
+    padding: 40px 20px 20px;
+  }
+}
+
+@media (min-width: 600px) {
+  .side-drawer {
+    padding: 40px 30px 20px;
+  }
+}

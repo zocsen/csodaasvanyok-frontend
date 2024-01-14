@@ -28,8 +28,8 @@ function Header() {
           <ShoppingBagIcon
             alt="Shopping bag"
             aria-label="Shopping Bag"
-            width={34}
-            height={34}
+            width={40}
+            height={40}
           />
           <p className="items-in-cart">{getCartItemsCount}</p>
         </button>

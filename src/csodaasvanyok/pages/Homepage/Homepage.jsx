@@ -14,7 +14,7 @@ export default function Homepage() {
       <div className="homepage-image-links">
         <Link className="image-container" to="/termekek/osszes-karkoto">
           <img
-            className="collection-image"
+            className="collection-image box-shadow-border"
             src={HomepageBracelets}
             alt="Bracelets Showcase"
             width={500}
@@ -22,9 +22,9 @@ export default function Homepage() {
           />
           <h2 className="collection-name">Karkötők</h2>
         </Link>
-        <Link className="image-container" to="/termekek/marokkovek">
+        <Link className="image-container " to="/termekek/marokkovek">
           <img
-            className="collection-image"
+            className="collection-image box-shadow-border"
             src={HomepageMinerals}
             alt="Minerals Showcase"
             width={500}
@@ -34,7 +34,7 @@ export default function Homepage() {
         </Link>
         <Link className="image-container" to="/termekek/teli-termekek">
           <img
-            className="collection-image"
+            className="collection-image box-shadow-border"
             src={HomepageWinter}
             alt="Winter Bracelets Showcase"
             width={500}
@@ -47,7 +47,7 @@ export default function Homepage() {
           to="/termekek/termekek-szerelmeseknek"
         >
           <img
-            className="collection-image"
+            className="collection-image box-shadow-border"
             src={HomepageLove}
             alt="Love Showcase"
             width={500}

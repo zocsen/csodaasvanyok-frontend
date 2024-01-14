@@ -5,6 +5,7 @@ import useApi from "../../../hooks/useApi";
 import { useCart } from "../../../hooks/cartContext";
 import formatPrice from "../../../hooks/formatPrice";
 import { Box, Skeleton } from "@mui/material";
+import SizeHelper from "../../components/SizeHelper/SizeHelper";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -15,13 +16,28 @@ const ProductPage = () => {
 
   const { data: product, loading, error, get: getProduct } = useApi(API_URL);
 
+  const [isSizeHelperOpen, setIsSizeHelperOpen] = useState(false);
+
+  const [initialRender, setInitialRender] = useState(true);
+
+  const openSizeHelper = () => {
+    setIsSizeHelperOpen(true);
+    document.body.classList.add("no-scroll");
+  };
+
+  const closeSizeHelper = () => {
+    setIsSizeHelperOpen(false);
+    document.body.classList.remove("no-scroll");
+  };
+
   if (error !== null) {
     console.error(`Failed to fetch product: ${error}`);
   }
 
-  useEffect(() => {
+  if (initialRender) {
+    setInitialRender(false);
     getProduct("/products/" + id);
-  }, [id]);
+  }
 
   if (!product) return null;
 
@@ -30,7 +46,11 @@ const ProductPage = () => {
 
   return !loading ? (
     <div className="product-page">
-      <img src={product?.image} alt="Termék" />
+      <img
+        className="product-image box-shadow-border"
+        src={product?.image}
+        alt="Termék"
+      />
       <div className="product-details">
         <h1 className="product-name">{product?.name}</h1>
         <p className="product-price">{formatPrice(product.price)}</p>
@@ -54,6 +74,12 @@ const ProductPage = () => {
                 </button>
               ))}
             </div>
+            <button
+              className="size-helper-button"
+              onClick={() => openSizeHelper()}
+            >
+              Méret segédlet
+            </button>
           </div>
         )}
 
@@ -74,6 +100,10 @@ const ProductPage = () => {
           Kosárba
         </button>
       </div>
+      <SizeHelper
+        handleSizeHelperVisibility={() => closeSizeHelper()}
+        isSizeHelperOpen={isSizeHelperOpen}
+      />
     </div>
   ) : (
     <Box sx={{ display: "flex", justifyContent: "center" }}>

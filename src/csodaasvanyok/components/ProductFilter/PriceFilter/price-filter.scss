@@ -3,10 +3,14 @@
     .min-max {
       display: flex;
       justify-content: space-between;
+      margin-top: 4px;
       .price-box {
-        background-color: var(--primary-button-color);
+        // background-color: var(--primary-button-color);
         padding: 7px 14px;
+        min-width: 120px;
+        width: auto;
         border-radius: var(--border-radius-md);
+        text-align: center;
 
         label {
           font-size: 1.4rem;

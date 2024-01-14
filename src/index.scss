@@ -229,6 +229,12 @@ li {
   flex: 1; // grows to fill available space
 }
 
+.box-shadow-border {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 0 4px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.4) 0 0 4px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 0 4px;
+}
+
 @media (min-width: 0px) {
   .App {
     margin: 0 15px;

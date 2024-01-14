@@ -36,10 +36,10 @@ function PriceFilter({ onValueChange, priceRange, minMaxValues }) {
       </button>
       <div className={`faster-panel ${isPanelVisible ? "open" : ""} panel`}>
         <div className="min-max">
-          <div className="price-box">
+          <div className="price-box box-shadow-border">
             <label>Min: {rangeValues[0]} Ft</label>
           </div>
-          <div className="price-box">
+          <div className="price-box box-shadow-border">
             <label>Max: {rangeValues[1]} Ft</label>
           </div>
         </div>

@@ -1,0 +1,54 @@
+.cart-footer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--primary-background-color);
+
+  .to-free-delivery {
+    .deliver-fee-title {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 1.8rem;
+      font-weight: 700;
+
+      span {
+        &.free {
+          color: var(--green);
+        }
+      }
+    }
+    .min-max-price-needed {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2px;
+      p {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+    }
+
+    .free-delivery-reminder {
+      text-align: center;
+      font-size: 1.4rem;
+      margin-bottom: 4px;
+    }
+  }
+  .cart-footer-total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  .to-payment-info-button {
+    padding: 10px 0;
+    width: 100%;
+    border-width: 2px;
+    font-size: 2rem;
+    border-radius: var(--border-radius-md);
+    background-color: var(--primary-font-color);
+    color: var(--primary-background-color);
+    font-weight: 400;
+  }
+}

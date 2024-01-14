@@ -7,7 +7,7 @@ const LazyImage = ({ src, alt }) => {
       <img
         width={250}
         height={250}
-        className="product-image"
+        className="product-image box-shadow-border"
         src={src}
         alt={alt}
       />
