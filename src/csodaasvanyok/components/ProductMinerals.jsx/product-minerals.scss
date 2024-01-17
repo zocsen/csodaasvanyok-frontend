@@ -1,0 +1,106 @@
+.product-minerals {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .product-minerals-title {
+    padding: 10px 0 20px;
+  }
+
+  .mineral-container {
+    padding-top: 10px;
+    padding-bottom: 20px;
+
+    .mineral-description {
+      padding-bottom: 10px;
+      font-size: 1.6rem;
+      line-height: var(--base-line-height);
+    }
+
+    .mineral-benefits {
+      display: flex;
+      flex-flow: wrap;
+      gap: 10px;
+      margin-left: 5px;
+      .mineral-benefit-item {
+        font-size: 1.4rem;
+        white-space: nowrap;
+        padding: 4px 8px;
+        border-radius: var(--border-radius-md);
+      }
+    }
+  }
+}
+
+.accordion-style {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  align-items: center;
+  padding: 10px 10px 10px 20px;
+  border-radius: var(--border-radius-md);
+
+  &:focus + .accordion-content {
+    max-height: 500px;
+    transition: max-height 1s ease;
+  }
+
+  .mineral-name {
+    padding: 10px 0;
+    font-weight: 500;
+    font-size: 2rem;
+  }
+
+  .rotate-icon {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease-in-out;
+    transform: rotate(0deg) !important;
+    &.open {
+      transform: rotate(180deg) !important;
+    }
+  }
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+@media (min-width: 475px) {
+  .product-minerals {
+    display: grid;
+    grid-template-areas:
+      "item item"
+      "desc desc";
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .accordion-content {
+    grid-area: desc;
+  }
+}
+
+@media (min-width: 768px) {
+  .product-minerals {
+    grid-template-areas:
+      "item item item"
+      "desc desc desc";
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .accordion-content {
+    grid-area: desc;
+  }
+}
+@media (min-width: 1400px) {
+  .product-minerals {
+    grid-template-areas:
+      "item item item item"
+      "desc desc desc desc";
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .accordion-content {
+    grid-area: desc;
+  }
+}

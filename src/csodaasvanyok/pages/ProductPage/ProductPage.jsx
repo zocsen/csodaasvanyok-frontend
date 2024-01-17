@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import "./product-page.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useApi from "../../../hooks/useApi";
 import { useCart } from "../../../hooks/cartContext";
 import formatPrice from "../../../hooks/formatPrice";
-import { Box, Skeleton } from "@mui/material";
 import SizeHelper from "../../components/SizeHelper/SizeHelper";
+import ProductMinerals from "../../components/ProductMinerals.jsx/ProductMinerals";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -44,71 +44,70 @@ const ProductPage = () => {
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
   console.log(loading);
 
-  return !loading ? (
-    <div className="product-page">
-      <img
-        className="product-image box-shadow-border"
-        src={product?.image}
-        alt="Termék"
-      />
-      <div className="product-details">
-        <h1 className="product-name">{product?.name}</h1>
-        <p className="product-price">{formatPrice(product.price)}</p>
-        <p className="product-description">
-          <span className="description-header">TERMÉK LEÍRÁSA</span> <br />
-          {product?.description}
-        </p>
-        {product.category.name === "Karkötő" && (
-          <div className="product-size-wrapper">
-            <h3 className="size-title">Méret</h3>
-            <div className="size-boxes">
-              {sizes.map((size) => (
-                <button
-                  key={size}
-                  className={`size-box ${
-                    selectedSize === size ? "selected" : ""
-                  }`}
-                  onClick={() => setSelectedSize(size)}
-                >
-                  {size}
-                </button>
-              ))}
+  return (
+    <>
+      <div className="product-page">
+        <img
+          className="product-image box-shadow-border"
+          src={product?.image}
+          alt="Termék"
+        />
+        <div className="product-details">
+          <h1 className="product-name">{product?.name}</h1>
+          <p className="product-price">{formatPrice(product.price)}</p>
+          <p className="product-description">
+            <span className="description-header">TERMÉK LEÍRÁSA</span> <br />
+            {product?.description}
+          </p>
+          {product.category.name === "Karkötő" && (
+            <div className="product-size-wrapper">
+              <h3 className="size-title">Méret</h3>
+              <div className="size-boxes">
+                {sizes.map((size) => (
+                  <button
+                    key={size}
+                    className={`size-box ${
+                      selectedSize === size ? "selected" : ""
+                    }`}
+                    onClick={() => setSelectedSize(size)}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+              <button
+                className="size-helper-button"
+                onClick={() => openSizeHelper()}
+              >
+                Méret segédlet
+              </button>
             </div>
-            <button
-              className="size-helper-button"
-              onClick={() => openSizeHelper()}
-            >
-              Méret segédlet
-            </button>
-          </div>
-        )}
+          )}
 
-        <button
-          className={`add-to-cart-button ${
-            product.category.name === "Karkötő" && selectedSize === null
-              ? "disabled"
-              : ""
-          }`}
-          disabled={
-            product.category.name === "Karkötő" && selectedSize === null
-          }
-          onClick={() => {
-            openCart();
-            addToCart({ ...product, size: selectedSize });
-          }}
-        >
-          Kosárba
-        </button>
+          <button
+            className={`add-to-cart-button ${
+              product.category.name === "Karkötő" && selectedSize === null
+                ? "disabled"
+                : ""
+            }`}
+            disabled={
+              product.category.name === "Karkötő" && selectedSize === null
+            }
+            onClick={() => {
+              openCart();
+              addToCart({ ...product, size: selectedSize });
+            }}
+          >
+            Kosárba
+          </button>
+        </div>
+        <SizeHelper
+          handleSizeHelperVisibility={() => closeSizeHelper()}
+          isSizeHelperOpen={isSizeHelperOpen}
+        />
       </div>
-      <SizeHelper
-        handleSizeHelperVisibility={() => closeSizeHelper()}
-        isSizeHelperOpen={isSizeHelperOpen}
-      />
-    </div>
-  ) : (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
-      <Skeleton variant="rounded" width={1400} height={1000} />
-    </Box>
+      <ProductMinerals product={product} />
+    </>
   );
 };
 
