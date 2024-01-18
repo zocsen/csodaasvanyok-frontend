@@ -9,7 +9,13 @@ export default function MineralCatalogue() {
 
   return (
     <>
-      <h1 style={{ textAlign: "center", padding: "40px 0", fontSize: "3rem" }}>
+      <h1
+        style={{
+          textAlign: "center",
+          padding: "60px 0 40px",
+          fontSize: "3rem",
+        }}
+      >
         Ásvány Katalógus
       </h1>
       <ProductMinerals product={allMinerals} />
