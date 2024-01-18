@@ -109,11 +109,7 @@ export default function ProductsPage({ header, type }) {
 
     const uniqueMineralObjects = Array.from(uniqueMinerals.values());
 
-    uniqueMineralObjects.sort((a, b) => {
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
-      return 0;
-    });
+    uniqueMineralObjects.sort((a, b) => a.name.localeCompare(b.name, "hu"));
 
     setMineralsAvailable(uniqueMineralObjects);
   }
@@ -133,11 +129,7 @@ export default function ProductsPage({ header, type }) {
 
     const uniqueBenefitObjects = Array.from(uniqueBenefits.values());
 
-    uniqueBenefitObjects.sort((a, b) => {
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
-      return 0;
-    });
+    uniqueBenefitObjects.sort((a, b) => a.name.localeCompare(b.name, "hu"));
 
     setBenefitsAvailable(uniqueBenefitObjects);
   }
