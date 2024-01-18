@@ -13,7 +13,7 @@ export default function MineralCatalogue() {
         style={{
           textAlign: "center",
           padding: "60px 0 40px",
-          fontSize: "3rem",
+          fontSize: "3.8rem",
         }}
       >
         Ásvány Katalógus
