@@ -1,19 +1,22 @@
 .product-minerals {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  padding-top: 40px;
 
   .product-minerals-title {
     padding: 10px 0 20px;
+    font-weight: 600;
   }
+}
+
+.product-minerals-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
   .mineral-container {
-    padding-top: 10px;
-    padding-bottom: 20px;
-
+    padding: 14px;
     .mineral-description {
-      padding-bottom: 10px;
-      font-size: 1.6rem;
+      text-align: justify;
+      font-size: 1.4rem;
       line-height: var(--base-line-height);
     }
 
@@ -21,7 +24,7 @@
       display: flex;
       flex-flow: wrap;
       gap: 10px;
-      margin-left: 5px;
+      margin-top: 10px;
       .mineral-benefit-item {
         font-size: 1.4rem;
         white-space: nowrap;
@@ -30,46 +33,46 @@
       }
     }
   }
-}
 
-.accordion-style {
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
-  align-items: center;
-  padding: 10px 10px 10px 20px;
-  border-radius: var(--border-radius-md);
+  .accordion-style {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: var(--border-radius-md);
 
-  &:focus + .accordion-content {
-    max-height: 500px;
-    transition: max-height 1s ease;
-  }
+    &:focus {
+      background-color: black;
+      color: white;
 
-  .mineral-name {
-    padding: 10px 0;
-    font-weight: 500;
-    font-size: 2rem;
-  }
+      span {
+        color: black;
+      }
+    }
 
-  .rotate-icon {
-    width: 40px;
-    height: 40px;
-    transition: transform 0.3s ease-in-out;
-    transform: rotate(0deg) !important;
-    &.open {
-      transform: rotate(180deg) !important;
+    &:focus + .accordion-content {
+      max-height: 2000px;
+      transition: max-height 1.5s ease-in-out;
+      margin-bottom: 10px;
+    }
+
+    .mineral-name {
+      font-weight: 500;
+      font-size: 1.4rem;
     }
   }
+
+  .accordion-content {
+    max-height: 0;
+
+    overflow: hidden;
+    border-radius: var(--border-radius-md);
+  }
 }
 
-.accordion-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-in-out;
-}
-
-@media (min-width: 475px) {
-  .product-minerals {
+@media (min-width: 360px) {
+  .product-minerals-container {
     display: grid;
     grid-template-areas:
       "item item"
@@ -82,8 +85,8 @@
   }
 }
 
-@media (min-width: 768px) {
-  .product-minerals {
+@media (min-width: 722px) {
+  .product-minerals-container {
     grid-template-areas:
       "item item item"
       "desc desc desc";
@@ -94,11 +97,19 @@
   }
 }
 @media (min-width: 1400px) {
-  .product-minerals {
+  .product-minerals-container {
     grid-template-areas:
       "item item item item"
       "desc desc desc desc";
     grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    .accordion-style {
+      padding: 10px 20px;
+
+      .mineral-name {
+        font-size: 1.6rem;
+      }
+    }
   }
   .accordion-content {
     grid-area: desc;
