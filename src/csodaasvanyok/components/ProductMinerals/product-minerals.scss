@@ -68,6 +68,11 @@
 
     overflow: hidden;
     border-radius: var(--border-radius-md);
+
+    &:focus {
+      max-height: 2000px;
+      margin-bottom: 10px;
+    }
   }
 }
 
@@ -85,7 +90,7 @@
   }
 }
 
-@media (min-width: 722px) {
+@media (min-width: 768px) {
   .product-minerals-container {
     grid-template-areas:
       "item item item"

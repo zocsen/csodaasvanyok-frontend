@@ -5,7 +5,7 @@ import useApi from "../../../hooks/useApi";
 import { useCart } from "../../../hooks/cartContext";
 import formatPrice from "../../../hooks/formatPrice";
 import SizeHelper from "../../components/SizeHelper/SizeHelper";
-import ProductMinerals from "../../components/ProductMinerals.jsx/ProductMinerals";
+import ProductMinerals from "../../components/ProductMinerals/ProductMinerals";
 
 const API_URL = process.env.REACT_APP_API_URL;
 

@@ -145,6 +145,10 @@ export default function MobileAccordion() {
           Ékszer tervező (HAMAROSAN)
         </Link>
         <hr />
+        <Link onClick={handleLinkClick} to="/asvany-katalogus">
+          Ásvány katalógus
+        </Link>
+        <hr />
       </div>
       <div
         className={`overlay ${isOpen ? "open" : ""}`}

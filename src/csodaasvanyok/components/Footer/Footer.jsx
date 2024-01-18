@@ -37,6 +37,9 @@ export default function Footer() {
             <Link className="footer-link" to="/meret-segedlet">
               Méret segédlet
             </Link>
+            <Link className="footer-link" to="/asvany-katalogus">
+              Ásvány katalógus
+            </Link>
             <Link className="footer-link" to="/gyakran-ismetelt-kerdesek">
               Gyakran ismételt kérdések
             </Link>

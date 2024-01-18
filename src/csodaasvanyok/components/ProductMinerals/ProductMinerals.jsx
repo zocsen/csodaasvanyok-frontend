@@ -50,22 +50,33 @@ const MineralItemAccordion = ({ title, children }) => {
         <h2 className="mineral-name">{title}</h2>
         <span>+</span>
       </div>
-      <div className={`accordion-content box-shadow-border`}>{children}</div>
+      <div className={`accordion-content box-shadow-border`} tabIndex={1}>
+        {children}
+      </div>
     </>
   );
 };
 
 export default function ProductMinerals({ product }) {
   const { width } = useWindowSize();
+  let mineralChunks;
+
   if (!product) return null;
 
-  const mineralChunks = chunkArray(product.mineral, width);
+  if (product.mineral === undefined && product) {
+    mineralChunks = chunkArray(product, width);
+  } else {
+    mineralChunks = chunkArray(product.mineral, width);
+  }
 
   return (
     <div className="product-minerals">
-      <h2 className="product-minerals-title">
-        A karkötő a következő ásványokat tartalmazza:
-      </h2>
+      {product.mineral !== undefined && product && (
+        <h2 className="product-minerals-title">
+          A karkötő a következő ásványokat tartalmazza:
+        </h2>
+      )}
+
       {mineralChunks.map((chunk, index) => (
         <div key={index} className="product-minerals-container">
           {chunk.map((mineralType) => (

@@ -131,6 +131,11 @@ export default function DesktopAccordion() {
                   (HAMAROSAN)
                 </Link>
               </h2>
+              <h2>
+                <Link onClick={handleLinkClick} to="/asvany-katalogus">
+                  Ásvány katalógus
+                </Link>
+              </h2>
             </ul>
           </nav>
         </div>
