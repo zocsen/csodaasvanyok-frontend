@@ -3,9 +3,9 @@
   flex-direction: column;
   gap: 40px;
   .product-image {
-    width: 111%;
+    width: 100%;
     height: auto;
-    margin-left: -15px;
+    border-radius: var(--border-radius-md);
   }
 
   .product-details {
@@ -24,6 +24,7 @@
     }
     .product-description {
       margin-bottom: 40px;
+      text-align: justify;
       .description-header {
         font-size: 1.6rem;
         font-weight: 600;
@@ -87,11 +88,6 @@
     gap: 60px;
     margin-top: 60px;
 
-    .product-image {
-      width: 100%;
-      margin-left: 0;
-      border-radius: var(--border-radius-sm);
-    }
     .product-details .add-to-cart-button {
       max-width: 200px;
     }
