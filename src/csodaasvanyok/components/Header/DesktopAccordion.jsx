@@ -56,8 +56,8 @@ export default function DesktopAccordion() {
       </button>
       <div className={`desktop-accordion ${isOpen ? "open" : ""}`}>
         <div className="desktop-accordion-container">
-          <nav className="desktop-menu-navigation">
-            <ul className="desktop-menu-items">
+          <nav className="desktop-menu-navigation ">
+            <ul className="desktop-menu-items left">
               <h2>Népszerűek 🔥</h2>
               <li>
                 <Link onClick={handleLinkClick} to="/termekek/teli-termekek">
@@ -114,7 +114,7 @@ export default function DesktopAccordion() {
                 </Link>
               </li>
             </ul>
-            <ul className="desktop-menu-items">
+            <ul className="desktop-menu-items right">
               <h2>
                 <Link onClick={handleLinkClick} to="/termekek/marokkovek">
                   Marokkövek
