@@ -14,94 +14,87 @@ import ASZFPage from "./pages/ASZFPage/ASZFPage";
 import AboutUs from "./pages/AboutUsPage/AboutUs";
 import MineralCatalogue from "./pages/MineralCatalogue/MineralCatalogue";
 import GYIKPage from "./pages/GYIKPage/GYIKPage";
+import useScrollToTop from "../hooks/useScrollToTop";
 
 export default function Csodaasvanyok() {
+  useScrollToTop();
   return (
-    <BrowserRouter>
-      <div className="app-container">
-        <Header />
-        <div className="main-content">
-          <Cart />
-          <DeliveryInfo />
-          <Routes>
-            <Route
-              path="termekek/osszes-karkoto"
-              element={<ProductsPage header="Összes karkötő" type="Karkötő" />}
-            />
-            <Route
-              path="termekek/noi-karkotok"
-              element={<ProductsPage header="Női karkötők" type="Női" />}
-            />
-            <Route
-              path="termekek/ferfi-karkotok"
-              element={<ProductsPage header="Férfi karkötők" type="Férfi" />}
-            />
-            <Route
-              path="termekek/paros-karkotok"
-              element={<ProductsPage header="Páros karkötők" type="Páros" />}
-            />
-            <Route
-              path="termekek/natural-karkotok"
-              element={
-                <ProductsPage header="Natural karkötők" type="Natural" />
-              }
-            />
-            <Route
-              path="termekek/marokkovek"
-              element={<ProductsPage header="Marokkövek" type="Ásványok" />}
-            />
-            <Route
-              path="termekek/fulbevalok"
-              element={<ProductsPage header="Fülbevalók" type="Fülbevaló" />}
-            />
-            <Route
-              path="termekek/nyaklancok"
-              element={<ProductsPage header="Nyakláncok" type="Nyaklánc📿" />}
-            />
-            <Route
-              path="termekek/aprosagok"
-              element={<ProductsPage header="Apróságok" type="Apróság" />}
-            />
-            <Route
-              path="termekek/teli-termekek"
-              element={<ProductsPage header="Téli varázs ❄️" type="Tél" />}
-            />
-            <Route
-              path="termekek/termekek-szerelmeseknek"
-              element={
-                <ProductsPage header="Szerelmeseknek 💖" type="Szerelem" />
-              }
-            />
-            <Route
-              path="termekek/horoszkopos-termekek"
-              element={<ProductsPage header="Horoszkóp ♌" type="Horoszkóp" />}
-            />
-            <Route
-              path="termekek/akcios-termekek"
-              element={
-                <ProductsPage header="Akciós termékek 🏷️" type="Akció" />
-              }
-            />
-            <Route
-              path="karkoto-tervezo"
-              element={<ProductBuilderPage />}
-            ></Route>
-
-            <Route path="/termek/:slug/:id" element={<ProductPage />} />
-
-            <Route path="success" element={<PaymentSuccessfulPage />} />
-            <Route path="cancel" element={<PaymentFailedPage />} />
-            <Route path="aszf" element={<ASZFPage />} />
-            <Route path="rolunk" element={<AboutUs />} />
-            <Route path="asvany-katalogus" element={<MineralCatalogue />} />
-            <Route path="gyakran-ismetelt-kerdesek" element={<GYIKPage />} />
-
-            <Route path="/" element={<Homepage />} />
-            <Route path="*" element={<Homepage />} />
-          </Routes>
-        </div>
-        <Footer />
+    <div className="app-container">
+      <Header />
+      <div className="main-content">
+        <Cart />
+        <DeliveryInfo />
+        <Routes>
+          <Route
+            path="termekek/osszes-karkoto"
+            element={<ProductsPage header="Összes karkötő" type="Karkötő" />}
+          />
+          <Route
+            path="termekek/noi-karkotok"
+            element={<ProductsPage header="Női karkötők" type="Női" />}
+          />
+          <Route
+            path="termekek/ferfi-karkotok"
+            element={<ProductsPage header="Férfi karkötők" type="Férfi" />}
+          />
+          <Route
+            path="termekek/paros-karkotok"
+            element={<ProductsPage header="Páros karkötők" type="Páros" />}
+          />
+          <Route
+            path="termekek/natural-karkotok"
+            element={<ProductsPage header="Natural karkötők" type="Natural" />}
+          />
+          <Route
+            path="termekek/marokkovek"
+            element={<ProductsPage header="Marokkövek" type="Ásványok" />}
+          />
+          <Route
+            path="termekek/fulbevalok"
+            element={<ProductsPage header="Fülbevalók" type="Fülbevaló" />}
+          />
+          <Route
+            path="termekek/nyaklancok"
+            element={<ProductsPage header="Nyakláncok" type="Nyaklánc📿" />}
+          />
+          <Route
+            path="termekek/aprosagok"
+            element={<ProductsPage header="Apróságok" type="Apróság" />}
+          />
+          <Route
+            path="termekek/teli-termekek"
+            element={<ProductsPage header="Téli varázs ❄️" type="Tél" />}
+          />
+          <Route
+            path="termekek/termekek-szerelmeseknek"
+            element={
+              <ProductsPage header="Szerelmeseknek 💖" type="Szerelem" />
+            }
+          />
+          <Route
+            path="termekek/horoszkopos-termekek"
+            element={<ProductsPage header="Horoszkóp ♌" type="Horoszkóp" />}
+          />
+          <Route
+            path="termekek/akcios-termekek"
+            element={<ProductsPage header="Akciós termékek 🏷️" type="Akció" />}
+          />
+          <Route
+            path="karkoto-tervezo"
+            element={<ProductBuilderPage />}
+          ></Route>
+          <Route path="/termek/:slug/:id" element={<ProductPage />} />
+          <Route path="success" element={<PaymentSuccessfulPage />} />
+          <Route path="cancel" element={<PaymentFailedPage />} />
+          <Route path="aszf" element={<ASZFPage />} />
+          <Route path="rolunk" element={<AboutUs />} />
+          <Route path="asvany-katalogus" element={<MineralCatalogue />} />
+          <Route path="gyakran-ismetelt-kerdesek" element={<GYIKPage />} />
+          <Route path="/" element={<Homepage />} />
+          <Route path="*" element={<Homepage />} />
+        </Routes>
       </div>
-    </BrowserRouter>
+      <Footer />
+    </div>
   );
 }
