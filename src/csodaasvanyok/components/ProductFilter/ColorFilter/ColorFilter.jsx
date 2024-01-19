@@ -68,7 +68,9 @@ function ColorFilter({ onValueChange }) {
           {colors.map((color) => (
             <div
               key={color.code}
-              className={`color-swatch${isSelected(color) ? " selected" : ""}`}
+              className={`color-swatch${
+                isSelected(color) ? " selected" : ""
+              } box-shadow-border`}
               style={{ backgroundColor: color.code }}
               onClick={() => onColorSelect(color)}
             >

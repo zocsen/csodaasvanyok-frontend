@@ -5,6 +5,7 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
       justify-items: center;
+      margin-top: 4px;
       margin-bottom: 10px;
 
       .color-swatch {
@@ -16,7 +17,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         margin-bottom: 20px;
         text-align: center;
         span {
