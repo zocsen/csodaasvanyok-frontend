@@ -12,11 +12,20 @@ function filterProductsByType(product, type) {
   switch (type) {
     case "Női":
     case "Férfi":
-      return product.subcategory.some(
-        (subcategory) =>
-          subcategory.name === type || subcategory.name === "Páros"
-      );
     case "Páros":
+      return (
+        product.category.name === "Karkötő" &&
+        product.subcategory.some(
+          (subcategory) =>
+            subcategory.name === type || subcategory.name === "Páros"
+        )
+      );
+    case "Natural":
+      return (
+        product.category.name === "Karkötő" &&
+        product.subcategory.some((subcategory) => subcategory.name === type)
+      );
+
     case "Tél":
     case "Szerelem":
     case "Horoszkóp":
@@ -26,6 +35,9 @@ function filterProductsByType(product, type) {
       );
     case "Karkötő":
     case "Ásványok":
+    case "Fülbevaló":
+    case "Nyaklánc":
+    case "Apróság":
       return product.category.name === type;
     default:
       return false;

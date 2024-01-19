@@ -127,8 +127,8 @@ export default function MobileAccordion() {
             </Link>
           </li>
           <li>
-            <Link onClick={handleLinkClick} to="/karkoto-tervezo">
-              Karkötő Tervező (HAMAROSAN)
+            <Link onClick={handleLinkClick} to="/termekek/natural-karkotok">
+              Natural karkötők
             </Link>
           </li>
         </AccordionItem>
@@ -137,8 +137,20 @@ export default function MobileAccordion() {
           Marokkövek
         </Link>
         <hr />
+        <Link onClick={handleLinkClick} to="/termekek/fulbevalok">
+          Fülbevalók
+        </Link>
+        <hr />
+        <Link onClick={handleLinkClick} to="/termekek/nyaklancok">
+          Nyakláncok 📿
+        </Link>
+        <hr />
+        <Link onClick={handleLinkClick} to="/termekek/aprosagok">
+          Apróságok
+        </Link>
+        <hr />
         <Link onClick={handleLinkClick} to="/termekek/akcios-termekek">
-          Akciós termékek
+          Akciós termékek 🏷️
         </Link>
         <hr />
         <Link onClick={handleLinkClick} to="/karkoto-tervezo">

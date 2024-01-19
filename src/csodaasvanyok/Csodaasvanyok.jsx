@@ -40,8 +40,26 @@ export default function Csodaasvanyok() {
               element={<ProductsPage header="Páros karkötők" type="Páros" />}
             />
             <Route
+              path="termekek/natural-karkotok"
+              element={
+                <ProductsPage header="Natural karkötők" type="Natural" />
+              }
+            />
+            <Route
               path="termekek/marokkovek"
               element={<ProductsPage header="Marokkövek" type="Ásványok" />}
+            />
+            <Route
+              path="termekek/fulbevalok"
+              element={<ProductsPage header="Fülbevalók" type="Fülbevaló" />}
+            />
+            <Route
+              path="termekek/nyaklancok"
+              element={<ProductsPage header="Nyakláncok" type="Nyaklánc📿" />}
+            />
+            <Route
+              path="termekek/aprosagok"
+              element={<ProductsPage header="Apróságok" type="Apróság" />}
             />
             <Route
               path="termekek/teli-termekek"

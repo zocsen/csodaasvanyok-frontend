@@ -17,28 +17,33 @@ export default function Footer() {
         <div className="upper-footer">
           <div className="footer-menu">
             <h3>Menü</h3>
-            <Link className="footer-link" to="/rolunk">
-              Rólunk
-            </Link>
+
             <Link className="footer-link" to="/termekek/osszes-karkoto">
               Karkötők
             </Link>
             <Link className="footer-link" to="/termekek/marokkovek">
               Marokkövek
             </Link>
+            <Link className="footer-link" to="/termekek/fulbevalok">
+              Fülbevalók
+            </Link>
+            <Link className="footer-link" to="/termekek/nyaklancok">
+              Nyakláncok
+            </Link>
+            <Link className="footer-link" to="/termekek/aprosagok">
+              Apróságok
+            </Link>
             <Link className="footer-link" to="/karkoto-tervezo">
               Ékszer tervező (hamarosan)
             </Link>
-            {/* <Link to="/blog">Blog</Link>
-            <Link to="/felhasznalo">Fiók</Link> */}
           </div>
           <div className="footer-help">
             <h3>Segítség</h3>
-            <Link className="footer-link" to="/meret-segedlet">
-              Méret segédlet
-            </Link>
             <Link className="footer-link" to="/asvany-katalogus">
               Ásvány katalógus
+            </Link>
+            <Link className="footer-link" to="/rolunk">
+              Rólunk
             </Link>
             <Link className="footer-link" to="/gyakran-ismetelt-kerdesek">
               Gyakran ismételt kérdések

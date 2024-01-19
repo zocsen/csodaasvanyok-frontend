@@ -57,7 +57,7 @@ export default function DesktopAccordion() {
       <div className={`desktop-accordion ${isOpen ? "open" : ""}`}>
         <div className="desktop-accordion-container">
           <nav className="desktop-menu-navigation ">
-            <ul className="desktop-menu-items left">
+            <ul className="desktop-menu-items">
               <h2>Népszerűek 🔥</h2>
               <li>
                 <Link onClick={handleLinkClick} to="/termekek/teli-termekek">
@@ -109,31 +109,58 @@ export default function DesktopAccordion() {
                 </Link>
               </li>
               <li>
-                <Link onClick={handleLinkClick} to="/karkoto-tervezo">
-                  Karkötő Tervező <br /> (HAMAROSAN)
+                <Link onClick={handleLinkClick} to="/termekek/natural-karkotok">
+                  Natural karkötők
                 </Link>
               </li>
             </ul>
-            <ul className="desktop-menu-items right">
-              <h2>
+            <ul className="desktop-menu-items">
+              <h2>Egyéb</h2>
+              <li>
                 <Link onClick={handleLinkClick} to="/termekek/marokkovek">
                   Marokkövek
                 </Link>
-              </h2>
-              <h2>
-                <Link onClick={handleLinkClick} to="/termekek/akcios-termekek">
-                  Akciós termékek 🏷️
+              </li>
+              <li>
+                <Link onClick={handleLinkClick} to="/termekek/fulbevalok">
+                  Fülbevalók
                 </Link>
-              </h2>
-              <h2>
-                <Link onClick={handleLinkClick} to="/karkoto-tervezo">
-                  Ékszer tervező <br />
-                  (HAMAROSAN)
+              </li>
+              <li>
+                <Link onClick={handleLinkClick} to="/termekek/nyaklancok">
+                  Nyakláncok 📿
                 </Link>
-              </h2>
+              </li>
+              <li>
+                <Link onClick={handleLinkClick} to="/termekek/aprosagok">
+                  Apróságok
+                </Link>
+              </li>
+            </ul>
+            <ul className="desktop-menu-items">
               <h2>
                 <Link onClick={handleLinkClick} to="/asvany-katalogus">
                   Ásvány katalógus
+                </Link>
+              </h2>
+              <h2>
+                <Link onClick={handleLinkClick} to="/gyakran-ismetelt-kerdesek">
+                  GYIK
+                </Link>
+              </h2>
+              <h2>
+                <Link onClick={handleLinkClick} to="/rolunk">
+                  Rólunk
+                </Link>
+              </h2>
+              <h2>
+                <Link
+                  style={{ color: "red" }}
+                  onClick={handleLinkClick}
+                  to="/karkoto-tervezo"
+                >
+                  Karkötő tervező <br />
+                  (HAMAROSAN)
                 </Link>
               </h2>
             </ul>
