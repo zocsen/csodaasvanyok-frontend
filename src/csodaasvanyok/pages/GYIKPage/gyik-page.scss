@@ -1,0 +1,51 @@
+.gyikpage {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .question-accordion {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 20px;
+
+    border-radius: var(--border-radius-md);
+
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+    &.open {
+      background-color: var(--primary-font-color);
+      color: white;
+      transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+    }
+
+    .question {
+      font-weight: 500;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+    }
+
+    span {
+      font-weight: 600;
+      font-size: 2rem;
+    }
+  }
+
+  .answer {
+    max-height: 0;
+    text-align: justify;
+    font-size: 1.6rem;
+    line-height: var(--base-line-height);
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+
+    &.open {
+      max-height: 500px;
+      transition: max-height 1s ease-in-out;
+    }
+
+    .answer-container {
+      padding: 10px;
+    }
+  }
+}

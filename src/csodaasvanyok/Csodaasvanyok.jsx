@@ -13,6 +13,7 @@ import Footer from "./components/Footer/Footer";
 import ASZFPage from "./pages/ASZFPage/ASZFPage";
 import AboutUs from "./pages/AboutUsPage/AboutUs";
 import MineralCatalogue from "./pages/MineralCatalogue/MineralCatalogue";
+import GYIKPage from "./pages/GYIKPage/GYIKPage";
 
 export default function Csodaasvanyok() {
   return (
@@ -93,6 +94,7 @@ export default function Csodaasvanyok() {
             <Route path="aszf" element={<ASZFPage />} />
             <Route path="rolunk" element={<AboutUs />} />
             <Route path="asvany-katalogus" element={<MineralCatalogue />} />
+            <Route path="gyakran-ismetelt-kerdesek" element={<GYIKPage />} />
 
             <Route path="/" element={<Homepage />} />
             <Route path="*" element={<Homepage />} />

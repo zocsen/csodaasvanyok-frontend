@@ -1,0 +1,27 @@
+[
+  {
+    "id": "1",
+    "question": "Mennyi idő alatt érkezik meg a rendelésem?",
+    "answer": "A rendelés leadását követően, várhatóan 1-5 munkanapon belül kapod kézhez a csomagodat. "
+  },
+  {
+    "id": "2",
+    "question": "Tudom követni a csomagot?",
+    "answer": "Miután a rendelésedet elkészítettük küldünk egy e-mailt, amely tartalmazza a GLS nyomkövetési számodat és egy linket, amivel bármikor utána nézhetsz a csomagnak. "
+  },
+  {
+    "id": "3",
+    "question": "question3",
+    "answer": "answer3"
+  },
+  {
+    "id": "4",
+    "question": "question4",
+    "answer": "answer4"
+  },
+  {
+    "id": "5",
+    "question": "question5",
+    "answer": "answer5"
+  }
+]
