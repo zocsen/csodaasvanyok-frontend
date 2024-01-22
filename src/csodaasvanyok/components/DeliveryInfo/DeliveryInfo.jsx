@@ -60,7 +60,6 @@ export default function DeliveryInfo() {
     Object.entries(deliveryInfo).forEach(([key, value]) => {
       if (
         !value &&
-        key !== "phone" &&
         key !== "totalPrice" &&
         key !== "status" &&
         key !== "deliveryFee"
@@ -243,6 +242,11 @@ export default function DeliveryInfo() {
                     fontWeight: "500",
                   },
                 }}
+                FormHelperTextProps={{
+                  style: {
+                    fontSize: "1.2rem",
+                  },
+                }}
               />
               <TextField
                 className="full-text-field"
@@ -265,6 +269,11 @@ export default function DeliveryInfo() {
                   style: {
                     fontSize: "1.8rem",
                     color: "var(--primary-font-color)",
+                  },
+                }}
+                FormHelperTextProps={{
+                  style: {
+                    fontSize: "1.2rem",
                   },
                 }}
               />
@@ -293,6 +302,11 @@ export default function DeliveryInfo() {
                       color: "var(--primary-font-color)",
                     },
                   }}
+                  FormHelperTextProps={{
+                    style: {
+                      fontSize: "1.2rem",
+                    },
+                  }}
                 />
                 <TextField
                   className="half-text-field"
@@ -315,6 +329,11 @@ export default function DeliveryInfo() {
                     style: {
                       fontSize: "1.8rem",
                       color: "var(--primary-font-color)",
+                    },
+                  }}
+                  FormHelperTextProps={{
+                    style: {
+                      fontSize: "1.2rem",
                     },
                   }}
                 />
@@ -348,6 +367,11 @@ export default function DeliveryInfo() {
                       color: "var(--primary-font-color)",
                     },
                   }}
+                  FormHelperTextProps={{
+                    style: {
+                      fontSize: "1.2rem",
+                    },
+                  }}
                 />
                 <TextField
                   className="half-text-field"
@@ -375,6 +399,11 @@ export default function DeliveryInfo() {
                     style: {
                       fontSize: "1.8rem",
                       color: "var(--primary-font-color)",
+                    },
+                  }}
+                  FormHelperTextProps={{
+                    style: {
+                      fontSize: "1.2rem",
                     },
                   }}
                 />
@@ -407,14 +436,22 @@ export default function DeliveryInfo() {
                     color: "var(--primary-font-color)",
                   },
                 }}
+                FormHelperTextProps={{
+                  style: {
+                    fontSize: "1.2rem",
+                  },
+                }}
               />
               <TextField
                 className="full-text-field"
                 id="outlined-phone"
+                required
                 label="Telefonszám"
                 onChange={handleChange}
                 name="phone"
                 value={deliveryInfo.phone}
+                error={!!errors.phone}
+                helperText={errors.phone}
                 InputLabelProps={{
                   style: {
                     fontSize: "1.8rem",
@@ -429,7 +466,11 @@ export default function DeliveryInfo() {
                     color: "var(--primary-font-color)",
                   },
                 }}
-                helperText="Nem kötelező megadni"
+                FormHelperTextProps={{
+                  style: {
+                    fontSize: "1.2rem",
+                  },
+                }}
               />
             </div>
           )}
