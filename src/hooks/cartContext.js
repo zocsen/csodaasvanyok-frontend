@@ -91,7 +91,7 @@ export function CartProvider({ children }) {
     return total + item.quantity;
   }, 0);
 
-  const [baseDeliveryFee, setBaseDeliveryFee] = useState(990);
+  const [baseDeliveryFee, setBaseDeliveryFee] = useState(1100);
   const freeDeliveryThreshold = 12000;
 
   const deliveryFee = totalPrice >= freeDeliveryThreshold ? 0 : baseDeliveryFee;
