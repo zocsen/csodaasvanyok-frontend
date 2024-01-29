@@ -9,7 +9,13 @@ import AddIcon from "../../../images/icons/add.svg";
 
 export default function MobileAccordion() {
   const [isOpen, setIsOpen] = useState(false);
+  const [initialRender, setInitialRender] = useState(true);
   const dropdownRef = useRef(null);
+
+  if (initialRender) {
+    setInitialRender(false);
+    document.body.classList.remove("no-scroll");
+  }
 
   const AccordionItem = ({ title, children }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -42,7 +48,7 @@ export default function MobileAccordion() {
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape" && isOpen) {
-        setIsOpen(false);
+        handleClose();
       }
     };
 
@@ -52,22 +58,25 @@ export default function MobileAccordion() {
     };
   }, [isOpen]);
 
-  const handleLinkClick = () => {
+  const handleOpen = () => {
+    setIsOpen(true);
+    document.body.classList.add("no-scroll");
+  };
+
+  const handleClose = () => {
     setIsOpen(false);
+    document.body.classList.remove("no-scroll");
   };
 
   return (
     <div className="mobile-menu" ref={dropdownRef}>
-      <button
-        className="mobile-header-menu-btn"
-        onClick={() => setIsOpen(!isOpen)}
-      >
+      <button className="mobile-header-menu-btn" onClick={handleOpen}>
         <img src={MenuIcon} className="menu-icon" aria-label="Menu icon" />
       </button>
       <div className={`mobile-accordion-container ${isOpen ? "open" : ""}`}>
         <div className="mobile-accordion-header">
           <h2>Termékek</h2>
-          <button className="close-button" onClick={() => setIsOpen(!isOpen)}>
+          <button className="close-button" onClick={handleClose}>
             <img
               src={CloseIcon}
               className="base-svg"
@@ -81,25 +90,22 @@ export default function MobileAccordion() {
         <hr />
         <AccordionItem title="Népszerűek 🔥">
           <li>
-            <Link onClick={handleLinkClick} to="/termekek/teli-termekek">
+            <Link onClick={handleClose} to="/termekek/teli-termekek">
               Téli varázs ❄️
             </Link>
           </li>
           <li>
-            <Link
-              onClick={handleLinkClick}
-              to="/termekek/termekek-szerelmeseknek"
-            >
+            <Link onClick={handleClose} to="/termekek/termekek-szerelmeseknek">
               Szerelmeseknek 💖
             </Link>
           </li>
           <li>
-            <Link onClick={handleLinkClick} to="/termekek/horoszkopos-termekek">
+            <Link onClick={handleClose} to="/termekek/horoszkopos-termekek">
               Horoszkóp ♌
             </Link>
           </li>
           <li>
-            <Link onClick={handleLinkClick} to="/termekek/akcios-termekek">
+            <Link onClick={handleClose} to="/termekek/akcios-termekek">
               Akciós termékek 🏷️
             </Link>
           </li>
@@ -107,64 +113,64 @@ export default function MobileAccordion() {
         <hr />
         <AccordionItem title="Karkötők">
           <li>
-            <Link onClick={handleLinkClick} to="/termekek/osszes-karkoto">
+            <Link onClick={handleClose} to="/termekek/osszes-karkoto">
               Összes karkötő
             </Link>
           </li>
           <li>
-            <Link onClick={handleLinkClick} to="/termekek/noi-karkotok">
+            <Link onClick={handleClose} to="/termekek/noi-karkotok">
               Női karkötők
             </Link>
           </li>
           <li>
-            <Link onClick={handleLinkClick} to="/termekek/ferfi-karkotok">
+            <Link onClick={handleClose} to="/termekek/ferfi-karkotok">
               Férfi karkötők
             </Link>
           </li>
           <li>
-            <Link onClick={handleLinkClick} to="/termekek/paros-karkotok">
+            <Link onClick={handleClose} to="/termekek/paros-karkotok">
               Páros karkötők
             </Link>
           </li>
           <li>
-            <Link onClick={handleLinkClick} to="/termekek/natural-karkotok">
+            <Link onClick={handleClose} to="/termekek/natural-karkotok">
               Natural karkötők
             </Link>
           </li>
         </AccordionItem>
         <hr />
-        <Link onClick={handleLinkClick} to="/termekek/marokkovek">
+        <Link onClick={handleClose} to="/termekek/marokkovek">
           Marokkövek
         </Link>
         <hr />
-        <Link onClick={handleLinkClick} to="/termekek/fulbevalok">
+        <Link onClick={handleClose} to="/termekek/fulbevalok">
           Fülbevalók
         </Link>
         <hr />
-        <Link onClick={handleLinkClick} to="/termekek/nyaklancok">
+        <Link onClick={handleClose} to="/termekek/nyaklancok">
           Nyakláncok 📿
         </Link>
         <hr />
-        <Link onClick={handleLinkClick} to="/termekek/aprosagok">
+        <Link onClick={handleClose} to="/termekek/aprosagok">
           Apróságok
         </Link>
         <hr />
-        <Link onClick={handleLinkClick} to="/termekek/akcios-termekek">
+        <Link onClick={handleClose} to="/termekek/akcios-termekek">
           Akciós termékek 🏷️
         </Link>
         <hr />
-        <Link onClick={handleLinkClick} to="/karkoto-tervezo">
+        <Link onClick={handleClose} to="/karkoto-tervezo">
           Ékszer tervező (HAMAROSAN)
         </Link>
         <hr />
-        <Link onClick={handleLinkClick} to="/asvany-katalogus">
+        <Link onClick={handleClose} to="/asvany-katalogus">
           Ásvány katalógus
         </Link>
         <hr />
       </div>
       <div
         className={`overlay ${isOpen ? "open" : ""}`}
-        onClick={() => setIsOpen(false)}
+        onClick={handleClose}
       ></div>
     </div>
   );

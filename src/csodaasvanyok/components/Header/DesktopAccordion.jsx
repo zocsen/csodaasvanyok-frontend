@@ -6,7 +6,13 @@ import ExpandMoreIcon from "../../../images/icons/expand-more.svg";
 
 export default function DesktopAccordion() {
   const [isOpen, setIsOpen] = useState(false);
+  const [initialRender, setInitialRender] = useState(true);
   const dropdownRef = useRef(null);
+
+  if (initialRender) {
+    setInitialRender(false);
+    document.body.classList.remove("no-scroll");
+  }
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -24,7 +30,7 @@ export default function DesktopAccordion() {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
+        handleClose();
       }
     };
 
@@ -34,15 +40,19 @@ export default function DesktopAccordion() {
     };
   }, []);
 
-  const handleLinkClick = () => {
-    setIsOpen(false);
+  const handleOpen = () => {
+    setIsOpen(true);
+    document.body.classList.add("no-scroll");
   };
+
+  const handleClose = () => {
+    setIsOpen(false);
+    document.body.classList.remove("no-scroll");
+  };
+
   return (
     <div className="desktop-menu" ref={dropdownRef}>
-      <button
-        className="desktop-header-menu-btn"
-        onClick={() => setIsOpen(!isOpen)}
-      >
+      <button className="desktop-header-menu-btn" onClick={handleOpen}>
         <p className="desktop-header-menu-title">
           Termékek{" "}
           <img
@@ -60,28 +70,25 @@ export default function DesktopAccordion() {
             <ul className="desktop-menu-items">
               <h2>Népszerűek 🔥</h2>
               <li>
-                <Link onClick={handleLinkClick} to="/termekek/teli-termekek">
+                <Link onClick={handleClose} to="/termekek/teli-termekek">
                   Téli varázs ❄️
                 </Link>
               </li>
               <li>
                 <Link
-                  onClick={handleLinkClick}
+                  onClick={handleClose}
                   to="/termekek/termekek-szerelmeseknek"
                 >
                   Szerelmeseknek 💖
                 </Link>
               </li>
               <li>
-                <Link
-                  onClick={handleLinkClick}
-                  to="/termekek/horoszkopos-termekek"
-                >
+                <Link onClick={handleClose} to="/termekek/horoszkopos-termekek">
                   Horoszkóp ♌
                 </Link>
               </li>
               <li>
-                <Link onClick={handleLinkClick} to="/termekek/akcios-termekek">
+                <Link onClick={handleClose} to="/termekek/akcios-termekek">
                   Akciós termékek 🏷️
                 </Link>
               </li>
@@ -89,27 +96,27 @@ export default function DesktopAccordion() {
             <ul className="desktop-menu-items">
               <h2>Karkötők</h2>
               <li>
-                <Link onClick={handleLinkClick} to="/termekek/osszes-karkoto">
+                <Link onClick={handleClose} to="/termekek/osszes-karkoto">
                   Összes karkötő
                 </Link>
               </li>
               <li>
-                <Link onClick={handleLinkClick} to="/termekek/noi-karkotok">
+                <Link onClick={handleClose} to="/termekek/noi-karkotok">
                   Női karkötők
                 </Link>
               </li>
               <li>
-                <Link onClick={handleLinkClick} to="/termekek/ferfi-karkotok">
+                <Link onClick={handleClose} to="/termekek/ferfi-karkotok">
                   Férfi karkötők
                 </Link>
               </li>
               <li>
-                <Link onClick={handleLinkClick} to="/termekek/paros-karkotok">
+                <Link onClick={handleClose} to="/termekek/paros-karkotok">
                   Páros karkötők
                 </Link>
               </li>
               <li>
-                <Link onClick={handleLinkClick} to="/termekek/natural-karkotok">
+                <Link onClick={handleClose} to="/termekek/natural-karkotok">
                   Natural karkötők
                 </Link>
               </li>
@@ -117,46 +124,46 @@ export default function DesktopAccordion() {
             <ul className="desktop-menu-items">
               <h2>Egyéb</h2>
               <li>
-                <Link onClick={handleLinkClick} to="/termekek/marokkovek">
+                <Link onClick={handleClose} to="/termekek/marokkovek">
                   Marokkövek
                 </Link>
               </li>
               <li>
-                <Link onClick={handleLinkClick} to="/termekek/fulbevalok">
+                <Link onClick={handleClose} to="/termekek/fulbevalok">
                   Fülbevalók
                 </Link>
               </li>
               <li>
-                <Link onClick={handleLinkClick} to="/termekek/nyaklancok">
+                <Link onClick={handleClose} to="/termekek/nyaklancok">
                   Nyakláncok 📿
                 </Link>
               </li>
               <li>
-                <Link onClick={handleLinkClick} to="/termekek/aprosagok">
+                <Link onClick={handleClose} to="/termekek/aprosagok">
                   Apróságok
                 </Link>
               </li>
             </ul>
             <ul className="desktop-menu-items">
               <h2>
-                <Link onClick={handleLinkClick} to="/asvany-katalogus">
+                <Link onClick={handleClose} to="/asvany-katalogus">
                   Ásvány katalógus
                 </Link>
               </h2>
               <h2>
-                <Link onClick={handleLinkClick} to="/gyakran-ismetelt-kerdesek">
+                <Link onClick={handleClose} to="/gyakran-ismetelt-kerdesek">
                   GYIK
                 </Link>
               </h2>
               <h2>
-                <Link onClick={handleLinkClick} to="/rolunk">
+                <Link onClick={handleClose} to="/rolunk">
                   Rólunk
                 </Link>
               </h2>
               <h2>
                 <Link
                   style={{ color: "red" }}
-                  onClick={handleLinkClick}
+                  onClick={handleClose}
                   to="/karkoto-tervezo"
                 >
                   Karkötő tervező <br />
@@ -167,6 +174,10 @@ export default function DesktopAccordion() {
           </nav>
         </div>
       </div>
+      <div
+        className={`overlay ${isOpen ? "open" : ""}`}
+        onClick={handleClose}
+      ></div>
     </div>
   );
 }
